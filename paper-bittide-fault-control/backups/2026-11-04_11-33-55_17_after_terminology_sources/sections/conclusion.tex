@@ -1,0 +1,42 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We proposed a decentralized incremental Fuzzy PI controller for
+bittide and connected its complete rule law to the PI baseline through
+explicit, implementation-checked calibration. The exact central
+nonlinear map explains how the controller reshapes correction
+increments according to the relationship between occupancy error
+and its change. For the stated synchronous zero-latency fluid reference,
+invariant-domain and Lyapunov analysis establish convergence of buffer
+deviations and pairwise frequency differences, with positive physical
+frequencies and the stated safety and execution constraints. A certified
+trajectory prefix and contracting tail prove a strict headroom benefit
+for one prescribed matched-gain initialization: Fuzzy excursion is
+below 17.315 frames, while PI attains approximately 23.403701 frames.
+
+Continuous-phase Callisto tests separately evaluate delayed local
+execution. Matched-gain startup experiments show smaller measured
+buffer excursions at three prescribed initial mismatches. After
+equal-budget tuning and frozen selection, 186 held-out tests give
+mean paired RMS improvements of 16.78\% and 7.85\% for the selected
+random-priority Fuzzy controller in two bounded-random regimes,
+alongside lower mean command activity. A distinct burst-priority
+representative also improves IAE in the larger held-out burst.
+These benefits have explicit operating limits and a common-frequency
+shift cost; they establish conditional value rather than performance
+ordering across all delivery conditions.
+
+The contribution is an explicit nonlinear bittide controller with
+both a rigorous reference-model margin result and independent
+empirical evidence of useful synchronization and resource tradeoffs.
+Extending the certificate to asynchronous delayed execution and
+testing broader networks and physical links are the next steps
+towards deployment under application-specific timing requirements.
+
+
+% Previous placeholder, preserved before the completed section was integrated.
+% \section{Conclusion}
+% \label{sec:conclusion}
+% \noindent\textbf{Draft status: to be written.}
+% Complete this section after the evaluation and discussion are integrated,
+% keeping reference-model guarantees distinct from measured Callisto results.

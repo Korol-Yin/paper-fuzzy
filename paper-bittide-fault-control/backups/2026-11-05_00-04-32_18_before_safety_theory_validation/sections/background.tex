@@ -1,0 +1,67 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{The bittide mechanism and logical synchrony}
+bittide realizes logical synchrony through ordered frame exchange
+between nodes driven by independent local physical clocks. Logical
+synchrony specifies relationships between distributed events without
+requiring equal physical phases or a global physical clock~\cite{lall2024logicalSynchrony}.
+During normal unstalled operation, nodes send frames to their neighbors
+and consume frames from their receiving buffers as their local clocks
+advance. Elastic receiving buffers accommodate the difference between
+frame delivery and local consumption while preserving frame order.
+
+The bittide controller uses these receiving-buffer occupancies as local
+feedback to adjust clock frequency. Faster incoming progress tends to
+fill a buffer, whereas faster local consumption tends to drain it;
+link-latency changes also alter frame delivery. Frequency control
+therefore regulates physical progress while buffer availability supports
+the prescribed logical execution. Frequency agreement alone does not
+prove the required frame relationships or application-payload correctness.
+
+\subsection{Continuous clocks and buffer dynamics in bittide}
+
+Each node maintains a local physical clock driven by a frequency-controlled oscillator.
+In our bittide model, node $i$ has continuous clock phase $\theta_i(t)$ and physical frequency
+$\omega_i(t)=\omega_i^u+u_i(t)$, where $\omega_i^u$ is its constant
+uncontrolled (uncorrected) clock frequency and $u_i$ is the
+applied frequency correction, or control input. In Callisto simulations, each node holds corrections between local actuation events; phase is continuous
+and its slope changes at those events. Integer crossings generate
+frames inside this continuous plant. Positive physical operation
+requires $\omega_i>0$; a negative correction is not a negative frequency.
+
+For edge $j\to i$, occupancy $\beta_{ji}$, initial occupancy
+$\beta_{ji}(0)$, arrival count $A_{ji}^{\rm arr}$ and consumption
+count $N_i$ obey, while progress guards remain open,
+\begin{align}
+ \beta_{ji}(t)&=\beta_{ji}(0)+A_{ji}^{\rm arr}(t)-N_i(t),\nonumber\\
+ N_i(t)&=\lfloor\theta_i(t)\rfloor-\lfloor\theta_i(0)\rfloor.
+ \label{eq:bg_count_balance}
+\end{align}
+Arrivals include frames already in flight at initialization. Fluid
+models replace integer counts by phase increments; at constant physical
+link latency $\tau_{ji}$ they give
+$\dot{\widetilde\beta}_{ji}=\omega_j(t-\tau_{ji})-\omega_i(t)$.
+This analytical approximation is distinguished from actual integer
+execution~\cite{lall2022resistance,lall2024bufferOccupancy}.
+
+\subsection{Safety, syntony and buffer centering}
+For capacity $C_e$ and correction limit $u_{\max}$, normal operation
+seeks $0<\beta_e(t)<C_e$, $\omega_i(t)>0$ and
+$|u_i(t)|\le u_{\max}$ along the trajectory. A protection-induced
+stall is distinct from successful unstalled control. In the nominal
+reference, frequency synchronization (syntony) is expressed by
+$\Delta_\omega=\max_i\omega_i-\min_i\omega_i\to0$, together with
+buffer centering, $\beta_e\to\beta_e^*$, for compatible targets.
+The main performance cases use half-capacity targets. These objectives
+do not mean phase equality or tracking frequency one. Under persistent
+delivery disturbances, we assess residual disagreement and reserves
+rather than exact equilibrium. Buffer headroom denotes the remaining
+reserve before underflow or overflow.
+
+Existing PI analysis relates performance to gains and resistance
+distances~\cite{lall2022resistance}; occupancy and reframing analyses
+characterize limiting levels and centering~\cite{lall2024bufferOccupancy,lall2023bufferCentering}.
+For bittide, the additional question is how a fully specified nonlinear
+local law changes transient buffer use and disturbance response at
+controlled scales while respecting the execution constraints above. Appendix~\ref{app:background} expands these distinctions.

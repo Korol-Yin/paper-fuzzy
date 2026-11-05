@@ -1,0 +1,144 @@
+{
+  "updatedUTC": "2026-11-03T09:31:56.768164+00:00",
+  "preBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\pre_latest_results_20261103_093156_UTC",
+  "postBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\after_latest_results_20261103_093156_UTC",
+  "assets": [
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\paired_random_effects.png",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\paired_random_effects.png",
+      "sha256": "55f95887894ea5c8bae4c04535ed102034ef607a9d4814c74b7670562df1015b"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\paired_random_effects.svg",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\paired_random_effects.svg",
+      "sha256": "4d4c67def0b420b2bc21880a42517fdbb95866fc04bad37e8f8ed305667f9220"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\raw_Tc10000.png",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\raw_Tc10000.png",
+      "sha256": "ca18dd4808855bf7ae433a652f906bb9da957ca9828e7754a186218534c02b5f"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\raw_Tc10000.svg",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\raw_Tc10000.svg",
+      "sha256": "ab8a229f929eb0494d7bc30a78de5246864e058e8087e08405f0647f3482d1d3"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\analysis_v1\\reference_grid.png",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\reference_grid.png",
+      "sha256": "6f74b071faf63248af2f0847d06a5c715e062febe35dc4db34d6cb0f91e37d51"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\analysis_v1\\reference_grid.svg",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\reference_grid.svg",
+      "sha256": "770aa58df49d1f09c567f436a79dabf20e2213ba6d9bbd31040a30f27851f707"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\actual_locked_v1\\figures_v3\\actual_s4.png",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\actual_s4.png",
+      "sha256": "82b8e0347eaa7ea17525beddae59242e03b5cdb9cbe22f5882f0dde99dc804a9"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\actual_locked_v1\\figures_v3\\actual_s4.svg",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_latest_20261103\\actual_s4.svg",
+      "sha256": "803154be69349086d49f4a9e2683bf7c43ebe7750345e0e1614eaafbbee17144"
+    }
+  ],
+  "evidence": [
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\paper_handoff_v1\\completion.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\completion.json",
+      "sha256": "f72f6c2586f018f403fe3f7cfc398fc6f203998e8cecf56889ebbb5040e8dcc8"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\paper_handoff_v1\\claim_evidence_EN.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\claim_evidence_EN.csv",
+      "sha256": "af1a2b4576f22e83215a72ea19b2bf9ddbcf3697d5e4f8cc30b0e033a5e18bae"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\summary.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\A_heldout_summary.json",
+      "sha256": "da8d0dca46093a05dcd76a97682e9af0ead4dd22d3b65e89775034113e4703cd"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\paired_seed_effects.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\A_paired_seed_effects.csv",
+      "sha256": "36a43eb27dd7d9046340bd16c19da15f8d5915ebd3fe12f94bcebb5a914781c4"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\random_secondary_summary.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\A_random_secondary_summary.csv",
+      "sha256": "0c4c034f3bf1851b3ef69ccaa68f24815769d98d816a5f318cf1d85ebe55c3c8"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\report_v1\\heldout_bursts.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\A_heldout_bursts.csv",
+      "sha256": "ecb7347ae7aa6adbdc1da52be0628cd66576be8b35e6be3bf47b48f25a0a762c"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\design_manifest.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\A_design_manifest.json",
+      "sha256": "daec1c93f269134b5b8d299b367c4377a91e83a9ba0b6192b9ab39f71bf70fa7"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\B_stage_v1\\report_v1\\summary.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\B_summary.json",
+      "sha256": "91a43ca2273fcf985acfd72e7d95cbf1548f37ad74466a5b0da5ae72f9175d02"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\B_stage_v1\\report_v1\\all_B_cases.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\B_all_cases.csv",
+      "sha256": "75a2927b65c4db76afe2cd5dd3f54950feed772f4f568c43acb2a60b00e26a27"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\analysis_v1\\metrics.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\C_reference_metrics.csv",
+      "sha256": "4dd53ae42622b99e6d64f950fbbf780b6eec37f3e155f8b4d73c66dd86ce7ca1"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\analysis_v1\\qa.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\C_reference_qa.json",
+      "sha256": "3cc8591655a8d2d20697263fa44e4a9386de326d010b8e74a1f4f268d5c761ad"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\actual_locked_v1\\analysis_v1\\summary.csv",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\C_actual_summary.csv",
+      "sha256": "abae1583e1ab1070fb70023739639a7231bf34c2dfdf3d8f7cfe29e4b3c7a6cd"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\actual_locked_v1\\actual_plan.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\C_actual_locked_plan.json",
+      "sha256": "bd63f1fc9b748433d81d5309a9176f1e52fd288490381b093b357e653682c801"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_stage_c_reference_v1\\actual_locked_v1\\figures_v3\\caption_EN.txt",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\C_caption_EN.txt",
+      "sha256": "f474f678acfef3012c52d0c1c03bc9671f6524d29415d720790ea837355c0cd9"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\control_diagnostics_v1\\checkpoint.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\evidence\\latest_results_20261103\\control_diagnostics_checkpoint.json",
+      "sha256": "4f75eb9b8f4d643ff214539d967dbca923c826a1636b0b43202c854ce1c73db3"
+    }
+  ],
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\main.tex",
+      "beforeSHA256": "25ae81f6b84d228e7c2b699d843c3be96abd4f147e69d739ce3b26cac904596a",
+      "afterSHA256": "c8c23e420b4ddb97cb35163614c254052f10040cb0943317ed0a29cf12a04926"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\introduction.tex",
+      "beforeSHA256": "24076efb1ced9d5a0f2cc41b3e4f185c19b4ddd010618eb8668e4cd892320fb1",
+      "afterSHA256": "ea455f5350868a24cf0c7435a3ddb162eef00ba98724d895ea735838ea3577d0"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\evaluation.tex",
+      "beforeSHA256": "c450477e06bf628f85d44a8eb02198640ee6582cf1ceaa277a6872673a8b3066",
+      "afterSHA256": "2fc437ba75757efea1385420796cda046ad4caee4b2d6b882cf61541b9c5d24d"
+    }
+  ],
+  "finalBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\final_latest_results_20261103_093550_UTC",
+  "verification": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\latest_results_verification_20261103.json",
+  "unchangedDerivationsVerified": true
+}

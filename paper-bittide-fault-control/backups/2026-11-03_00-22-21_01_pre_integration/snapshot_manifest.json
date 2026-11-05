@@ -1,0 +1,104 @@
+{
+  "stamp": "20261103_002221",
+  "project": "C:/Users/cyin969/Documents/paper-fuzzy/paper-bittide-fault-control",
+  "stage": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-29\\new-chat\\work\\paper_fuzzy_integration\\staged",
+  "snapshot": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-29\\new-chat\\work\\paper_fuzzy_integration\\original_snapshot",
+  "files": [
+    {
+      "relative": "comment.cut",
+      "sha256": "01E364299928FEBB011B37B4B89635759970F1F647F2629804557AB07FFAF117"
+    },
+    {
+      "relative": "main.aux",
+      "sha256": "EA74F147364C2E0FE6A97D50BEA670AAF17E9D6AA9E80756BDEE34DA9003D87C"
+    },
+    {
+      "relative": "main.bbl",
+      "sha256": "165F3EE7798C6FCAD582097A3A338D552BCE9C54BD20CC4CD5DC9EBBCA736542"
+    },
+    {
+      "relative": "main.blg",
+      "sha256": "400A936E0E355FE28815C074CAABAC80CEEAC5FBA6D425D4EA147ED07F21876E"
+    },
+    {
+      "relative": "main.fdb_latexmk",
+      "sha256": "8C2C7B193F0F5F7F2D96D87655538C948DB2798AEC4555DC2623538945B337F1"
+    },
+    {
+      "relative": "main.fls",
+      "sha256": "880AA20BF89083557410A67B557C03AFB819EC179FB3E2BE2A493E7CA04E8A48"
+    },
+    {
+      "relative": "main.log",
+      "sha256": "3AE8A29E7F61FEAC0047A0AFA1D6007FD4FC752910AEBAAE0689A4FD286C7F28"
+    },
+    {
+      "relative": "main.out",
+      "sha256": "6A312D160B8C8610ED04B57B45F9787BDB0824DDD3AD93802F1A51113725FA27"
+    },
+    {
+      "relative": "main.pdf",
+      "sha256": "E66AD63B3738CF7ECE37CE1F2BFBB41199C3295C03D68AD3A4F6959B4D1D6DAF"
+    },
+    {
+      "relative": "main.synctex.gz",
+      "sha256": "A6B6924636E2256D256A58C7E4EF046FCC55F2D02374F789E895C782998EDECA"
+    },
+    {
+      "relative": "main.tex",
+      "sha256": "17BF45DE8F58E71D9A1EAAF6AE55D3F8129BB33716AA25B9D38F779D723DA340"
+    },
+    {
+      "relative": "README.md",
+      "sha256": "1221960DFE8B3E9DA776F7193DFD14DF9AA5E14AA182997AC2F805A55E0FA59F"
+    },
+    {
+      "relative": "references.bib",
+      "sha256": "434F8C23637970777AF9C6E2F74B062F9B9B81D5A6521B68162BF176174E78DA"
+    },
+    {
+      "relative": "build\\comment.cut",
+      "sha256": "E8A77A58FC2603F4FE92628308577A98728964CABA62B9C27C7D27E36650051F"
+    },
+    {
+      "relative": "build\\main.aux",
+      "sha256": "C7C91EC03A6AE795D7176AB630B0FDC772446E71320783922E555E5E6E9C79FD"
+    },
+    {
+      "relative": "build\\main.bbl",
+      "sha256": "4F3C745C06187BC2A228567D284696EA039073EBEA4DE06C75273F6B2FFFCD6D"
+    },
+    {
+      "relative": "build\\main.blg",
+      "sha256": "990A9C00EBED0C593AA7D34B5FD026ED7A729023C18FDC4C1ADD59C5CC12B770"
+    },
+    {
+      "relative": "build\\main.fdb_latexmk",
+      "sha256": "6C50D8F31DFCC6FF236A77F6D39172F1480758135B7F9513A93383907EC211F7"
+    },
+    {
+      "relative": "build\\main.fls",
+      "sha256": "3603EB86B1583450076497EEBF190EF3410FA603386DBA5758F8B0B99DDDE559"
+    },
+    {
+      "relative": "build\\main.log",
+      "sha256": "005DBE0EF263F6E5CB38799592D9F2E84DCC5FA13C74B23522335315A3E540FF"
+    },
+    {
+      "relative": "build\\main.out",
+      "sha256": "99EE74555C8027424E3A0A460E1465A36CD3BB3CE2599EB3EA2D5B55CF8A2813"
+    },
+    {
+      "relative": "build\\main.pdf",
+      "sha256": "99B0FC3AE101C37FF3B9055279A4488B885482F85E23ACB8193C3887C5AB0340"
+    },
+    {
+      "relative": "build\\main.synctex.gz",
+      "sha256": "29C4A61094BDD67B61A73B02AF7852FF65016D70DF992BED8FA6C315097943AB"
+    },
+    {
+      "relative": "images\\README.txt",
+      "sha256": "3ECF7AD84D25D1A86251B1DB9CE7D095411AD0A8114BEFD6610C3D6275411BBC"
+    }
+  ]
+}

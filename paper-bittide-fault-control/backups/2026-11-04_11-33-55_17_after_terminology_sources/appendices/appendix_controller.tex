@@ -1,0 +1,637 @@
+% Expanded, input-ready Section III. No standalone preamble or PDF build.
+\section{Controller Realization and Complete Derivations}
+\label{app:controller}
+\noindent\textbf{Correspondence: Section~\ref{sec:fpi_controller}.} This appendix preserves the extended model, intermediate steps and supporting interpretation behind the corresponding main-text section.
+
+
+\label{detail:sec:fpi_controller}
+We propose a decentralized, occupancy-based incremental Fuzzy PI controller
+for bittide. Each node combines receiving-buffer error with its
+update-to-update change to compute an frequency correction increment.
+This section specifies the complete controller and its continuous-clock
+interface, derives an implementation-consistent PI calibration, and
+establishes the nonlinear properties used in
+Section~\ref{detail:sec:btd_reference}. The physical plant, integer frame counts
+and sampled controller state are kept distinct throughout the derivation.
+
+\subsection{Continuous-clock realization of the proposed controller}
+
+\label{detail:subsec:fpi_laws}
+The plant is the current continuous-phase Callisto model within the bittide
+framework~\cite{lall2024logicalSynchrony}. For constant
+uncontrolled oscillator frequency $\omega_i^u$ and applied correction $u_i(t)$,
+\begin{align}
+ \dot\theta_i(t)&=\omega_i^u+u_i(t),\nonumber\\
+ u_i(t)&=u_{i,k},\qquad t\in[t^a_{i,k},t^a_{i,k+1}),\nonumber\\
+ \theta_i(t)&=\theta_i(t^a_{i,k})+
+       (\omega_i^u+u_{i,k})(t-t^a_{i,k}).
+ \label{detail:eq:fpi_continuous_plant}
+\end{align}
+The superscript $a$ denotes actuation, and $k$ indexes that node's updates.
+Normal executions require $\omega_i^u+u_i(t)>0$, so the phase has a
+monotone inverse. Physical phase is continuous at an update; its slope can change. Requested
+correction $q_{i,k}$ is computed from the measured buffers and applied as
+$u_{i,k}=\operatorname{sat}_{u_{\max}}(q_{i,k})$, with
+$\operatorname{sat}_b(z)=\min\{b,\max\{-b,z\}\}$ and $u_{\max}>0$.
+The proposed controller has jump updates inside a continuous physical plant;
+it is not implemented as an ordinary differential equation for its accumulator.
+
+Let $p>0$ be the polling period and $d_{\rm ctrl}\ge0$ the execution delay,
+both measured in local-clock phase units. Measurement time $t^m_{i,k}$
+and actuation time $t^a_{i,k}$ satisfy
+\begin{align}
+ \theta_i(t^m_{i,k})&=\theta_i(0)+k\,p,\nonumber\\
+ \theta_i(t^a_{i,k})&=\theta_i(0)+k\,p+d_{\rm ctrl},\nonumber\\
+ \int_{t^m_{i,k}}^{t^a_{i,k}}(\omega_i^u+u_i(s))\,ds&=d_{\rm ctrl}.
+ \label{detail:eq:fpi_local_schedule}
+\end{align}
+The product $k\,p$ in these scheduling equations means the integer index
+$k$ multiplied by the poll period $p$; it is not the proportional gain
+$k_p$. With zero initial correction, $t^m_{i,0}=0$ and
+$t^a_{i,0}=d_{\rm ctrl}/\omega_i^u$. Subsequent actuation intervals equal
+$p/(\omega_i^u+u_{i,k})$. The delay is not automatically a constant
+physical time, and its age must not be computed using the new command
+that is applied only at the end of that age interval.
+
+In normal operation, each integer source-phase crossing sends a frame.
+With the progress guards open, frame conservation gives
+\begin{equation}
+ \beta_{j\to i}(t)=\beta_{j\to i}(0)+A^{\rm arr}_{ji}(t)-N_i(t),
+ \label{detail:eq:fpi_count_balance}
+\end{equation}
+where $A^{\rm arr}_{ji}(t)$ counts arrivals during $(0,t]$, including
+initial in-flight frames, and
+$N_i(t)=\lfloor\theta_i(t)\rfloor-\lfloor\theta_i(0)\rfloor$ counts
+local consumption. For a constant physical delay $\tau_{ji}\ge0$,
+\begin{equation}
+ A^{\rm arr}_{ji}(t)=\lfloor\theta_j(t-\tau_{ji})\rfloor
+                  -\lfloor\theta_j(-\tau_{ji})\rfloor.
+ \label{detail:eq:fpi_fixed_delay_arrivals}
+\end{equation}
+Thus arrival counts incorporate the declared negative-time history.
+
+For constant physical link latency $\tau_{ji}$, receiving occupancy is
+\begin{equation}
+ \beta_{j\to i}(t)=\lambda^{\rm UGN}_{ji}
+ +\lfloor\theta_j(t-\tau_{ji})\rfloor-\lfloor\theta_i(t)\rfloor.
+ \label{detail:eq:fpd_continuous_fifo}
+\end{equation}
+Here $\lambda^{\rm UGN}_{ji}$ is the fixed integer offset in the absolute
+phase-count convention. It is determined by occupancy and prehistory:
+\begin{equation}
+ \lambda^{\rm UGN}_{ji}=\beta_{j\to i}(0)
+ -\lfloor\theta_j(-\tau_{ji})\rfloor+\lfloor\theta_i(0)\rfloor.
+ \label{detail:eq:fpd_ugn_init}
+\end{equation}
+The relative-count logical marking is
+$\lambda^{\rm LSN}_{ji}=\lambda^{\rm UGN}_{ji}
++\lfloor\theta_j(0)\rfloor-\lfloor\theta_i(0)\rfloor$;
+the two coincide when the initial phase counts are equal.
+
+For changing delivery times, let $s_{j,m}=\theta_j^{-1}(m)$ be the send
+time of source tick $m$, and $a_{ji}(s)$ its causal ordered arrival map.
+For the desired send-time delay profile $\tau_{ji}(s)$, the declared
+running-maximum envelope is
+\[
+ a_{ji}(s)=\sup_{r\le s}\{r+\tau_{ji}(r)\},
+\]
+including the constant-delay negative-time history.
+Define the delivered tick frontier
+\begin{equation}
+ \begin{aligned}
+ C^{\rm arr}_{ji}(t)&=\max\{m\in\mathbb Z:a_{ji}(s_{j,m})\le t\},\\
+ \beta_{j\to i}(t)&=\lambda^{\rm UGN}_{ji}
+       +C^{\rm arr}_{ji}(t)-\lfloor\theta_i(t)\rfloor.
+ \end{aligned}
+ \label{detail:eq:fpd_ordered_arrivals}
+\end{equation}
+The negative-time history specifies initial in-flight frames. The declared
+running-maximum arrival envelope preserves order and can release a batch
+after a desired-delay decrease; it imposes no finite serialization rate.
+At an upward-delay discontinuity, a supremum of continuous source times
+need not itself have arrived. Counting delivered tick indices avoids
+silently including such a boundary frame.
+
+If a protection guard blocks logical progress, the runtime can retain a
+separate continuous data phase $\psi_i$ with
+$\dot\psi_i=g_i(t)\dot\theta_i$, where $g_i\in\{0,1\}$ is the progress
+gate. Buffer counts then use $\psi_i$, whereas scheduling still uses
+$\theta_i$. In the ungated normal regime, with matching initial phases, data phase and physical phase agree. Guard operation does not stop the oscillator.
+
+Only for the reference proof do we replace integer occupancy by a
+fluid counterpart. At constant delay, define
+$\widetilde\beta_{ji}(t)=\widetilde\lambda_{ji}
++\theta_j(t-\tau_{ji})-\theta_i(t)$, where
+$\widetilde\lambda_{ji}$ is an additive offset chosen for the specified
+fluid initialization. Between command discontinuities,
+\begin{equation}
+ \dot{\widetilde\beta}_{ji}(t)
+ =\omega_j^u+u_j(t-\tau_{ji})-\omega_i^u-u_i(t).
+ \label{detail:eq:fpi_fluid_counterpart}
+\end{equation}
+This derivative belongs to the fluid counterpart, not the actual integer
+occupancy. Replacing floor counts by phases does not automatically preserve
+an arbitrary initialization; the compatible zero-latency marking used in
+Section~\ref{detail:sec:btd_reference} is specified there.
+
+\subsection{Notation and the measured error}
+
+Node $i$ has incoming-neighbor set $\mathcal N_i^-$ and $d_i=|\mathcal N_i^-|>0$ incoming channels. All incoming sums below range over $j\in\mathcal N_i^-$. This section assumes fixed active
+incoming sets: the runtime link-status mask is one on all configured inputs.
+The Fuzzy percentage wrapper averages its configured inputs, so changing
+link masks would require an explicit corresponding measurement policy.
+At the $k$th local measurement,
+$\beta_{ji,k}$ is the measured occupancy of channel $j\to i$, and
+$\beta^*_{ji}$ is its fixed target. Use
+\begin{equation}
+ E_{i,k}=\sum_{j\in\mathcal N_i^-}(\beta_{ji,k}-\beta^*_{ji}).
+ \label{detail:eq:fpi_error}
+\end{equation}
+The sign is actual minus target. If incoming buffers are too full, a
+positive frequency correction increases local consumption. This explains
+the positive PI gains with this error convention. The physical frequency is $\omega_i=\omega_i^u+u_i$, where $\omega_i^u$ is the constant uncontrolled frequency; $u_i$ is a correction, not the entire frequency.
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$E_{i,k}$ & Sum error in frames \\
+$e_{i,k}$ & Target-minus-measured error in percentage points \\
+$I_{i,k}$ & PI baseline sum of sampled frame errors \\
+$A_{i,k}$ & Fuzzy accumulator: total requested correction \\
+$q_{i,k},u_{i,k}$ & Requested and applied frequency corrections \\
+$h$ & Fixed PI baseline integration scale \\
+$X_{i,k},Y_{i,k}$ & Scaled Fuzzy error and sample-difference inputs \\
+$F_0,\mathcal R_F$ & Linear counterpart and residual $F-F_0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The event index $k$ is local to a node. The normalization factor $\gamma_i$ converts a frame-sum error into percentage points. The maximum correction $u_{\max}>0$ is the actuator limit; $q$ and $u$ remain distinct if clipping acts. Two nodes need not measure at the
+same physical times. The subscript $ji$ abbreviates edge $j\to i$.
+Suppressing $i$ below is a notational convenience, not a synchrony
+assumption; in that notation $\gamma=\gamma_i$.
+
+\subsubsection{Deriving the percentage-to-frame-error relation}
+For common incoming capacity $C$, define
+\[
+ \bar p_{i,k}=\frac1{d_i}\sum_j\frac{100\beta_{ji,k}}{C},\qquad
+ r_i=\frac1{d_i}\sum_j\frac{100\beta^*_{ji}}{C}.
+\]
+Then subtraction and factoring give
+\begin{align}
+ e_{i,k}&=r_i-\bar p_{i,k}\\
+ &=-\frac{100}{d_iC}\sum_j(\beta_{ji,k}-\beta^*_{ji})
+ =-\gamma_i E_{i,k},\qquad \gamma_i=\frac{100}{d_iC}.
+ \label{detail:eq:fpi_percent}
+\end{align}
+For midpoint targets this is the original absolute-percentage input with
+$r_i=50$. For other targets the runtime can supply a centered percentage
+$r_i+d_i^{-1}\sum_j100(\beta_{ji,k}-\beta^*_{ji})/C$; subtracting it from
+$r_i$ yields the same $e_{i,k}$. A mismatched setpoint instead adds a
+constant bias and invalidates the scalar relation used for calibration.
+
+With unequal capacities and a consistently matched target reference, the
+percentage average gives
+\[
+ e_{i,k}=-\frac{100}{d_i}\sum_j
+ \frac{\beta_{ji,k}-\beta^*_{ji}}{C_{ji}}.
+\]
+This is a weighted error and generally cannot be written as one normalization constant
+times the unweighted PI error sum. Matching such a controller requires a
+consistent measurement weighting or a different baseline.
+
+\subsection{PI baseline: update order, units and the first call}
+
+The occupancy-feedback PI baseline is grounded in the bittide analysis
+of~\cite{lall2022resistance}. The implemented PI update is an
+integrate-then-output recursion:
+\begin{equation}
+ I_k=I_{k-1}+E_k,\qquad
+ q_k^{\rm PI}=k_pE_k+\kappa_I I_k,\qquad \kappa_I=k_i h.
+ \label{detail:eq:fpi_native}
+\end{equation}
+The sum $I_k$ contains no physical time multiplier; $h$ is incorporated in
+$\kappa_I$. In the present runtime,
+\begin{equation}
+ h=\frac{p}{\omega_{\rm base}}.
+ \label{detail:eq:fpd_h}
+\end{equation}
+Here $p$ is the local polling period and $\omega_{\rm base}$ is the fixed implementation reference frequency. The scale $h$ stays fixed during the configured run. Local polling intervals measured
+in physical time can vary as the oscillator changes; replacing $h$ by
+those intervals would implement a different PI law.
+
+Subtract the previous requested output:
+\begin{align}
+ q_k^{\rm PI}-q_{k-1}^{\rm PI}
+ &=k_p(E_k-E_{k-1})+\kappa_I(I_k-I_{k-1})\\
+ &=k_p(E_k-E_{k-1})+\kappa_I E_k.
+ \label{detail:eq:fpi_pi_increment}
+\end{align}
+This is the correct increment to reproduce. It contains the present
+$E_k$ in the integral term because integration precedes output.
+
+At zero initial sum, the first call returns
+\begin{equation}
+ q_0^{\rm PI}=(k_p+\kappa_I)E_0.
+ \label{detail:eq:fpd_first}
+\end{equation}
+No physical prehistory measurement is needed to express this algebra:
+one may use the fictitious previous error $E_{-1}=0$ and previous requested
+output $q_{-1}=0$. That bookkeeping choice is separate from deriving a
+plant identity such as $x_k-x_{k-1}=H w_{k-1}$, which requires a genuine
+elapsed plant interval.
+
+\subsection{The proposed Fuzzy PI controller}
+
+The proposed local incremental control law combines the present error
+and its sample difference as follows:
+\begin{align}
+ X_k&=K_e e_k,&Y_k&=K_{\Delta e}(e_k-e_{k-1}),\\
+ A_k&=A_{k-1}+K_uF(X_k,Y_k),&q_k^{\rm F}&=A_k.
+ \label{detail:eq:fpi_fuzzy_law}
+\end{align}
+The gain signs used here are $K_e,K_{\Delta e}>0$ and $K_u<0$. Thus high occupancy
+produces negative $e$, and a negative surface output produces a positive
+correction increment. The quantity $e_k-e_{k-1}$ is not divided by elapsed
+time; calling it a time derivative would obscure its sampling dependence.
+
+\subsubsection{Memberships and rule weights}
+The labels NL, NS, ZE, PS and PL mean negative large, negative small, zero, positive small and positive large, respectively. Each membership $\varphi_a(z)\in[0,1]$ is an activation degree; a singleton is a numerical rule consequent. Let $[z]_+=\max\{z,0\}$ and $\operatorname{clip}_{[0,1]}z$
+denote projection onto $[0,1]$. The exact memberships can be written
+\begin{align}
+ \varphi_{\rm NL}(z)&=\operatorname{clip}_{[0,1]}\frac{-z-5}{5},&
+ \varphi_{\rm NS}(z)&=[1-|z+5|/5]_+,\nonumber\\
+ \varphi_{\rm ZE}(z)&=[1-|z|/5]_+,&
+ \varphi_{\rm PS}(z)&=[1-|z-5|/5]_+,\nonumber\\
+ \varphi_{\rm PL}(z)&=\operatorname{clip}_{[0,1]}\frac{z-5}{5}.
+ \label{detail:eq:fpi_full_memberships}
+\end{align}
+Table~\ref{detail:tab:fpi_full_rules} gives all 25 consequent rules.
+\begin{table}[t]
+\caption{Rule consequents of the proposed bittide Fuzzy PI controller.}
+\label{detail:tab:fpi_full_rules}
+\centering
+\begin{tabular}{@{}c|ccccc@{}}
+\toprule
+$X\backslash Y$ & NL & NS & ZE & PS & PL\\
+\midrule
+NL & NL & NL & NL & NS & ZE\\
+NS & NL & NL & NS & ZE & PS\\
+ZE & NL & NS & ZE & PS & PL\\
+PS & NS & ZE & PS & PL & PL\\
+PL & ZE & PS & PL & PL & PL\\
+\bottomrule
+\end{tabular}
+\end{table}
+Order the labels as NL, NS, ZE, PS and PL, with label indices
+$a,b\in\{1,\ldots,5\}$. With singleton values
+$(s_1,\ldots,s_5)=(-5,-2.5,0,2.5,5)$ and
+$\ell(a,b)=\min\{5,\max\{1,a+b-3\}\}$, compute
+\begin{equation}
+ w_{ab}=\min\{\varphi_a(X),\varphi_b(Y)\},\qquad
+ F(X,Y)=\frac{\sum_{a,b}w_{ab}s_{\ell(a,b)}}{\sum_{a,b}w_{ab}}.
+ \label{detail:eq:fpi_rules}
+\end{equation}
+The membership partition gives at least one positive input membership on
+each axis, hence a positive denominator at finite inputs. Individual rules
+are summed even when they share a consequent. Replacing this accumulation
+by maximum aggregation changes the map and its derivation.
+
+The weighted-average property gives $|F|\le5$ and therefore
+$|A_k-A_{k-1}|\le5|K_u|$. This is a per-update bound, not a bound on $A_k$
+over an arbitrarily long execution. The raw Fuzzy module itself has no
+final correction clipping.
+Initialize $A_{i,-1}=0$ and $e_{i,-1}=0$. At each measurement, form
+$e_{i,k}$ and $(X_{i,k},Y_{i,k})$, evaluate the rule weights and normalized
+surface, increment $A_{i,k}$, and store $e_{i,k}$ as the previous error.
+The requested correction is then limited and applied at $t^a_{i,k}$, and
+held until the next actuation. In the normal-run policy considered here,
+external clipping retains the raw accumulator and anti-windup is disabled.
+The controller does not overwrite $A_{i,k}$ with the applied command.
+The membership functions, rule consequents and gains stay fixed during a
+run; the correction changes with the measured input pair. The law requires
+neither an observer nor an FFP mode.
+
+
+\subsection{Exact PI Calibration, Including Initialization}
+\label{detail:subsec:fpi_calibration}
+
+Define the globally linear counterpart
+\begin{equation}
+ F_0(X,Y)=\frac{X+Y}{2}.
+ \label{detail:eq:fpi_f0}
+\end{equation}
+Replacing $F$ by this map retains the same controller accumulator.
+Using $e=-\gamma E$ gives
+\begin{align}
+ A^0_k-A^0_{k-1}
+ &=\frac{K_u}{2}\{K_e e_k+K_{\Delta e}(e_k-e_{k-1})\}\\
+ &=-\frac{K_u\gamma K_e}{2}E_k
+   -\frac{K_u\gamma K_{\Delta e}}2(E_k-E_{k-1}).
+ \label{detail:eq:fpi_substitution}
+\end{align}
+Matching the two independent coefficients in~\eqref{detail:eq:fpi_pi_increment}
+yields
+\begin{equation}
+ k_p=-\frac{K_u\gamma K_{\Delta e}}2,\qquad
+ \kappa_I=-\frac{K_u\gamma K_e}2.
+ \label{detail:eq:fpi_matching}
+\end{equation}
+Solving for two Fuzzy gains with chosen $K_e>0$ gives
+\begin{equation}
+ K_u=-\frac{2k_ih}{\gamma K_e},\qquad
+ K_{\Delta e}=\frac{K_ek_p}{k_ih}.
+ \label{detail:eq:fpi_design_gains}
+\end{equation}
+The formulas assume $k_i h>0$. Pure proportional control is a separate
+limiting case and should not be inserted into this inverse mapping with
+a zero denominator.
+
+\begin{btdproposition}[Event-level linear-counterpart equivalence]
+\label{detail:prop:fpi_equivalence}
+For any measurement sequence, suppose~\eqref{detail:eq:fpi_matching} holds and
+initialize
+\begin{equation}
+ A^0_{-1}=k_pE_{-1}+\kappa_I I_{-1},\qquad e_{-1}=-\gamma E_{-1}.
+ \label{detail:eq:fpi_initialization}
+\end{equation}
+Then
+$A^0_k=k_pE_k+\kappa_I I_k$ for every $k\ge0$.
+\end{btdproposition}
+\begin{proof}
+Assume the relation holds before update $k$. Substitution gives
+\begin{align*}
+ A^0_k
+ &=k_pE_{k-1}+\kappa_I I_{k-1}
+   +k_p(E_k-E_{k-1})+\kappa_I E_k\\
+ &=k_pE_k+\kappa_I(I_{k-1}+E_k)
+ =k_pE_k+\kappa_I I_k.
+\end{align*}
+The stated initialization supplies the induction base, including $k=0$.
+\end{proof}
+
+\subsubsection{Why zero constructors work for a nonzero first error}
+Take $I_{-1}=A^0_{-1}=e_{-1}=0$, corresponding to $E_{-1}=0$.
+The first Fuzzy-reference input is
+\[
+ (X_0,Y_0)=(-\gamma K_eE_0,-\gamma K_{\Delta e}E_0),
+\]
+so
+$A^0_0=(k_p+\kappa_I)E_0$, exactly as in~\eqref{detail:eq:fpd_first}.
+If only Fuzzy is warmed up to $e_{-1}=e_0$ while $A^0_{-1}=0$, its
+difference input vanishes and the output is merely $\kappa_I E_0$.
+The missing $k_pE_0$ term can create a large apparent controller difference
+unrelated to fuzzy inference.
+
+\subsubsection{A numerical calibration from the present configuration}
+For $d=2$, $C=2048$, $p=1000$, $\omega_{\rm base}=29999/30000$,
+$k_p=2\times10^{-6}$, $k_i=5\times10^{-11}$ and $K_e=0.1$,
+\begin{align}
+ \gamma&=\frac{25}{1024},&h&=\frac{30000000}{29999},\nonumber\\
+ \kappa_I&=\frac3{59998000},&
+ K_u&=-\frac{768}{18749375},\nonumber\\
+ K_{\Delta e}&=\frac{29999}{7500}
+ \simeq3.9998666667.
+ \label{detail:eq:fpd_example_gains}
+\end{align}
+For a one-frame first error, the matched PI and $F_0$ corrections are both
+$2.0500016667\times10^{-6}$. Warming up only the Fuzzy previous error
+instead gives approximately $5.0001666722\times10^{-8}$. The example
+illustrates an initialization mismatch; it is not a new plant simulation.
+
+\subsubsection{Execution-layer conditions}
+Identical raw outputs give identical applied outputs under a common
+limiter when raw states are retained and anti-windup is disabled.
+Tracking or reset requires compatible state changes. For example, after
+processing $E_k$, setting
+\[
+ A^0_k=u_{\rm held},\qquad
+ I_k=\frac{u_{\rm held}-k_pE_k}{\kappa_I},\qquad
+ e_k=-\gamma E_k
+\]
+restores the state relation for the next ordinary update. A branch designed
+to produce a held output on an immediate extra update requires its own
+integrate-first adjustment; the above is not an instruction to add an
+extra call. Limiting the internal reference $F_0$ to $[-5,5]$ also changes
+the controller, even if the external correction limiter is shared.
+
+Under a deterministic causal plant, the same initial history, measured
+inputs, actuation order, external trace and compatible resets imply
+closed-loop equality by induction over events. No globally synchronous
+physical grid is required for this algebraic equivalence. By contrast,
+matching only labels such as ``same gains'' or ``same random seed'' does
+not establish these conditions.
+
+\subsection{Deriving the Exact Central Nonlinear Surface}
+\label{detail:subsec:fpi_mechanism}
+
+For $0<r\le5$, define
+\begin{align}
+ \Omega_r&=\{(X,Y):|X|+|Y|\le r\},\nonumber\\
+ m&=\min(|X|,|Y|),\qquad s=|X|+|Y|.
+ \label{detail:eq:fpi_domain}
+\end{align}
+The same-sign interaction is
+\begin{equation}
+ J(X,Y)=\begin{cases}\operatorname{sgn}(X)m,&XY>0,\\0,&XY\le0.\end{cases}
+ \label{detail:eq:fpi_interaction}
+\end{equation}
+For points in $\Omega_5$, put $a=|X|/5$, $b=|Y|/5$.
+Because $a+b\le1$, each input has only its central and sign-adjacent
+membership active. Their four joint min weights are
+\begin{align}
+ w_{00}&=\min(1-a,1-b)=1-\max(a,b),\nonumber\\
+ w_{s0}&=\min(a,1-b)=a,\nonumber\\
+ w_{0s}&=\min(1-a,b)=b,\nonumber\\
+ w_{ss}&=\min(a,b).
+ \label{detail:eq:fpd_four_weights}
+\end{align}
+The subscripts $s$ denote the input's active sign label, not the scalar
+$s=|X|+|Y|$. Zero-input boundaries follow by continuity.
+
+The denominator is therefore
+\begin{equation}
+ D=1-\max(a,b)+a+b+\min(a,b)
+  =1+2\min(a,b)=1+2m/5.
+ \label{detail:eq:fpd_denominator}
+\end{equation}
+The central-central consequent is zero. The sign-central and
+central-sign rules contribute $(5/2)\operatorname{sgn}(X)a=X/2$
+and $(5/2)\operatorname{sgn}(Y)b=Y/2$.
+For equal signs, the joint consequent is
+$5\operatorname{sgn}(X)$ and contributes $\operatorname{sgn}(X)m$;
+for opposing signs it is zero. The four quadrants therefore give
+\begin{equation}
+ F(X,Y)=\begin{cases}
+ \dfrac{F_0+m}{1+2m/5},&X>0,\ Y>0,\\[4pt]
+ \dfrac{F_0-m}{1+2m/5},&X<0,\ Y<0,\\[4pt]
+ \dfrac{F_0}{1+2m/5},&X>0,\ Y<0,\\[4pt]
+ \dfrac{F_0}{1+2m/5},&X<0,\ Y>0.
+ \end{cases}
+ \label{detail:eq:fpi_quadrants}
+\end{equation}
+On either axis $m=0$, giving $F=F_0$. These cases establish the following
+identity, including boundaries by continuity.
+\begin{btdproposition}[Exact central surface]
+\label{detail:prop:fpi_central}
+For every $(X,Y)\in\Omega_5$,
+
+\begin{equation}
+ \begin{aligned}
+ F(X,Y)&=\frac{(X+Y)/2+J(X,Y)}{1+2m/5},\\
+ J(X,Y)&=\begin{cases}\operatorname{sgn}(X)m,&XY>0,\\0,&XY\le0.
+ \end{cases}
+ \end{aligned}
+ \label{detail:eq:fpi_central}
+\end{equation}
+\end{btdproposition}
+This is an exact rule-level identity on $\Omega_5$, not a fitted
+approximation. Outside this diamond, the cross weights in
+\eqref{detail:eq:fpd_four_weights} need not equal $a$ and $b$, so the formula
+must not be extended without a new case analysis.
+
+\subsection{Sign-conditioned response, sector and nonlinear geometry}
+
+\subsubsection{Same-sign enhancement}
+When $XY>0$, $F_0$ has magnitude $s/2$ and the same sign as $X$.
+Equation~\eqref{detail:eq:fpi_central} gives
+\begin{equation}
+ \frac{F}{F_0}=\frac{1+2m/s}{1+2m/5}.
+ \label{detail:eq:fpi_same_sign}
+\end{equation}
+Since $s\le5$, its numerator is at least the denominator. Since
+$m\le s/2$, the numerator is at most 2. Thus $1\le F/F_0\le2$.
+Define the normalized nonlinear residual by
+$\mathcal R_F(X,Y)=F(X,Y)-F_0(X,Y)$. Subtracting $F_0$ gives
+\begin{equation}
+ \mathcal R_F=
+ \frac{\operatorname{sgn}(X)m(1-s/5)}{1+2m/5},\qquad XY>0.
+ \label{detail:eq:fpd_same_residual}
+\end{equation}
+For instance, $F(0.1,0.1)=0.2/1.04\simeq0.19230769$, compared with
+$F_0=0.1$. Both are surface values; the actual increment multiplies by
+negative $K_u$.
+
+\subsubsection{Opposing-sign attenuation and zero-output cases}
+When $XY<0$, the interaction vanishes, so
+\begin{equation}
+ F=\frac{F_0}{1+2m/5},\qquad
+ \mathcal R_F=-\frac{2m/5}{1+2m/5}F_0.
+ \label{detail:eq:fpi_opposite_sign}
+\end{equation}
+For $(X,Y)=(0.1,-0.05)$, $F_0=0.025$ and
+$F=0.025/1.02\simeq0.024509804$. On either axis $m=0$ and $F=F_0$.
+On the anti-diagonal $Y=-X$, both outputs are exactly zero; a ratio should
+not be evaluated there.
+
+\begin{btdcorollary}[Regional pointwise sector]
+\label{detail:cor:fpi_sector}
+For $(X,Y)\in\Omega_r$, $0<r\le5$, one can write
+\begin{equation}
+ F=\alpha(X,Y)F_0,\qquad
+ \underline\alpha_r=\frac1{1+r/5}\le\alpha(X,Y)\le2.
+ \label{detail:eq:fpi_sector}
+\end{equation}
+\end{btdcorollary}
+\begin{proof}
+Same-sign ratios lie in $[1,2]$. For opposing signs with $F_0\ne0$,
+$m\le r/2$ gives $1/(1+r/5)\le F/F_0\le1$.
+The axes agree with $F_0$. If $F_0=0$, both outputs vanish and any
+admissible $\alpha$ preserves the equality.
+\end{proof}
+The equivalent division-free inequality is
+\begin{equation}
+ [F-\underline\alpha_r F_0][2F_0-F]\ge0.
+ \label{detail:eq:fpi_sector_product}
+\end{equation}
+In particular, $\Omega_1$ gives $\alpha\in[5/6,2]$, while
+$\Omega_5$ gives $[1/2,2]$. These bounds describe pointwise values of
+the specific nonlinear map. They are not a gain-scheduled stability proof;
+the closed loop must retain the input region and accommodate different
+node-dependent, time-varying $\alpha$ values.
+
+\subsubsection{Why an axis match is not a Jacobian linearization}
+The same-sign term $J$ is positively homogeneous. For $t>0$ and a fixed
+direction $v=(v_1,v_2)$, the central formula yields
+\begin{equation}
+ F'(0;v)=\lim_{t\downarrow0}\frac{F(tv_1,tv_2)}t
+ =\frac{v_1+v_2}{2}+J(v_1,v_2).
+ \label{detail:eq:fpd_direction}
+\end{equation}
+Consequently $F'(0;(1,0))=F'(0;(0,1))=1/2$, but
+$F'(0;(1,1))=2$. A linear derivative with the two axis values would
+instead give 1 on $(1,1)$, a contradiction. The map is nonlinear and not
+Fr\'echet differentiable at the origin, despite exact agreement with
+$F_0$ on the coordinate axes. ``Axis-calibrated linear counterpart'' is
+therefore the appropriate term.
+
+\subsubsection{Where the central interaction comes from}
+As an analytic counterfactual, replace min rule weights by
+$w^{\rm prod}_{ab}=\varphi_a(X)\varphi_b(Y)$, retaining the membership functions
+and singletons. On $|X|,|Y|\le5$, the active consequents add their two
+single-input values and the denominator is
+$(\sum_a\varphi_a(X))(\sum_b\varphi_b(Y))=1$. Thus
+\begin{equation}
+ F_{\rm prod}(X,Y)=X/2+Y/2=F_0(X,Y).
+ \label{detail:eq:fpd_product}
+\end{equation}
+The central nonlinear interaction is tied to normalized min activation,
+not merely to linguistic labels. The identity isolates the role of min activation; it does not assert
+linearity beyond the central square or an experimental comparison of
+product and min inference.
+
+\subsection{Nonlinear memory and what it does not identify}
+
+For identical scaled input pairs $(X_k,Y_k)$, including consistent
+previous-error initialization, let $A_k^{\rm F}$ use $F$ and
+$A_k^0$ use $F_0$, with equal initial accumulators. Subtracting their
+updates gives
+\[
+ A_k^{\rm F}-A_k^0=(A_{k-1}^{\rm F}-A_{k-1}^0)
+                  +K_u\mathcal R_F(X_k,Y_k).
+\]
+Telescoping yields
+\begin{equation}
+ A_k^{\rm F}-A_k^0=K_u\sum_{\ell=0}^{k}\mathcal R_F(X_\ell,Y_\ell).
+ \label{detail:eq:fpi_memory}
+\end{equation}
+With zero PI/Fuzzy constructor states and the calibrated parameters,
+the same-input bookkeeping can also be written
+\begin{equation}
+ A_k^{\rm F}=k_pE_k+\kappa_I\sum_{\ell=0}^{k}E_\ell
+             +K_u\sum_{\ell=0}^{k}\mathcal R_F(X_\ell,Y_\ell).
+ \label{detail:eq:fpd_accounting}
+\end{equation}
+The first two terms form a PI-like shadow evaluated on the Fuzzy
+trajectory's own inputs. The last term records accumulated nonlinear
+correction. If later inputs lie on the axes, the new residual is zero
+but the accumulated difference can remain nonzero.
+
+This identity requires no accumulator projection/reset. Pure external
+clipping with retained raw states leaves the raw identity intact, but the
+applied difference must be evaluated through the limiter. Tracking/reset
+requires explicit additional state-change terms. Moreover, independently
+evolving PI and Fuzzy closed loops generate different measurements and
+possibly different physical event schedules. A same-input shadow identity
+therefore cannot be relabelled as their observed closed-loop difference.
+
+\subsection{Interpretation and the bridge to the stability section}
+
+The derivation provides implementation-consistent PI calibration,
+the exact central nonlinear map, and a regional sector suitable for a
+closed-loop certificate. Section~\ref{detail:sec:btd_reference} uses these properties after stating its
+plant, sampling, latency and initialization assumptions and proving that
+the sector's input region remains invariant. The present algebra does not
+change the continuous-clock Callisto plant into a discrete-time plant;
+it describes the controller updates embedded in that execution.
+
+Same-sign scaled inputs indicate alignment of the two input channels.
+They do not always mean increasing absolute error: a transition from
+$e_{k-1}=-10$ to $e_k=1$ has $e_k(e_k-e_{k-1})>0$ even though the
+absolute error decreased. Likewise, opposing-sign attenuation concerns a
+single increment relative to $F_0$, not an established network jitter
+attenuation property. Frequency disagreement, buffer excursion, common
+frequency and control activity must be evaluated separately.
+

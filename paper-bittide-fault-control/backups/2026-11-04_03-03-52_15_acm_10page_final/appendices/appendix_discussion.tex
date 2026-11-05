@@ -1,0 +1,197 @@
+\section{Extended Interpretation and Scope}
+\label{app:discussion}
+\noindent\textbf{Correspondence: Section~\ref{sec:discussion}.} This appendix preserves the extended model, intermediate steps and supporting interpretation behind the corresponding main-text section.
+
+
+\label{detail:sec:discussion}
+
+The results identify two reasons to consider the proposed Fuzzy PI law
+for bittide: a provable reduction in transient buffer demand for a
+specified reference execution, and independently tested synchronization
+benefits in defined delivery regimes. The connection between these
+results is the explicit nonlinear correction mechanism, rather than
+an assumption that fuzzy inference improves every performance metric.
+This section explains how the benefits should inform controller
+selection and which extensions require further evidence.
+
+\subsection{What nonlinear response shaping adds}
+\label{detail:subsec:discussion_mechanism}
+
+The controller offers a local way to change the relationship between
+occupancy error, its change between measurements and the next frequency
+correction. Proposition~\ref{detail:prop:fpi_central} shows that the normalized
+min-activation surface strengthens its calibrated linear counterpart
+for aligned input signs and attenuates its magnitude for opposing signs
+within the stated central region. A uniform increase in PI gains would
+scale both cases uniformly. The Fuzzy law therefore supplies
+a different response shape at calibrated gain coordinates, while
+retaining a concrete connection to the native PI implementation.
+
+This interpretation concerns a correction increment, not a complete
+closed-loop performance ordering. In particular, aligned signs do not
+always mean that absolute occupancy error is increasing; an error can
+cross zero while decreasing in magnitude. The plant, measurement
+history and accumulated correction determine the resulting trajectory.
+Equation~\eqref{detail:eq:fpd_accounting} makes the memory contribution explicit:
+past nonlinear increments may remain in the accumulator even when
+later inputs have zero nonlinear residual. This provides a mechanism
+to investigate transient shaping and persistent offsets, but a
+same-input decomposition alone does not establish their causal
+contribution to differences between independently evolving closed loops.
+
+The comparisons address two questions. The reference proof and
+startup tests hold the calibrated gain coordinates fixed. They test
+a prescribed change in the controller law. The
+equal-budget study instead asks whether each controller family can
+produce a useful selected design with the same finite search budget.
+Its lower held-out RMS supports the selected Fuzzy scheme, including
+its chosen gains, rather than an inference-only effect at identical
+gains. Keeping these questions separate makes the empirical benefit
+more meaningful than a comparison against a single arbitrary PI setting.
+
+\subsection{Engineering meaning of the buffer-headroom benefit}
+\label{detail:subsec:discussion_headroom}
+
+For a finite receiving buffer, the largest transient deviation matters
+even when the eventual operating point is admissible.
+Theorem~\ref{detail:thm:btd_headroom} compares a certified upper bound for the
+Fuzzy excursion with an attained PI peak, not just two conservative
+upper bounds. For its prescribed initialization, the resulting
+improvement in minimum headroom exceeds 6.0887 fluid frames. Both
+controllers also satisfy the reference model's positive-frequency,
+correction and convergence conditions. The benefit thus concerns
+transient resource use while those conditions remain satisfied.
+
+The matched-gain actual tests provide a separate engineering observation.
+For example, at 1600 ppm, Fuzzy reduces the measured excursion from
+94 to 72 frames without correction saturation or gate intervention
+(Table~\ref{detail:tab:eval_startup_safety}). This is consistent with a useful
+headroom effect after introducing delayed local execution and integer
+buffer events, although the mathematical reference certificate does
+not cover that implementation. At the larger stress scale, fewer
+saturated updates and smaller excursions remain finite-run findings,
+not a proof that saturation is harmless or that future overflow is
+impossible.
+
+These results measure reserve at fixed capacity. They do not establish
+that a smaller hardware buffer can simply be substituted. Capacity
+appears in the feedback normalization
+$\gamma_i=100/(d_iC)$, where $d_i$ is the number of receiving neighbours.
+Changing $C$ or the degree changes the token-domain controller map
+unless the gains or normalization are adjusted consistently. Any
+capacity-reduction claim would therefore require a new model-consistent
+comparison and a fresh safety check. Similarly, a failed sufficient
+condition is inconclusive: the observed-safe but uncertified reference cases
+illustrate conservatism, not an enlarged general safe set.
+
+\subsection{Selecting a controller for the operating regime}
+\label{detail:subsec:discussion_selection}
+
+The independent tests demonstrate a practical benefit under the stated
+selection policy. With identical evaluation budgets, frozen gains and
+shared untouched profiles, the random-priority Fuzzy representative
+reduces disagreement RMS and mean command TV in both original random
+regimes. The burst-priority representative also substantially reduces
+IAE in the larger held-out burst. The distinct selected representatives
+show that the desired task matters: prioritizing random disagreement
+and prioritizing a burst transient need not choose the same parameters.
+The experiments do not switch between these representatives online.
+
+Several measures are needed to interpret the benefit. Relative
+frequency agreement concerns differences between nodes; it does not
+require the common frequency to equal one or to return to its clean
+counterfactual. The larger common-frequency shift accompanying the
+selected Fuzzy RMS improvement is therefore an engineering cost to
+evaluate against the application, not an inconsistency in the RMS
+measurement. The controller has no absolute-frequency reference loop.
+Likewise, smaller buffer peaks need not coincide with the lowest RMS,
+and command TV is an activity metric rather than a measured energy
+cost. A design choice should specify the acceptable headroom,
+frequency-shift and correction constraints before selecting among the
+reported tradeoffs.
+
+The slower-delivery study further shows why timing conditions belong
+in that choice. Increasing a constant path-delay plateau does not
+suspend arrivals for the whole plateau: its onset changes in-flight
+inventory, and the first deficit can form before changed feedback is
+applied. The ramp profiles allow regulation during the formation of
+the imbalance, whereas the random profile grids change its temporal
+structure. Neither a longer hold nor slower variation alone establishes
+an RMS advantage. These observations motivate matching the controller
+to a declared disturbance regime; they do not identify an optimal
+polling period, since polling was not independently swept in the new
+performance tests.
+
+\subsection{Meaning of safety, convergence and logical synchrony}
+\label{detail:subsec:discussion_scope}
+
+The certificate applies to the synchronous zero-delay fluid model with
+its compatible targets, initialization and invariant input region.
+Its sampled recurrence is the exact endpoint map of that continuous
+zero-order-hold reference. It is not a replacement discrete firing-count
+plant, nor an exact model of the asynchronous controller scheduling
+and integer delivery events in actual Callisto. In particular, the
+complete 25-rule controller remains executable outside the central
+input region, while the regional formula and the numerical invariant
+certificate cannot be applied to arbitrary such trajectories.
+
+The actual tests establish capacity compliance, positive frequency and
+progress over specified finite records. Persistent random input is
+evaluated by windowed disagreement and occupancy statistics rather
+than claimed exact convergence to a fixed equilibrium. The startup
+records also have a shorter declared horizon than the disturbance
+tests. None of these observations alone supplies an all-time safety
+or convergence proof for delayed execution. Similarly, the reference
+frequency-spread result requires a separately justified engineering
+threshold; logical synchrony does not supply a universal ppm limit.
+
+Logical synchrony is the computational requirement motivating the
+controller, while physical syntony, buffer centering and positive
+frequency describe different properties of its implementation.
+Preserving capacity and frame order, together with continued data
+progress, supports the normal execution assumed here. Demonstrating
+functional logical synchrony for an application would additionally
+require checking the logical frame relationships and payload execution
+against the corresponding logical model. These experiments do not
+perform that refinement check or measure application-level useful
+throughput. A capacity guard that prevents underflow by stopping data
+progress must also be distinguished from successful unstalled control.
+
+\subsection{External validity and next steps}
+\label{detail:subsec:discussion_future}
+
+The independent comparison is deliberately bounded: a three-node
+triangle, a fixed two-dimensional gain grid, fixed Fuzzy input scaling
+$K_e$, and one training seed per random regime. The untouched seeds
+quantify variation within those declared input families; they do not
+turn the search into global controller optimization or establish
+performance on larger, heterogeneous or changing networks. The
+transport model preserves order and permits batch release without a
+finite serialization rate. Hardware oscillator limits, serialized
+links, packet loss, node dropout and controller execution cost require
+separate evaluation. The current observer and supervisory switching
+mechanisms are disabled, so they contribute no fault-recovery claim.
+
+The most direct theoretical extension is to account explicitly for
+local sampling, bounded delay and quantization when constructing
+invariant buffer and input regions. Such a result should preserve
+absolute-frequency and actuator constraints as well as disagreement
+bounds. Empirically, broader topologies and delivery models would
+test whether the observed benefits persist beyond the present
+triangle. If absolute-rate requirements or sustained saturation are
+important, a common-frequency constraint or anti-windup mechanism
+could be studied as a separate controller extension, followed by
+fresh analysis and independent tests. These steps extend the present
+mechanism and evidence without changing the scope of its proved or
+measured benefits.
+
+
+% Previous placeholder, preserved before the completed section was integrated.
+% \section{Discussion and Limitations}
+% \label{detail:sec:discussion}
+% \noindent\textbf{Draft status: to be written.}
+% The full discussion remains pending. The certificate in
+% Section~\ref{detail:sec:btd_reference} applies to its specified synchronous,
+% zero-delay fluid reference and prescribed initialization. It does not
+% certify asynchronous, delayed, quantized Callisto execution or establish
+% universal superiority over PI.

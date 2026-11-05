@@ -1,0 +1,3 @@
+﻿case,piCandidate,fuzzyCandidate,piStatus,fuzzyStatus,piFailureReason,fuzzyFailureReason,piNormal,fuzzyNormal,piIAE,fuzzyIAE,piPeakBuffer,fuzzyPeakBuffer
+test_A10_D10k_e23,PI_g05,Fuzzy_g17,completed,completed,,,True,True,265813.60890595627,352613.91178793117,11.0,11.0
+test_A40_D100k_e31,PI_g05,Fuzzy_g17,completed,completed,,,True,True,8192410.0059571285,3623165.822213204,40.0,40.0

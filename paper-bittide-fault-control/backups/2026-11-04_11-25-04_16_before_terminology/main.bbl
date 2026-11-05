@@ -1,0 +1,93 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{4}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Lall et~al\mbox{.}(2022)]%
+        {lall2022resistance}
+\bibfield{author}{\bibinfo{person}{Sanjay Lall}, \bibinfo{person}{C{\u a}lin
+  Ca{\c s}caval}, \bibinfo{person}{Martin Izzard}, {and} \bibinfo{person}{Tammo
+  Spalink}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Resistance Distance and Control Performance for
+  {bittide} Synchronization}. In \bibinfo{booktitle}{\emph{2022 European
+  Control Conference (ECC)}}. \bibinfo{pages}{1850--1857}.
+\newblock
+\showeprint[arxiv]{2111.05296}
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2111.05296}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lall et~al\mbox{.}(2023)]%
+        {lall2023bufferCentering}
+\bibfield{author}{\bibinfo{person}{Sanjay Lall}, \bibinfo{person}{C{\u a}lin
+  Ca{\c s}caval}, \bibinfo{person}{Martin Izzard}, {and} \bibinfo{person}{Tammo
+  Spalink}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{On Buffer Centering for {Bittide} Synchronization}.
+\newblock \bibinfo{howpublished}{arXiv preprint arXiv:2303.11467}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2303.11467}{doi:\nolinkurl{10.48550/arXiv.2303.11467}}
+
+
+\bibitem[Lall et~al\mbox{.}(2024)]%
+        {lall2024logicalSynchrony}
+\bibfield{author}{\bibinfo{person}{Sanjay Lall}, \bibinfo{person}{C{\u a}lin
+  Ca{\c s}caval}, \bibinfo{person}{Martin Izzard}, {and} \bibinfo{person}{Tammo
+  Spalink}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Logical Synchrony and the {bittide} Mechanism}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Parallel and Distributed
+  Systems}} \bibinfo{volume}{35}, \bibinfo{number}{11} (\bibinfo{year}{2024}),
+  \bibinfo{pages}{1936--1948}.
+\newblock
+\showeprint[arxiv]{2308.00144}
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2308.00144}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lall and Spalink(2024)]%
+        {lall2024bufferOccupancy}
+\bibfield{author}{\bibinfo{person}{Sanjay Lall} {and} \bibinfo{person}{Tammo
+  Spalink}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Modeling Buffer Occupancy in {bittide} Systems}.
+\newblock \bibinfo{howpublished}{arXiv preprint arXiv:2410.05432}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2410.05432}{doi:\nolinkurl{10.48550/arXiv.2410.05432}}
+
+
+\end{thebibliography}

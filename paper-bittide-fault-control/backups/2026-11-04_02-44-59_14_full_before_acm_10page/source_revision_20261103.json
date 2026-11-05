@@ -1,0 +1,51 @@
+{
+  "project": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control",
+  "backup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\pre_expansion_20261103_020643",
+  "backedUpFiles": [
+    ".latexmkrc",
+    "bittide_math_preamble.tex",
+    "integration_checks.json",
+    "INTEGRATION_NOTES_zh.md",
+    "integration_provenance.json",
+    "main.tex",
+    "README.md",
+    "references.bib",
+    ".vscode/extensions.json",
+    ".vscode/settings.json",
+    "author_notes/introduction_EN_v5.md",
+    "author_notes/introduction_original.tex",
+    "sections/background.tex",
+    "sections/conclusion.tex",
+    "sections/discussion.tex",
+    "sections/evaluation.tex",
+    "sections/introduction.tex",
+    "sections/section_iii_paper.tex",
+    "sections/section_iv_paper.tex"
+  ],
+  "autoBuildBefore": "onSave",
+  "autoBuildNow": "never",
+  "pdfBeforeSHA256": "61403f33babf3bc15e4b3f51e66f408fbe2193c1213a23c6bcd17ea25e89e367",
+  "pdfBeforeMtime": 1793619003.0059576,
+  "noPDFCompilationRequested": true,
+  "expandedSectionsSnapshot": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\after_expanded_iii_iv_20261103_021212",
+  "expandedSectionSources": {
+    "section_iii_expanded.tex": "38c847ecb835e1666e840da5bb1fb36579cadd5b67b94e74b79a587b3a2cd097",
+    "section_iv_expanded.tex": "8ed63b2d6cf7c75df52f1e3b5af3230988075834abf9ec561014d039b2f12ac2"
+  },
+  "finalTeXSnapshot": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\after_background_scope_review_20261103_022058",
+  "backgroundSourceSHA256": "646e48412cda59b984054a3e1d703723bbb9393528620e7752fdee01eb82c4ff",
+  "sourceOnlyRevisionDate": "2026-11-03",
+  "externalBuildObservation": {
+    "observedAt": "2026-11-03T02:17:48.764306",
+    "pdfSHA256": "e200a15464a0eb3dd34fbb920d19dfcaec8389602d5316684d80553fbb77ffce",
+    "pdfMtime": 1793625334.5928867,
+    "source": "An external build updated main.pdf/main.log after TeX writes. No TeX/PDF engine was invoked by this task. Exact external trigger not established.",
+    "projectAutoBuildWasAlreadyNever": true,
+    "activeTeXProcessesAtInspection": 0
+  },
+  "additionalAutoBuildSetting": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\.vscode\\settings.json",
+  "pdfAfterAutoBuildGuardSHA256": "e200a15464a0eb3dd34fbb920d19dfcaec8389602d5316684d80553fbb77ffce",
+  "pdfAfterAutoBuildGuardMtime": 1793625334.5928867,
+  "backgroundBeforeScopeReviewSnapshot": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\after_background_ii_iii_iv_20261103_021529",
+  "independentBackgroundReview": "passed; nominal exact centering explicitly scoped to fluid target"
+}

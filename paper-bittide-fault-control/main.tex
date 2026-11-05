@@ -17,9 +17,11 @@
 \acmDOI{}
 \acmISBN{}
 
+\input{bittide_math_preamble}
+
 \begin{document}
 
-\title[Short Paper Title]{Your Paper Title: A Descriptive Subtitle}
+\title[Fuzzy PI Control for bittide]{Fuzzy PI Control for bittide: Nonlinear Analysis and Transient Performance}
 
 \author{First Author}
 \email{first.author@example.com}
@@ -40,12 +42,28 @@
 \renewcommand{\shortauthors}{First Author and Second Author}
 
 \begin{abstract}
-Replace this text with a self-contained summary of your research problem,
-approach, main findings, and implications. State the problem and its importance,
-describe the proposed method, summarize the evidence, and explain the principal
-contribution. This file is an editable paper scaffold; all example content,
-author details, and conference metadata must be replaced before submission.
+Finite receiving buffers make bittide synchronization safety depend on
+initial clock frequency differences and available storage reserve.
+We propose a decentralized incremental Fuzzy PI controller and derive
+configuration-dependent sufficient conditions connecting mismatch,
+buffer targets, graph structure, timing and controller scales.
+An explicit PI calibration and exact nonlinear map support a controlled
+comparison. For a synchronous zero-delay fluid reference, Lyapunov
+analysis and outward interval prefix/tail bounds establish a strictly
+larger interval of compatible safe occupancy targets for the prescribed
+initialization. Full parameter-cell coverage certifies Fuzzy excursion
+below 17.342 frames throughout a fixed-direction 399.6--400.4-ppm
+interval, while PI's attained peak exceeds 23.380 frames. At target 20,
+Fuzzy is therefore strictly safe and unprotected PI crosses zero.
+Theory-directed reference simulations agree with these predictions.
+Twelve continuous-phase Callisto runs separately assess delayed integer
+execution: at target 83 and 1600-ppm spread, Fuzzy remains in $[11,155]$
+without intervention, while PI reaches zero and requires five guard
+episodes. Upper-target cases expose an additional delayed-credit
+constraint. These results establish a conditional safety advantage
+and distinguish reference guarantees from finite implementation evidence.
 \end{abstract}
+
 
 % Replace these example CCS terms using https://dl.acm.org/ccs .
 \begin{CCSXML}
@@ -58,103 +76,39 @@ author details, and conference metadata must be replaced before submission.
 </ccs2012>
 \end{CCSXML}
 \ccsdesc[500]{Computing methodologies}
-\keywords{keyword one, keyword two, keyword three}
+\keywords{Distributed synchronization, bittide, fuzzy control, logical synchrony, cyber-physical systems}
 
 \maketitle
 
-\section{Introduction}
-Introduce the research problem, explain why it matters, and identify the gap
-addressed by this paper. Define the intended scope and explain the practical or
-theoretical setting. Keep the claims specific enough to be supported by the
-evaluation.
+% Introduction v5 is the active candidate. The author's earlier unfinished
+% opening is preserved separately in author_notes/ and in the full backup.
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/section_iii_paper}
+\input{sections/section_iv_paper}
+\input{sections/evaluation}
+\input{sections/discussion}
+\input{sections/conclusion}
 
-Summarize your approach and list the main contributions:
-\begin{itemize}
-  \item A clearly stated research question or problem formulation.
-  \item A method, system, or analysis that addresses the identified gap.
-  \item An evaluation that supports the paper's principal claims.
-\end{itemize}
+% Funding/acknowledgments remain pending; original placeholder is backed up.
 
-The remaining sections provide a starting structure for a conference paper.
-Replace the instructional prose with your own research.
 
-\section{Related Work}
-Organize prior research by theme and explain how your contribution relates to
-each theme. Use citations to support specific statements. For example,
-\citet{lamport1994latex} provides a reference for document preparation in
-\LaTeX. This citation demonstrates the ACM bibliography style; it is not
-intended as evidence for your research topic.
-
-\section{Method}
-\subsection{Problem Formulation}
-Define the inputs, outputs, assumptions, and notation. For example, a training
-objective may be written as
-\begin{equation}
-  \mathcal{L}(\theta)
-  = \frac{1}{N}\sum_{i=1}^{N}\ell(f_{\theta}(x_i),y_i),
-  \label{eq:objective}
-\end{equation}
-where $N$ is the number of examples and $\theta$ denotes model parameters.
-Replace Equation~\ref{eq:objective} with an expression appropriate to your work.
-
-\subsection{Proposed Approach}
-Describe the core idea and the steps needed to reproduce it. Explain design
-choices and provide sufficient detail about implementation or analysis.
-
-\begin{figure}[t]
-  \centering
-  \fbox{\parbox[c][22mm][c]{0.90\columnwidth}{\centering
-    Replace with your figure\\
-    Input $\longrightarrow$ Method $\longrightarrow$ Output}}
-  \caption{A placeholder for a single-column overview figure. Replace the box
-    with \texttt{\string\includegraphics[width=\string\linewidth]\{images/figure.pdf\}}.}
-  \Description{A placeholder diagram showing input, method, and output.}
-  \label{fig:overview}
-\end{figure}
-
-Figure~\ref{fig:overview} illustrates the approach. Give every figure a useful
-caption and an accessibility description.
-
-\section{Evaluation}
-\subsection{Experimental Setup}
-Specify datasets, baselines, metrics, hardware, and relevant parameter choices.
-Describe the procedure and any statistical analysis. Explain how results can
-be reproduced.
-
-\subsection{Results}
-Report observations supported by the collected evidence.
-Table~\ref{tab:results} provides a formatting example. Its entries are
-placeholders, not experimental findings.
-
-\begin{table}[t]
-  \caption{Example results structure. Replace all placeholder entries.}
-  \label{tab:results}
-  \centering
-  \begin{tabular}{lcc}
-    \toprule
-    Method & Metric A & Metric B \\
-    \midrule
-    Baseline & --- & --- \\
-    Proposed method & --- & --- \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\section{Discussion and Limitations}
-Interpret the results in relation to the research question. Discuss
-assumptions, threats to validity, failure cases, and the limits of
-generalization. Include ethical considerations where relevant.
-
-\section{Conclusion}
-Summarize the contribution and the evidence that supports it. State the main
-implication and identify a concrete direction for future work.
-
-\begin{acks}
-Replace this text with funding and acknowledgments, or remove this environment.
-Omit identifying acknowledgments when preparing an anonymous submission.
-\end{acks}
-
+% Main text ends here; keep References and appendices outside the ten-page body.
+\clearpage
+\label{page:references_start}
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
+
+\clearpage
+\appendix
+\begingroup
+\setlength{\emergencystretch}{1em}
+\input{appendices/appendix_background}
+\input{appendices/appendix_controller}
+\input{appendices/appendix_theory}
+\input{appendices/appendix_safety_validation}
+\input{appendices/appendix_evaluation}
+\input{appendices/appendix_discussion}
+\endgroup
 
 \end{document}

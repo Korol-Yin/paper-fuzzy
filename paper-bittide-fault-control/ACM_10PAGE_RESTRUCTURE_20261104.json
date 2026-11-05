@@ -1,0 +1,83 @@
+{
+  "preBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-04_02-44-59_14_full_before_acm_10page",
+  "startedUTC": "2026-11-03T13:44:59.586604+00:00",
+  "format": "ACM sigconf unchanged",
+  "bodyDefinition": "Title/abstract through Conclusion, excluding References and Appendix",
+  "initialSourceHashes": {
+    "bittide_math_preamble.tex": "5cf8131737f18a892b78829ddcf85c649aef09a62d865abd291476d5dd9ed1ce",
+    "main.tex": "c8c23e420b4ddb97cb35163614c254052f10040cb0943317ed0a29cf12a04926",
+    "sections\\background.tex": "646e48412cda59b984054a3e1d703723bbb9393528620e7752fdee01eb82c4ff",
+    "sections\\conclusion.tex": "c4523c03fd6787f539a8727c4288ea3af6430f690a59fe659b7e6f3f42b2157a",
+    "sections\\discussion.tex": "8637a2ae35e6ff3d161ec5c652cdfab78f0465fd267446cc212e738fa9645f62",
+    "sections\\evaluation.tex": "d5835faf7489deb989eb33c38818bb85fa38db412b3ef8c2ed3abe164a040e3d",
+    "sections\\introduction.tex": "ea455f5350868a24cf0c7435a3ddb162eef00ba98724d895ea735838ea3577d0",
+    "sections\\section_iii_paper.tex": "38c847ecb835e1666e840da5bb1fb36579cadd5b67b94e74b79a587b3a2cd097",
+    "sections\\section_iv_paper.tex": "8ed63b2d6cf7c75df52f1e3b5af3230988075834abf9ec561014d039b2f12ac2"
+  },
+  "appendixMapping": [
+    {
+      "mainSectionLabel": "sec:background",
+      "appendixLabel": "app:background",
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_background.tex"
+    },
+    {
+      "mainSectionLabel": "sec:fpi_controller",
+      "appendixLabel": "app:controller",
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_controller.tex"
+    },
+    {
+      "mainSectionLabel": "sec:btd_reference",
+      "appendixLabel": "app:theory",
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_theory.tex"
+    },
+    {
+      "mainSectionLabel": "sec:evaluation",
+      "appendixLabel": "app:evaluation",
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_evaluation.tex"
+    },
+    {
+      "mainSectionLabel": "sec:discussion",
+      "appendixLabel": "app:discussion",
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_discussion.tex"
+    }
+  ],
+  "abstractUpdated": true,
+  "integratedUTC": "2026-11-03T13:50:54.297108+00:00",
+  "pageCheck": "passed: 10 main, references page 11, appendices page 12, 30 total",
+  "finalCheck": {
+    "format": "ACM sigconf",
+    "mainBodyPages": 10,
+    "referencesStart": 11,
+    "appendicesStart": 12,
+    "totalPages": 30,
+    "inputFiles": 14,
+    "uniqueLabels": 186,
+    "missingReferences": [],
+    "figureOccurrences": 7,
+    "overfullWarnings": [],
+    "otherWarnings": [
+      "Package balance Warning: You have called \\balance in second column"
+    ]
+  },
+  "finalPDFSHA256": "c3d28ff33a70992771c2dffc0fb95ad04e4dd3be1fe7cb9d8bc9a52c9484d05b",
+  "pdfPagesRendered": 30,
+  "builtinPreview": "Windows sandbox-helper failure; native local compilation and rendering completed",
+  "appendixSections": 5,
+  "finalSourceHashes": {
+    "bittide_math_preamble.tex": "5cf8131737f18a892b78829ddcf85c649aef09a62d865abd291476d5dd9ed1ce",
+    "main.tex": "c32ccbcc8fbb0866adf23c1205f28672da185175e967b9e7259bce02e093746c",
+    "sections\\background.tex": "49909335fc814e9c4117d3aff3de352d21b427fbefa62859a34fbee67352aeee",
+    "sections\\conclusion.tex": "c4523c03fd6787f539a8727c4288ea3af6430f690a59fe659b7e6f3f42b2157a",
+    "sections\\discussion.tex": "0f9506db7c8fb9b3fe91e34d2f9d4d269c296af4541f3e97ab1cf605262765bb",
+    "sections\\evaluation.tex": "14105fc006e1ce5914e57e28d1c0b0f0d7dbd04b789592855369da3a669e8f59",
+    "sections\\introduction.tex": "ea455f5350868a24cf0c7435a3ddb162eef00ba98724d895ea735838ea3577d0",
+    "sections\\section_iii_paper.tex": "969dff99f5d011f52910afeeca0e59037564992551e03a770fcc7bcc9f1093da",
+    "sections\\section_iv_paper.tex": "91229209ceefcc12d4a5d22f52b11161bd074635b0197a58d57ac8b12d39f3db",
+    "appendices\\appendix_background.tex": "21cf93c9cf05e19c199145b24e2da304f41726e4a7eaa93a4521725a02a76073",
+    "appendices\\appendix_controller.tex": "33280bc07511b928f1bf66a72e9c119d8697d3ce8198852bcc62e2a614f2cc72",
+    "appendices\\appendix_discussion.tex": "3564150e3421c297d85efdb44c3711ef974c32e433db007e38015d7b78ee54b9",
+    "appendices\\appendix_evaluation.tex": "a1bd17f005c186e7800384e55a1ad8512050fedceda556f5f64455038e3112ff",
+    "appendices\\appendix_theory.tex": "3a80f72fada1cfa57e6e801afa6934a454130c804dd8d46a8e04f09954918c11"
+  },
+  "finalBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-04_03-03-52_15_acm_10page_final"
+}

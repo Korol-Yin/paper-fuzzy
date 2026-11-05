@@ -1,0 +1,69 @@
+{
+  "checkedUTC": "2026-11-03T09:34:56.507968+00:00",
+  "staticChecks": "passed",
+  "TeXFiles": 9,
+  "uniqueLabels": 133,
+  "references": 30,
+  "citationKeys": [
+    "lall2022resistance",
+    "lall2023bufferCentering",
+    "lall2024bufferOccupancy",
+    "lall2024logicalSynchrony"
+  ],
+  "activeFigures": [
+    "images/evaluation_latest_20261103/reference_grid.png",
+    "images/evaluation_latest_20261103/actual_s4.png",
+    "images/evaluation_latest_20261103/paired_random_effects.png",
+    "images/evaluation_latest_20261103/raw_Tc10000.png"
+  ],
+  "draftModePasses": [
+    {
+      "pass": 1,
+      "engine": "pdflatex.exe",
+      "exitCode": 0
+    },
+    {
+      "pass": 2,
+      "engine": "bibtex.exe",
+      "exitCode": 0
+    },
+    {
+      "pass": 3,
+      "engine": "pdflatex.exe",
+      "exitCode": 0
+    },
+    {
+      "pass": 4,
+      "engine": "pdflatex.exe",
+      "exitCode": 0
+    }
+  ],
+  "warnings": [],
+  "boxWarnings": [
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+    "Overfull \\hbox (4.36122pt too wide) in paragraph at lines 7--8",
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+    "Overfull \\hbox (8.97644pt too wide) in paragraph at lines 57--58",
+    "Overfull \\hbox (2.42319pt too wide) in paragraph at lines 67--68",
+    "Overfull \\hbox (25.38321pt too wide) detected at line 101",
+    "Overfull \\hbox (13.46393pt too wide) detected at line 480",
+    "Overfull \\hbox (1.49728pt too wide) in paragraph at lines 510--511",
+    "Overfull \\hbox (11.03297pt too wide) in paragraph at lines 515--520",
+    "Overfull \\hbox (6.65321pt too wide) in paragraph at lines 579--583",
+    "Overfull \\hbox (2.87578pt too wide) in paragraph at lines 498--507",
+    "Overfull \\hbox (6.86214pt too wide) in paragraph at lines 518--523",
+    "Overfull \\hbox (6.28816pt too wide) in paragraph at lines 605--612",
+    "Overfull \\hbox (35.56653pt too wide) detected at line 651",
+    "Underfull \\vbox (badness 4595) has occurred while \\output is active []",
+    "Underfull \\vbox (badness 1348) has occurred while \\output is active []",
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+    "Overfull \\vbox (1.68651pt too high) has occurred while \\output is active []",
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+    "Overfull \\vbox (2.098pt too high) has occurred while \\output is active []"
+  ],
+  "PDFGeneratedByDraftMode": false,
+  "projectPDFUnchangedDuringDraftCheck": true,
+  "builtinPreview": "failed: Windows restricted-token helper cannot enforce split writable roots",
+  "renderedPreviewValidated": false
+}

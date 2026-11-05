@@ -1,0 +1,36 @@
+{
+  "root": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control",
+  "pages": 6,
+  "title_preserved": true,
+  "author_block_preserved": true,
+  "author_opening_preserved": true,
+  "label_count": 63,
+  "missing_references": [],
+  "missing_citations": [],
+  "duplicate_labels": [],
+  "bibliography_keys": [
+    "lall2022resistance",
+    "lall2023bufferCentering",
+    "lall2024bufferOccupancy",
+    "lall2024logicalSynchrony"
+  ],
+  "duplicate_bibliography_keys": [],
+  "numeric_token_preservation": {
+    "section_iii_paper.tex": {
+      "unchanged_numeric_token_multiset": true,
+      "removed": {},
+      "added": {}
+    },
+    "section_iv_paper.tex": {
+      "unchanged_numeric_token_multiset": true,
+      "removed": {},
+      "added": {}
+    }
+  },
+  "compiler_reference_or_overflow_issues": [],
+  "remaining_compiler_notes": [
+    "Underfull \\vbox (badness 10000) has occurred while \\output is active []"
+  ],
+  "pdf_sha256": "61403f33babf3bc15e4b3f51e66f408fbe2193c1213a23c6bcd17ea25e89e367",
+  "scope": "Document integration and preservation checks, not new proof certification or experimental validation."
+}

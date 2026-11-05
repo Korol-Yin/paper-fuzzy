@@ -1,0 +1,68 @@
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+\paragraph{Why use the nonlinear law?}
+The proposed surface provides input-dependent increment shaping,
+rather than a uniform increase in calibrated gains. The strict
+reference comparison demonstrates that this change can reduce
+transient buffer demand while preserving certified convergence and
+execution constraints. Matched-gain Callisto startup tests support a
+similar measured effect under local delayed execution. Independently
+tuned tests answer a different practical question: the selected
+Fuzzy scheme, including its chosen gains, improves disagreement RMS
+in the two declared random regimes. Keeping these comparisons
+separate avoids attributing every benefit to inference alone.
+
+\paragraph{Engineering interpretation.}
+Lower excursion increases reserve at fixed capacity; it does not
+demonstrate a hardware-capacity saving. Since $\gamma_i=100/(d_iC)$,
+changing capacity or degree changes the controller map unless its
+normalization/gains are adjusted. Similarly, lower disagreement RMS
+can accompany a larger common-frequency shift, because there is no
+absolute-rate reference loop. Command TV measures activity, not
+energy. The application must identify acceptable buffer reserves,
+frequency shift and correction bounds when choosing between tasks.
+
+\paragraph{Scope of the evidence.}
+The certificate is restricted to its synchronous zero-latency fluid
+assumptions and invariant domain. Callisto uses a continuous
+plant with asynchronous local updates and quantized frame events;
+finite observations do not prove its infinite-horizon safety.
+Uncertified does not mean unsafe, and saturation does not by itself
+mean buffer failure. Persistent random inputs are assessed through
+finite-window deviations rather than exact nominal equilibrium.
+Frequency agreement, positive progress and capacity compliance
+support normal model execution, but do not replace an application
+refinement proof of functional logical synchrony.
+
+An important distinction is between a controller's regional increment
+bound and a closed-loop storage guarantee. The rule-average property
+$|F|\le5$ limits one increment, whereas the accumulator can retain
+past action. The reference certificate closes the input domain and
+then bounds disagreement, common frequency and actuator use jointly.
+The experimentally observed nonlinear memory is consistent with this
+stateful behavior, but its same-input reconstruction is not a separate
+closed-loop ablation. Thus the analysis supplies a reason to investigate
+the response, while the independent tests supply the evidence for its
+usefulness in the tested regimes.
+
+The safety sweep also separates proof conservatism from execution
+constraints. Failure of a sufficient inequality at $s=4$ leaves the
+trajectory unclassified by that certificate; the finite observations
+remain useful without relabeling them as an all-time guarantee.
+At $s=32$, limiter intervention requires a different interpretation
+from the non-clipped theorem, even though measured buffers remain
+within capacity. Neither the number of feasible grid candidates nor
+one favorable initial-frequency direction establishes robust safe-set
+inclusion over arbitrary disturbances or initial states.
+
+The empirical scope is a three-node triangle, a fixed gain grid and
+Fuzzy shape, and one training seed per regime. Independent tests
+quantify variation within the specified input families, not global
+optimality or arbitrary-network robustness. Ordered batch transport
+omits finite serialization, dropout and hardware execution costs.
+Observers and FFP switching are disabled. Extending the invariant
+analysis to local sampling, bounded delay and quantization, followed
+by broader-topology and hardware validation, is the next step.
+Appendix~\ref{app:discussion} gives the fuller interpretation and
+the requirements for further controller extensions.

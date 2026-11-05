@@ -1,0 +1,61 @@
+% Adapted from introduction_EN_v5.md; research claims retained.
+\section{Introduction}
+\label{sec:introduction}
+
+bittide is a hardware synchronization mechanism that realizes logical synchrony in distributed systems using independent local physical clocks and continuous frame exchange~\cite{lall2024logicalSynchrony}. For applications that depend on reproducible execution, the relationships between communicated events must remain well defined as physical timing varies. The implementation challenge in bittide is to maintain these logical relationships while accommodating clock frequency differences, link latency and finite buffer capacity.
+
+In a bittide network, elastic receiving buffers connect the physical progress of neighboring nodes to their logical execution without requiring a global physical clock. Each node adjusts its local clock frequency using locally observed buffer occupancies. The buffers therefore serve two coupled roles: they provide feedback for frequency synchronization and absorb the imbalance between incoming frames and local consumption. Clock frequency differences and changes in frame-delivery time affect the same finite storage that supports continued logical execution. The controller must consequently be evaluated together with the buffer trajectories it produces~\cite{lall2024logicalSynchrony}.
+
+The resulting bittide control problem concerns the entire trajectory towards an operating point. Initial clock frequency differences and link-latency disturbances can consume buffer headroom before the network settles or while it responds to a disturbance. A small eventual frequency disagreement does not establish that the intervening buffer trajectory remains admissible. The objective is therefore to reduce frequency disagreement and deviations from compatible occupancy targets using local buffer feedback, while respecting finite buffer capacity and frequency-correction limits. Transient buffer excursion, convergence and control activity are thus joint criteria for evaluating a bittide controller.
+
+Existing bittide research establishes important foundations for this problem. PI performance analysis~\cite{lall2022resistance} relates closed-loop behavior to controller gains and network resistance distances. Fluid occupancy analysis~\cite{lall2024bufferOccupancy} characterizes steady buffer levels, and reframing methods~\cite{lall2023bufferCentering} address buffer centering. Our earlier study examined PI gain selection under topology and fixed-delay constraints. Building on these results, we investigate how a local nonlinear Fuzzy PI law can reshape transient buffer use and disturbance response in bittide under comparable scales, memory and update conventions. Establishing a connection between the nonlinear rule surface, a provable buffer-excursion benefit and behavior under delivery perturbations requires explicit analysis and controlled comparison.
+
+We propose a decentralized occupancy-based Fuzzy PI controller for bittide. Each node computes a frequency correction increment from its receiving-buffer error and the update-to-update change in that error. In the central input region studied here, the proposed surface strengthens its calibrated linear counterpart for same-sign inputs and attenuates its magnitude for opposing-sign inputs. This direction-dependent action provides flexibility at fixed calibrated PI gain coordinates. It motivates investigating whether the nonlinear correction can reduce transient buffer demands while retaining convergence, and determining how its effects on frequency disagreement and control activity depend on the operating conditions.
+
+This paper presents the complete controller, establishes its con\-tinuous-clock realization and combines nonlinear analysis with evaluation to investigate that question. We derive the exact central-region map and its scale correspondence with the PI baseline, and verify implementation equivalence when the nonlinear map is replaced by its calibrated linear counterpart. For a synchronous, zero-latency fluid reference, we establish an invariant input region and a common Lyapunov certificate. An outward interval enclosure of the nonlinear trajectory, followed by a contracting infinite-tail bound, provides an all-time buffer-excursion guarantee. For one prescribed three-node initialization at matched gain coordinates, the Fuzzy excursion is certified below 17.315 fluid frames, whereas PI attains an exact peak of approximately 23.403701 frames. This establishes a strict buffer-headroom benefit for that reference and initialization.
+
+We separately evaluate the proposed law in continuous-phase Callisto,
+including integer buffer events, local-clock polling and delayed
+correction application. Matched-gain startup tests show smaller buffer
+excursions for Fuzzy at three prescribed initial frequency mismatches.
+We then give PI and fixed-shape Fuzzy the same 24-candidate,
+four-case tuning budget, freeze the selected controllers, and execute
+186 held-out tests using shared delivery profiles. In the two
+original bounded-random regimes, the random-priority Fuzzy controller
+reduces mean paired disagreement-RMS ratios by 16.78\% and 7.85\%
+relative to the independently selected PI, with lower mean command
+activity. The burst-priority Fuzzy controller also reduces IAE by
+approximately 55.8\% in the larger held-out burst. These gains have
+a defined operating scope: common-frequency shift is a cost, and a
+smaller burst and a separately registered slower-random regime do not
+share the improvement. The combined evidence establishes conditional
+transient and synchronization benefits while keeping the reference
+guarantee distinct from measured delayed execution.
+
+The contributions of this paper are:
+\begin{enumerate}
+  \item A decentralized incremental Fuzzy PI controller for bittide,
+  with complete inference rules, continuous-clock realization,
+  implementation-checked PI calibration and an exact central-region
+  nonlinear characterization.
+  \item An invariant-domain and Lyapunov analysis for the stated fluid
+  reference, with bounds on physical frequencies and applied corrections,
+  and a strict all-time reduction in buffer excursion for one
+  prescribed initialization at matched gains.
+  \item Continuous-phase Callisto evaluation combining matched-gain
+  startup stress, equal-budget independent tuning and held-out
+  paired tests, identifying operating conditions with lower
+  disagreement RMS or transient buffer demand and their associated
+  performance tradeoffs.
+\end{enumerate}
+
+% The contributions of this paper are:
+
+% \begin{enumerate}
+%   \item \textbf{Fuzzy PI control for bittide.} A proposed decentralized occupancy-feedback controller with a fully specified inference law, initialization and continuous-clock actuation, together with PI calibration and exact nonlinear analysis that support controlled comparison.
+%   \item \textbf{Convergence and transient buffer margins.} An invariant-domain and Lyapunov analysis for the specified fluid reference, with verified correction and positive-frequency bounds, and an all-time comparison proving a strict headroom benefit for a prescribed initialization at matched gain coordinates.
+%   \item \textbf{Evaluation under delivery perturbations.} A continuous-clock Callisto study using shared traces, clean counterfactuals, complete-event buffer measurements and independent paired random seeds to characterize frequency, buffer-margin and control-activity tradeoffs.
+% \end{enumerate}
+
+% Historical fixed-preset introduction paragraph, retained for review.
+% We separately evaluate the controllers in the continuous-phase Callisto model, with quantized buffer events, local-clock polling and control-execution delay. Controller updates change the slope of continuous phase trajectories; they do not replace the plant with a discrete firing-count model. Shared frame-delivery stress profiles include a latency burst after nominal centering and bounded random-latency traces. Over the declared measurement window beginning at burst onset, Fuzzy PI has lower integrated frequency-disagreement amplitude and command total variation, alongside a higher peak buffer excursion. In both random-latency regimes, the matched moderate PI baseline achieves lower disagreement RMS over the declared disturbance windows. These experiments characterize the performance tradeoffs accompanying nonlinear response shaping and distinguish the reference-model guarantee from its practical applicability under the declared execution assumptions.

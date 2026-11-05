@@ -1,0 +1,370 @@
+{
+  "sourceSelectionSHA256": "e4b9407e0f05f4b3760580dabf988f6897a1cecf0750260144066455cf72c286",
+  "referenceMetricsSHA256": "b98d278133c81565214925376ea35cf1e73367202c8405983965092eaeaaf234",
+  "referenceQASHA256": "3cc8591655a8d2d20697263fa44e4a9386de326d010b8e74a1f4f268d5c761ad",
+  "referenceIdentitySHA256": "cf922fb7a2e8e0d2df7cff2e6c1579e39a6275ca290ec3ee86fb8d8a25eb4d79",
+  "referencePlanSHA256": "126ac3fd9ec684c50e1e097ed28a89ea29b1ba4ba393503843b59b20230294ce",
+  "referenceTracesSHA256": {
+    "s0p5_full_fuzzy_clipped_0p01\\trace.csv": "4c10049909e8f402977ebe87e82450420ddfb80338445e7f0f1c0a18ca9ae27f",
+    "s0p5_full_fuzzy_unconstrained_virtual\\trace.csv": "4c10049909e8f402977ebe87e82450420ddfb80338445e7f0f1c0a18ca9ae27f",
+    "s0p5_native_pi_clipped_0p01\\trace.csv": "4345f0bc9882c648fea79f378680af94e7b12da84c0e53ebbcc96b32b277caa8",
+    "s0p5_native_pi_unconstrained_virtual\\trace.csv": "4345f0bc9882c648fea79f378680af94e7b12da84c0e53ebbcc96b32b277caa8",
+    "s16_full_fuzzy_clipped_0p01\\trace.csv": "ae89c329b1fe6d0163c3f053c6d43062b0adc30f2221f983efb16eb79b0f3e69",
+    "s16_full_fuzzy_unconstrained_virtual\\trace.csv": "ae89c329b1fe6d0163c3f053c6d43062b0adc30f2221f983efb16eb79b0f3e69",
+    "s16_native_pi_clipped_0p01\\trace.csv": "74c72a739192d78f1bc15cd4615d0e25e7481a53267cac1d5eeaf6d8d6848544",
+    "s16_native_pi_unconstrained_virtual\\trace.csv": "74c72a739192d78f1bc15cd4615d0e25e7481a53267cac1d5eeaf6d8d6848544",
+    "s1_full_fuzzy_clipped_0p01\\trace.csv": "1f3c01265fe6629fa32fa8c8105e3d6ab05f95df4916c500d753c82b062498c2",
+    "s1_full_fuzzy_unconstrained_virtual\\trace.csv": "1f3c01265fe6629fa32fa8c8105e3d6ab05f95df4916c500d753c82b062498c2",
+    "s1_native_pi_clipped_0p01\\trace.csv": "8714194b742ff0d5e0dcec462c3069d052c810e9818f6ab6d711da58d7cbf5bb",
+    "s1_native_pi_unconstrained_virtual\\trace.csv": "8714194b742ff0d5e0dcec462c3069d052c810e9818f6ab6d711da58d7cbf5bb",
+    "s2_full_fuzzy_clipped_0p01\\trace.csv": "2fdfc8beb348c9394ae609213603678b5c4054e54ee4740e9cc1edf8efa8bbea",
+    "s2_full_fuzzy_unconstrained_virtual\\trace.csv": "2fdfc8beb348c9394ae609213603678b5c4054e54ee4740e9cc1edf8efa8bbea",
+    "s2_native_pi_clipped_0p01\\trace.csv": "e03357641ee597ecc8b15c99c8a71a8f7b670d54830420df6dfae416d8e6438b",
+    "s2_native_pi_unconstrained_virtual\\trace.csv": "e03357641ee597ecc8b15c99c8a71a8f7b670d54830420df6dfae416d8e6438b",
+    "s32_full_fuzzy_clipped_0p01\\trace.csv": "75c372e9e36101cbd36bd57e9cc3b0d562f333976b1e586162ede7c9e8aaaed1",
+    "s32_full_fuzzy_unconstrained_virtual\\trace.csv": "0a6b2de75da189690fbaa45b2b683df6a961cab61cc8056ad61888ec91bd9562",
+    "s32_native_pi_clipped_0p01\\trace.csv": "e5eab2713947a30e183a684bea07f080f7acaf685f0ab6c48cf4887bc99be7ad",
+    "s32_native_pi_unconstrained_virtual\\trace.csv": "dfbdf945c8d3d53d090b568c6a0ed920bed842bc22aa54ef01bbc73b7d7c5b53",
+    "s4_full_fuzzy_clipped_0p01\\trace.csv": "bbd47d7323a3b3486dddbfb4b996ac5d175331f5a913054bc6957748bc51c3a9",
+    "s4_full_fuzzy_unconstrained_virtual\\trace.csv": "bbd47d7323a3b3486dddbfb4b996ac5d175331f5a913054bc6957748bc51c3a9",
+    "s4_native_pi_clipped_0p01\\trace.csv": "a3c59b1c315a01caf05e9c933114d8b8a3d5bf3dfeaf905fc3bdb5f0dce16bb1",
+    "s4_native_pi_unconstrained_virtual\\trace.csv": "a3c59b1c315a01caf05e9c933114d8b8a3d5bf3dfeaf905fc3bdb5f0dce16bb1",
+    "s64_full_fuzzy_clipped_0p01\\trace.csv": "772a5df3aba87cf28a1c5ecb3e365bed78a6a098f72c90712e86e6cf11d74a65",
+    "s64_full_fuzzy_unconstrained_virtual\\trace.csv": "3c0ebf2400a890b062ea4178f229714af558c3bc33042346c808626aae225857",
+    "s64_native_pi_clipped_0p01\\trace.csv": "7b1159e28f70b1c41e0aa8c08ff85b7bb3428b212f7fd58534e587f8d9b43f24",
+    "s64_native_pi_unconstrained_virtual\\trace.csv": "37967960f40f78dcfada7e560efc5533e29175d7a111a22df78fd401121f5dcc",
+    "s8_full_fuzzy_clipped_0p01\\trace.csv": "dd521c4963295451f00c439f38776eb8b8a582ad09d9683f2fc67143106cf121",
+    "s8_full_fuzzy_unconstrained_virtual\\trace.csv": "dd521c4963295451f00c439f38776eb8b8a582ad09d9683f2fc67143106cf121",
+    "s8_native_pi_clipped_0p01\\trace.csv": "0e8b525953e2ef6c71fe8def44cf48782ef7a2c9ced12d080b2c50f265570288",
+    "s8_native_pi_unconstrained_virtual\\trace.csv": "0e8b525953e2ef6c71fe8def44cf48782ef7a2c9ced12d080b2c50f265570288"
+  },
+  "sourceSHA256": {
+    "callisto_aligned_runtime.jl": "181c4c01ea4369de1b11f06885bd3cb7cbe580f8980d011500a373cd4b2a3829",
+    "fuzzy_pi_control.jl": "c70a964641e9918193354ebffa1f87ad2cf99c28fbd85c4c6576cb60063acc34",
+    "path_conditions.jl": "c09e096f6cd0a6699f5c9c4679d5bfdb764ba3af03a9308c0650e1cc77cf3c00",
+    "run_domain.jl": "5ed336d2d4ffae84afe49a21838612cc1d85c7f43a716f309c90fa55e2f52827"
+  },
+  "planSHA256": {
+    "s2_fuzzy_pi.json": "6e28922e8d7dd8eb43f644e7ace3b0b75243b45cbd8650039466ff7ceee67f86",
+    "s2_pi.json": "fd3f45f5347c695f6e4abdddd6199f8770e09c2f6fb17c7ea662997f993a6783",
+    "s32_fuzzy_pi.json": "639b536f4547cdd966d34fe2165f8d77c6713bde59a62d04d6a16573564aae24",
+    "s32_pi.json": "3c1e1b1fcba3f4a52ebfb0f76861e5a474e693ab7e3e189781c2c7a5ef328142",
+    "s4_fuzzy_pi.json": "e0c14709c326aab63b03d82b4a3927583916bb1b05484dd273db77100cbe212a",
+    "s4_pi.json": "8d3ed555bb3b2a275bbe9081f12077788b62df8e5141b88e3d1d98d31a2226f3"
+  },
+  "selection": [
+    2,
+    4,
+    32
+  ],
+  "selectionMeaning": [
+    "maximum shared certified grid",
+    "minimum shared normal uncertified grid",
+    "first nonnormal including need for actuator clipping"
+  ],
+  "method": "Callisto continuous phase, native local polling p1000/d10, reliable ordered physical delay20, original compatible negative history, guards on",
+  "scope": "startup/safety stress; no post-centering disturbance claim; s32 is 12800ppm intrinsic spread",
+  "actualRunCountAtFreeze": 0,
+  "cases": [
+    {
+      "id": "s2_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 800,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "pi",
+      "nominalFrequencies": [
+        1.0004333333333333,
+        0.9996333333333334,
+        0.9998333333333334
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    },
+    {
+      "id": "s2_fuzzy_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 800,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "fuzzy_pi",
+      "nominalFrequencies": [
+        1.0004333333333333,
+        0.9996333333333334,
+        0.9998333333333334
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    },
+    {
+      "id": "s4_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 1600,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "pi",
+      "nominalFrequencies": [
+        1.0009,
+        0.9993,
+        0.9997
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    },
+    {
+      "id": "s4_fuzzy_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 1600,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "fuzzy_pi",
+      "nominalFrequencies": [
+        1.0009,
+        0.9993,
+        0.9997
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    },
+    {
+      "id": "s32_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 12800,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "pi",
+      "nominalFrequencies": [
+        1.0074333333333334,
+        0.9946333333333334,
+        0.9978333333333333
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    },
+    {
+      "id": "s32_fuzzy_pi",
+      "stage": "C_actual_startup_safety_stress",
+      "requestedDifferencePpm": 12800,
+      "fillFraction": 0.5,
+      "targetTokens": 1024,
+      "controller": "fuzzy_pi",
+      "nominalFrequencies": [
+        1.0074333333333334,
+        0.9946333333333334,
+        0.9978333333333333
+      ],
+      "baseFrequency": 0.9999666666666667,
+      "theta0": 0.1,
+      "pollPeriod": 1000,
+      "controlDelay": 10,
+      "kp": 2e-06,
+      "ki": 5e-11,
+      "latency": 20.0,
+      "beta0": 1024,
+      "maxTime": 2001066.7022234076,
+      "fuzzyPI": {
+        "setpoint": 50.0,
+        "errorInputGain": 0.1,
+        "derrorInputGain": 3.9998666666666667,
+        "outputGain": -4.096136537884596e-05,
+        "errorReference": "absolute"
+      },
+      "runtime": {
+        "capacities": [
+          2048,
+          2048,
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "plotSamples": 1001,
+        "maxEvents": 2000000,
+        "guardsEnabled": true,
+        "reserveTokens": 0,
+        "maxCorrection": 0.01,
+        "antiWindupPolicy": "none",
+        "observerEnabled": false,
+        "supervisorEnabled": false,
+        "pathConditions": {
+          "mode": "constant"
+        }
+      }
+    }
+  ]
+}

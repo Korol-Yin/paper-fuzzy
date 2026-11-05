@@ -1,0 +1,15 @@
+{
+  "trainingChargedSlots": 192,
+  "trainingNewActualTotal": 188,
+  "trainingCachedSlots": 4,
+  "previouslyMissingTrainingActualCompletedThisRecovery": 2,
+  "AexpectedActual": 186,
+  "BnewActualIncludingPilot": 107,
+  "Cactual": 6,
+  "CreferenceTrajectories": 32,
+  "selectionSHA256": "47b1fbdc418e2141c151cc103817948574a8575700cde4a307385facebef7f4b",
+  "AsummarySHA256": "da8d0dca46093a05dcd76a97682e9af0ead4dd22d3b65e89775034113e4703cd",
+  "BsummarySHA256": "91a43ca2273fcf985acfd72e7d95cbf1548f37ad74466a5b0da5ae72f9175d02",
+  "paperEdited": false,
+  "PDFGenerated": false
+}

@@ -1,0 +1,85 @@
+% Standard ACM conference proceedings: two-column sigconf layout.
+% Compile with latexmk -pdf main.tex (BibTeX runs automatically).
+\documentclass[sigconf]{acmart}
+
+% Keep the class defaults for margins, typography, and bibliography.
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+% DRAFT metadata. Replace with the exact ACM rights-form information
+% before preparing the final publication version.
+\setcopyright{none}
+\acmYear{2026}
+\copyrightyear{2026}
+\acmConference[CONF '26]{Conference Name (Replace Before Submission)}%
+  {Month DD--DD, 2026}{City, Country}
+\acmBooktitle{Conference Name (CONF '26), Month DD--DD, 2026, City, Country}
+\acmDOI{}
+\acmISBN{}
+
+\input{bittide_math_preamble}
+
+\begin{document}
+
+\title[Fuzzy PI Control for bittide]{Fuzzy PI Control for bittide: Nonlinear Analysis and Transient Performance}
+
+\author{First Author}
+\email{first.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\author{Second Author}
+\email{second.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\renewcommand{\shortauthors}{First Author and Second Author}
+
+\begin{abstract}
+\textbf{Draft status.} The abstract is pending. This working manuscript
+integrates the Introduction, Background, expanded controller model,
+reference-model derivations and Evaluation; Discussion and Conclusion
+remain to be written. Author, conference and CCS metadata require final confirmation.
+\end{abstract}
+
+
+% Replace these example CCS terms using https://dl.acm.org/ccs .
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147</concept_id>
+  <concept_desc>Computing methodologies</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Computing methodologies}
+\keywords{bittide, Fuzzy PI control, clock synchronization, buffer margins}
+
+\maketitle
+
+% Introduction v5 is the active candidate. The author's earlier unfinished
+% opening is preserved separately in author_notes/ and in the full backup.
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/section_iii_paper}
+\input{sections/section_iv_paper}
+\input{sections/evaluation}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\begin{acks}
+\textbf{Draft status.} Funding and acknowledgments are pending. Remove
+identifying material when preparing an anonymous submission.
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

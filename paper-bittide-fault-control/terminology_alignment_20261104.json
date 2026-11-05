@@ -1,0 +1,951 @@
+{
+  "preBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-04_11-25-04_16_before_terminology",
+  "startedUTC": "2026-11-03T22:25:04.113368+00:00",
+  "stylePriority": [
+    "author Stabilizing latest",
+    "author PYR Final_PR",
+    "primary bittide papers"
+  ],
+  "sourceHashesBefore": {
+    "main.tex": "c32ccbcc8fbb0866adf23c1205f28672da185175e967b9e7259bce02e093746c",
+    "sections\\background.tex": "49909335fc814e9c4117d3aff3de352d21b427fbefa62859a34fbee67352aeee",
+    "sections\\conclusion.tex": "c4523c03fd6787f539a8727c4288ea3af6430f690a59fe659b7e6f3f42b2157a",
+    "sections\\discussion.tex": "0f9506db7c8fb9b3fe91e34d2f9d4d269c296af4541f3e97ab1cf605262765bb",
+    "sections\\evaluation.tex": "14105fc006e1ce5914e57e28d1c0b0f0d7dbd04b789592855369da3a669e8f59",
+    "sections\\introduction.tex": "ea455f5350868a24cf0c7435a3ddb162eef00ba98724d895ea735838ea3577d0",
+    "sections\\section_iii_paper.tex": "969dff99f5d011f52910afeeca0e59037564992551e03a770fcc7bcc9f1093da",
+    "sections\\section_iv_paper.tex": "91229209ceefcc12d4a5d22f52b11161bd074635b0197a58d57ac8b12d39f3db",
+    "appendices\\appendix_background.tex": "21cf93c9cf05e19c199145b24e2da304f41726e4a7eaa93a4521725a02a76073",
+    "appendices\\appendix_controller.tex": "33280bc07511b928f1bf66a72e9c119d8697d3ce8198852bcc62e2a614f2cc72",
+    "appendices\\appendix_discussion.tex": "3564150e3421c297d85efdb44c3711ef974c32e433db007e38015d7b78ee54b9",
+    "appendices\\appendix_evaluation.tex": "a1bd17f005c186e7800384e55a1ad8512050fedceda556f5f64455038e3112ff",
+    "appendices\\appendix_theory.tex": "3a80f72fada1cfa57e6e801afa6934a454130c804dd8d46a8e04f09954918c11"
+  },
+  "terminologyRules": [
+    [
+      "\\bintrinsic-frequency\\b",
+      "uncontrolled-frequency"
+    ],
+    [
+      "\\bIntrinsic frequencies\\b",
+      "Uncontrolled frequencies"
+    ],
+    [
+      "\\bintrinsic\\b",
+      "uncontrolled"
+    ],
+    [
+      "\\bzero path delay\\b",
+      "zero physical link latency"
+    ],
+    [
+      "\\bpath/execution delay\\b",
+      "link latency and control-execution delay"
+    ],
+    [
+      "\\bpath/control delay\\b",
+      "link latency/control-execution delay"
+    ],
+    [
+      "\\bphysical path\\s+delay\\b",
+      "physical link latency"
+    ],
+    [
+      "\\bpath delay\\b",
+      "link latency"
+    ],
+    [
+      "\\bpath-delay\\b",
+      "link-latency"
+    ],
+    [
+      "\\bpath latency\\b",
+      "link latency"
+    ],
+    [
+      "\\bpath-latency\\b",
+      "link-latency"
+    ],
+    [
+      "\\bzero-delay\\b",
+      "zero-latency"
+    ],
+    [
+      "\\buntouched\\b",
+      "held-out"
+    ],
+    [
+      "\\bUntouched\\b",
+      "Held-out"
+    ],
+    [
+      "\\btoken-domain\\b",
+      "frame-count"
+    ],
+    [
+      "percentage-to-token",
+      "percentage-to-frame-error"
+    ],
+    [
+      "\\bActual Callisto\\s+holds",
+      "In Callisto simulations, each node holds"
+    ],
+    [
+      "\\bactual Callisto runs\\b",
+      "Callisto simulation runs"
+    ],
+    [
+      "\\bactual Callisto measurements\\b",
+      "Callisto simulation measurements"
+    ],
+    [
+      "\\bactual runs\\b",
+      "Callisto simulation runs"
+    ],
+    [
+      "\\bactual delayed runs\\b",
+      "delayed Callisto simulations"
+    ],
+    [
+      "\\bActual experiments\\b",
+      "Callisto simulations"
+    ],
+    [
+      "\\bactual experiments\\b",
+      "Callisto simulations"
+    ],
+    [
+      "\\bactual continuous-phase Callisto\\b",
+      "continuous-phase Callisto"
+    ],
+    [
+      "\\bActual continuous-phase Callisto\\b",
+      "Continuous-phase Callisto"
+    ],
+    [
+      "\\bActual Callisto\\b",
+      "Callisto"
+    ],
+    [
+      "\\bactual Callisto\\b",
+      "Callisto"
+    ],
+    [
+      "\\bactual-Callisto\\b",
+      "Callisto simulation"
+    ],
+    [
+      "\\bmatched-gain actual startup\\b",
+      "Callisto startup at matched gains"
+    ],
+    [
+      "\\bactual matched-gain startup\\b",
+      "Callisto startup at matched gains"
+    ],
+    [
+      "\\bactual startup\\b",
+      "Callisto startup"
+    ],
+    [
+      "\\bActual startup\\b",
+      "Callisto startup"
+    ],
+    [
+      "\\bActual matched-gain startup\\b",
+      "Callisto startup at matched gains"
+    ],
+    [
+      "\\bactual cases\\b",
+      "Callisto cases"
+    ],
+    [
+      "\\bactual tests\\b",
+      "Callisto tests"
+    ],
+    [
+      "\\bactual outcomes\\b",
+      "Callisto outcomes"
+    ],
+    [
+      "\\bactual execution model\\b",
+      "Callisto execution model"
+    ],
+    [
+      "\\bactual execution\\b",
+      "Callisto execution"
+    ],
+    [
+      "\\bactual records\\b",
+      "Callisto records"
+    ],
+    [
+      "\\bActual finite-time compliance\\b",
+      "Finite-time simulation compliance"
+    ],
+    [
+      "\\bNative PI\\b",
+      "PI baseline"
+    ],
+    [
+      "\\bnative PI\\b",
+      "PI baseline"
+    ],
+    [
+      "\\bnative integrate-first PI\\b",
+      "implemented integrate-first PI baseline"
+    ],
+    [
+      "\\bNative integrate-first PI\\b",
+      "Implemented integrate-first PI baseline"
+    ],
+    [
+      "\\bnative integrate-before-output PI convention\\b",
+      "implemented PI integrate-before-output convention"
+    ],
+    [
+      "\\bnative link-status mask\\b",
+      "runtime link-status mask"
+    ],
+    [
+      "\\bnative fixed coefficient scale\\b",
+      "fixed PI coefficient scale"
+    ],
+    [
+      "\\bfixed native integration scale\\b",
+      "fixed PI integration scale"
+    ],
+    [
+      "\\bnative polling\\b",
+      "local polling"
+    ],
+    [
+      "\\bthe native scale\\b",
+      "the PI integration scale"
+    ],
+    [
+      "\\bunweighted native sum\\b",
+      "unweighted PI error sum"
+    ],
+    [
+      "\\bexecuted native update\\b",
+      "implemented PI update"
+    ],
+    [
+      "\\bzero native/Fuzzy constructor\\b",
+      "zero PI/Fuzzy constructor"
+    ],
+    [
+      "\\bto PI baseline\\b",
+      "to the PI baseline"
+    ],
+    [
+      "\\bwith PI baseline\\b",
+      "with the PI baseline"
+    ],
+    [
+      "\\bgives the PI baseline requested correction\\b",
+      "gives the PI baseline's requested correction"
+    ],
+    [
+      "\\bgains, PI baseline has\\b",
+      "gains, the PI baseline has"
+    ]
+  ],
+  "changes": [
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\main.tex",
+      "rules": [
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\background.tex",
+      "rules": [
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual Callisto\\s+holds",
+          "replacement": "In Callisto simulations, each node holds",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\conclusion.tex",
+      "rules": [
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bto PI baseline\\b",
+          "replacement": "to the PI baseline",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\discussion.tex",
+      "rules": [
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual startup\\b",
+          "replacement": "Callisto startup",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\evaluation.tex",
+      "rules": [
+        {
+          "pattern": "\\bIntrinsic frequencies\\b",
+          "replacement": "Uncontrolled frequencies",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bphysical path\\s+delay\\b",
+          "replacement": "physical link latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bUntouched\\b",
+          "replacement": "Held-out",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bactual Callisto runs\\b",
+          "replacement": "Callisto simulation runs",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual runs\\b",
+          "replacement": "Callisto simulation runs",
+          "occurrences": 4
+        },
+        {
+          "pattern": "\\bActual experiments\\b",
+          "replacement": "Callisto simulations",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual startup\\b",
+          "replacement": "Callisto startup",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual matched-gain startup\\b",
+          "replacement": "Callisto startup at matched gains",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual outcomes\\b",
+          "replacement": "Callisto outcomes",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual execution model\\b",
+          "replacement": "Callisto execution model",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual finite-time compliance\\b",
+          "replacement": "Finite-time simulation compliance",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\introduction.tex",
+      "rules": [
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bwith PI baseline\\b",
+          "replacement": "with the PI baseline",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\section_iii_paper.tex",
+      "rules": [
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative integrate-first PI\\b",
+          "replacement": "implemented integrate-first PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bgives the PI baseline requested correction\\b",
+          "replacement": "gives the PI baseline's requested correction",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\section_iv_paper.tex",
+      "rules": [
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bpath/execution delay\\b",
+          "replacement": "link latency and control-execution delay",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bpath/control delay\\b",
+          "replacement": "link latency/control-execution delay",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\btoken-domain\\b",
+          "replacement": "frame-count",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual experiments\\b",
+          "replacement": "Callisto simulations",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative polling\\b",
+          "replacement": "local polling",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_background.tex",
+      "rules": [
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bphysical path\\s+delay\\b",
+          "replacement": "physical link latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_controller.tex",
+      "rules": [
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bphysical path\\s+delay\\b",
+          "replacement": "physical link latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "percentage-to-token",
+          "replacement": "percentage-to-frame-error",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bNative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative link-status mask\\b",
+          "replacement": "runtime link-status mask",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bunweighted native sum\\b",
+          "replacement": "unweighted PI error sum",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bexecuted native update\\b",
+          "replacement": "implemented PI update",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bzero native/Fuzzy constructor\\b",
+          "replacement": "zero PI/Fuzzy constructor",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_discussion.tex",
+      "rules": [
+        {
+          "pattern": "\\bpath-delay\\b",
+          "replacement": "link-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\btoken-domain\\b",
+          "replacement": "frame-count",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual tests\\b",
+          "replacement": "Callisto tests",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_evaluation.tex",
+      "rules": [
+        {
+          "pattern": "\\bIntrinsic frequencies\\b",
+          "replacement": "Uncontrolled frequencies",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bpath delay\\b",
+          "replacement": "link latency",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bzero-delay\\b",
+          "replacement": "zero-latency",
+          "occurrences": 3
+        },
+        {
+          "pattern": "\\buntouched\\b",
+          "replacement": "held-out",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bUntouched\\b",
+          "replacement": "Held-out",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bactual Callisto measurements\\b",
+          "replacement": "Callisto simulation measurements",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual runs\\b",
+          "replacement": "Callisto simulation runs",
+          "occurrences": 4
+        },
+        {
+          "pattern": "\\bactual experiments\\b",
+          "replacement": "Callisto simulations",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual continuous-phase Callisto\\b",
+          "replacement": "Continuous-phase Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual-Callisto\\b",
+          "replacement": "Callisto simulation",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual matched-gain startup\\b",
+          "replacement": "Callisto startup at matched gains",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual startup\\b",
+          "replacement": "Callisto startup",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bActual startup\\b",
+          "replacement": "Callisto startup",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual cases\\b",
+          "replacement": "Callisto cases",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual records\\b",
+          "replacement": "Callisto records",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bNative integrate-first PI\\b",
+          "replacement": "Implemented integrate-first PI baseline",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    },
+    {
+      "file": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\appendices\\appendix_theory.tex",
+      "rules": [
+        {
+          "pattern": "\\bintrinsic-frequency\\b",
+          "replacement": "uncontrolled-frequency",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bintrinsic\\b",
+          "replacement": "uncontrolled",
+          "occurrences": 5
+        },
+        {
+          "pattern": "\\bzero path delay\\b",
+          "replacement": "zero physical link latency",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\btoken-domain\\b",
+          "replacement": "frame-count",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual delayed runs\\b",
+          "replacement": "delayed Callisto simulations",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bActual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bactual Callisto\\b",
+          "replacement": "Callisto",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative PI\\b",
+          "replacement": "PI baseline",
+          "occurrences": 2
+        },
+        {
+          "pattern": "\\bnative integrate-before-output PI convention\\b",
+          "replacement": "implemented PI integrate-before-output convention",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bnative fixed coefficient scale\\b",
+          "replacement": "fixed PI coefficient scale",
+          "occurrences": 1
+        },
+        {
+          "pattern": "\\bgains, PI baseline has\\b",
+          "replacement": "gains, the PI baseline has",
+          "occurrences": 1
+        }
+      ],
+      "mathAndHistoricalComments": "byte-identical"
+    }
+  ],
+  "firstUseClarifications": [
+    "uncontrolled/uncorrected oscillator frequency",
+    "frequency correction as applied control input",
+    "syntony and buffer centering",
+    "headroom as buffer reserve",
+    "Mamdani minimum activation and singleton weighted-average defuzzification",
+    "proportional-integral acronym in Abstract"
+  ],
+  "updatedUTC": "2026-11-03T22:26:58.539048+00:00",
+  "sourceDocuments": [
+    {
+      "name": "author_stabilizing_latest",
+      "path": "C:\\Users\\cyin969\\Documents\\MEMOCODE-Bittide-PI\\Stabilizing the bittide.pdf",
+      "pages": 14,
+      "sha256": "ccd7ce21e2aa921a5274a1305e72a97ecf118a37ef5c8731e5973b8fca8f783c"
+    },
+    {
+      "name": "author_stabilizing_draft",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\PYR_Finished\\PYR draft\\Stabilizing_the_bittide_by_Tuning_Controllers_Under_Topology_and_Latency_Constraints__Final_ver__.pdf",
+      "pages": 13,
+      "sha256": "172ab0b11b1c65c3572feff9b5018d2cc135badf2ba56e5397197758d5c7079e"
+    },
+    {
+      "name": "author_PYR_proposal",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\PYR_Finished\\PYR draft\\Thesis_Proposal_Full_Length_Korol__Final_PR.pdf",
+      "pages": 54,
+      "sha256": "785b27554ce926ead32fe8310b931105f95683f7097c325c8eca369891d527b5"
+    },
+    {
+      "name": "bittide_mechanism",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\Bittide\\Logical Synchrony and the bittide Mechanism.pdf",
+      "pages": 15,
+      "sha256": "30100fdc126e3944f7d780c533d551c68fc8a00dfa1db300b7a80d03ddffb70d"
+    },
+    {
+      "name": "bittide_occupancy",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\Bittide\\Modeling_Buffer_Occupancy_in_bittide_Systems.pdf",
+      "pages": 7,
+      "sha256": "ba12c2cd2eb5ffcf10343c1f0da9841055d90c300c9ce7e6ebea7301dc4d5746"
+    },
+    {
+      "name": "bittide_resistance",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\Bittide\\Resistance Distance and Control Performance for bittide Synchronization.pdf",
+      "pages": 8,
+      "sha256": "9d93d88c90b11aea7718b79909af09ec74f139868f814a762dc504e39f81413c"
+    },
+    {
+      "name": "bittide_centering",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\Bittide\\On Buffer Centering for Bittide Synchronization.pdf",
+      "pages": 6,
+      "sha256": "17aea40b8badea11fe257665895b8e0f700c922b16d7733f40c6ed89798d481c"
+    },
+    {
+      "name": "author_PYR_report_docx",
+      "path": "C:\\Users\\cyin969\\OneDrive - The University of Auckland\\Desktop\\PYR_Finished\\PYR draft\\PYR Report.docx",
+      "sha256": "2e7ad9c27cc6a4fb079616ae6a1db35dc28b1766367935e382f40c40082f3eda"
+    }
+  ],
+  "validation": {
+    "format": "ACM sigconf",
+    "mainBodyPages": 10,
+    "referencesStart": 11,
+    "appendicesStart": 12,
+    "totalPages": 30,
+    "verificationMode": "pdfTeX draft mode; existing PDF not overwritten",
+    "inputFiles": 14,
+    "uniqueLabels": 186,
+    "missingReferences": [],
+    "figureOccurrences": 7,
+    "overfullWarnings": [],
+    "otherWarnings": [
+      "Package balance Warning: You have called \\balance in second column"
+    ]
+  },
+  "semanticIntegrity": {
+    "sourceChecks": [
+      {
+        "file": "main.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\background.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\conclusion.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\discussion.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\evaluation.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\introduction.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\section_iii_paper.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "sections\\section_iv_paper.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "appendices\\appendix_background.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "appendices\\appendix_controller.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "appendices\\appendix_discussion.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "appendices\\appendix_evaluation.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      },
+      {
+        "file": "appendices\\appendix_theory.tex",
+        "mathFragmentsUnchanged": true,
+        "numericTokensUnchanged": true,
+        "labelsUnchanged": true
+      }
+    ],
+    "figureBytesUnchanged": true,
+    "existingPDFOverwrittenByThisTask": false
+  },
+  "PDFStatus": "Original path remains occupied for truncation by its reader; ordinary compile could not overwrite. Draft-mode checks passed; no separate PDF created.",
+  "builtinPreview": "Windows sandbox helper unavailable; attempted as required.",
+  "finalSourceHashes": {
+    "main.tex": "14f74bb2da6deca71e6b57bc4cf0b699602db75a0329498fc6430a6379cda07e",
+    "sections\\background.tex": "ffea01d88ce52f2aabd85ef8d24e94e77bfaf0de24eb361efb7758b5723a9c97",
+    "sections\\conclusion.tex": "caedf7121bf6e87290b0557dcfc3191761c913dc81929f3a854f06ab909de05f",
+    "sections\\discussion.tex": "a4a71c9f7084e9541e9523c3eb7ed876476bb2f9f94483250f93dc18677e29fb",
+    "sections\\evaluation.tex": "b20503f9ec1389d620bcae63005ed727a1504044ac3ff82f9e73232c0ae1263c",
+    "sections\\introduction.tex": "452e5a1081abc5e0eaa3be5a3eb7286bf2a294bcf883c983c5addaa566bd40ee",
+    "sections\\section_iii_paper.tex": "82f97e1095e83990b98abb3dc1d073b654e4cb2eeda6ead39eb34457586f2d12",
+    "sections\\section_iv_paper.tex": "43faaa2b728ce91d011fa7b544a56f437468a051284146c862acf19f4924045d",
+    "appendices\\appendix_background.tex": "dea1edc94114100993871b3dba2d8c19d544df52a9575e5b4bf06c04849fde28",
+    "appendices\\appendix_controller.tex": "4b2991bca9c7976f5c9b2e6170390d6e9c823fddcd510bb1a4584cec3b79808f",
+    "appendices\\appendix_discussion.tex": "5347d621901375f810c27eaef084693e0dc82b95b28039cff22ab1248eb7d042",
+    "appendices\\appendix_evaluation.tex": "96d82e54834fbc6462390ab2707bb1a74c497be792a76a81474fc9acf19b86f7",
+    "appendices\\appendix_theory.tex": "c40501a187183443ccf517f79ade450b46a11b3c151616668921ab8061a7b9e2"
+  },
+  "completedUTC": "2026-11-03T22:33:55.218247+00:00",
+  "finalSourceBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-04_11-33-55_17_after_terminology_sources"
+}

@@ -1,38 +1,44 @@
-# ACM 双栏会议论文模板
+# Fuzzy PI Control for bittide - ACM working manuscript
 
-本项目使用 `\documentclass[sigconf]{acmart}`，保留 ACM 默认字号、页边距和双栏布局，以及 `ACM-Reference-Format` 参考文献格式。正文为可替换的英文论文框架，不包含真实研究结果。
+## Current draft
 
-## 在 VS Code 中编译
+The main paper preserves the author's title and author block and uses the
+original `\documentclass[sigconf]{acmart}` layout. Sections 1, 3 and 4 are
+integrated from the approved 2026-11-02 v3 package. ACM default section
+numbering, typography and margins are retained.
 
-1. 用 VS Code 的“文件 → 打开文件夹”打开整个 `ACM-Conference-Paper` 文件夹。
-2. 打开 `main.tex`，保存后 LaTeX Workshop 会自动编译。
-3. 也可按 `Ctrl+Alt+B` 编译，按 `Ctrl+Alt+V` 预览 PDF。
-4. 编译结果位于 `build/main.pdf`。
+Background (2), Evaluation (5), Discussion (6), Conclusion (7), the abstract,
+acknowledgments, CCS and publication metadata remain pending or provisional.
+The Introduction summarizes existing approved experiments; the Evaluation
+section has not yet incorporated their full evidence. This is a working
+manuscript, not a completed submission.
 
-这台电脑已检测到 TeX Live 2025、`latexmk`、`acmart` 和 LaTeX Workshop。其他电脑需安装 TeX Live 或 MiKTeX，并确保 `latexmk`、pdfLaTeX、BibTeX 可以在终端运行。Windows 上使用 MiKTeX 时，latexmk 还需要 Perl。
+## Build in VS Code
 
-在项目目录的终端也可以运行：
+Open this entire folder in VS Code with LaTeX Workshop. Save `main.tex` or
+press Ctrl+Alt+B to compile, and Ctrl+Alt+V to preview.
 
 ```powershell
-latexmk -pdf -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build main.tex
+latexmk -pdf -synctex=1 -interaction=nonstopmode -file-line-error main.tex
 ```
 
-## 文件说明
+The authoritative current output is **`main.pdf` in this project root**,
+matching the latest pre-integration build convention. Both `.latexmkrc`
+and the project VS Code settings use that location. The old `build/main.pdf`
+is archived with the pre-integration backup; do not use it as the current
+manuscript. Auxiliary files are left beside the root output.
 
-- `main.tex`：标题、作者、摘要、CCS、关键词、正文、公式、图表和致谢。
-- `references.bib`：参考文献；正文使用 `\cite{key}` 或 `\citet{key}`。
-- `images/`：论文图片。
-- `.vscode/`：自动编译、BibTeX 和 PDF 预览设置。
-- `build/main.pdf`：本地编译生成的 PDF。
+## Source map
 
-## 开始写作
+- `main.tex`: ACM metadata, title/authors, abstract and section inputs.
+- `sections/introduction.tex`: LaTeX adaptation of Introduction v5.
+- `sections/section_iii_paper.tex`: complete proposed controller and analysis.
+- `sections/section_iv_paper.tex`: fluid-reference certificate and margins.
+- `bittide_math_preamble.tex`: theorem definitions reusing ACM packages.
+- `references.bib`: four public bittide works; no internal report citation.
+- `author_notes/`: preserved author opening and original Introduction v5.
+- `INTEGRATION_NOTES_zh.md`: merge decisions, provenance and backup details.
 
-替换标题、作者和机构信息，以及各节的占位内容。新增 BibTeX 条目后在正文引用，latexmk 会自动运行 BibTeX 并完成多轮编译。使用 `figure` 放单栏图，使用 `figure*` 放跨双栏图；不要手动修改 ACM 的版心或字体大小。
-
-当前会议名、日期、地点均为明确的占位信息；DOI 和 ISBN 留空，版权设为 `none`，适合本地起稿。最终发表前须使用 ACM rights form 和会议方提供的正式版权、会议、DOI、ISBN 元数据。CCS 示例也应通过 https://dl.acm.org/ccs 替换。
-
-当前按要求使用双栏。若会议要求匿名双栏，可将第一条命令改为 `\documentclass[sigconf,anonymous,review]{acmart}`，并移除致谢及其他身份信息；若会议要求单栏审稿，请遵循会议说明使用 `manuscript` 等选项。格式应以具体会议的投稿要求为准。
-
-此框架默认用 pdfLaTeX 编译英文论文；中文正文需要另行配置中文字体与编译器。
-
-ACM 官方模板入口：https://www.acm.org/publications/proceedings-template
+The original two-page template and its example equation, figure, table and
+LaTeX-book reference are preserved in the full backup. Figures belong in
+`images/`. Do not change ACM margins or font sizes to meet a page limit.

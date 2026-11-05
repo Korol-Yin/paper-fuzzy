@@ -1,0 +1,28 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We proposed an incremental Fuzzy PI controller for bittide and
+derived configuration-dependent conditions connecting initial
+frequency mismatch, buffer reserve, graph structure and controller
+scales. Implementation-consistent PI calibration and the exact
+nonlinear rule map make the comparison explicit. For the stated
+synchronous zero-delay fluid reference, invariant-domain and
+Lyapunov analysis establish convergence, positive physical
+frequencies and correction bounds. A certified prefix and infinite
+tail prove a smaller Fuzzy buffer excursion and, at fixed capacity,
+a strictly larger interval of compatible safe occupancy targets for
+the prescribed initialization. Complete interval coverage additionally
+certifies a fixed-direction 399.6--400.4-ppm configuration region
+where Fuzzy is safe at target 20 while unprotected PI crosses zero.
+
+Theory-directed simulations agree with these reference predictions.
+Twelve continuous-phase Callisto runs separately assess delayed
+integer execution. At target 83 and 1600-ppm initial spread, Fuzzy
+remains in $[11,155]$ without protection, while PI reaches zero and
+invokes five input-empty guard episodes. Upper-target cases expose
+the additional delayed-credit condition and delimit the reference
+mirror argument. The result is a conditional mathematical safety
+advantage supported by qualitative implementation evidence, with
+all-time claims restricted to the declared reference. Incorporating
+asynchronous timing, delay, quantization and credit into a full
+execution certificate remains necessary for broader guarantees.

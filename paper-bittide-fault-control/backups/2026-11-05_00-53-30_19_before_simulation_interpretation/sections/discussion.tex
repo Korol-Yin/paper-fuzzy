@@ -1,0 +1,60 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The analysis links a bittide storage requirement to an initial
+frequency mismatch through a specified controller and execution
+model. Mismatch energy $\delta\omega^\top L\delta\omega$ captures
+how frequency differences are distributed over the graph, while
+target placement determines the available lower and upper reserve.
+Sampling, gains, normalization and graph resistance enter the same
+joint test. These are coupled sufficient conditions; a failed test
+does not make a configuration unsafe, and maximum frequency spread
+alone does not specify the required reserve.
+
+The Fuzzy advantage has two distinct mathematical components.
+The exact nonlinear map explains state-dependent increment shaping;
+it does not itself order closed-loop performance. The outward
+prefix and contracting tail establish the strict excursion ordering.
+At fixed capacity the translation lemma then converts this ordering
+into a larger admissible target interval for a prescribed frequency
+initialization. Full parameter-cell coverage extends the result to
+a narrow, quantified interval along the same mismatch direction.
+This is a proved configuration-slice advantage at matched gains,
+with positive physical frequencies and no limiter intervention.
+It is not a claim that the coarser Lyapunov inner domain is larger
+for Fuzzy or that every 400-ppm initialization benefits.
+
+The qualitative experiments directly check these deductions. Their
+cases are intentionally chosen around theoretical boundaries and
+are not independent statistical discovery. The reference uses the
+same continuous held flow as the proof. Callisto separately retains
+local scheduling, delay and integer events, so its normal-versus-guard
+separation supports the mechanism without transferring the reference
+boundary. The upper-target runs identify why receiving occupancy
+alone is insufficient for delayed readiness: in-flight data and
+reverse-credit delay also consume storage authorization. A physical
+buffer below capacity can therefore coexist with a necessary guard.
+Fewer guard episodes can accompany lower final data progress.
+
+The occupancy-translation family changes initial occupancy, target
+and compatible marking together. It does not certify arbitrary
+initial buffer error at a fixed half-capacity target, or preserve
+the original application's marking across configurations. Within
+each comparison the two controllers have the same marking and
+logical configuration. Keeping capacity fixed also preserves
+percentage normalization; changing capacity or topology requires
+consistent remapping and a fresh certificate.
+
+The nominal reference proves target convergence and syntony with
+positive physical progress. Persistent delivery disturbances instead
+require finite-window performance measures. Earlier independently
+tuned experiments, retained in Appendix~\ref{app:evaluation}, show
+benefits in two random regimes and costs in other regimes. They
+answer a separate tuning/performance question and do not enlarge
+the proved safe domain. Application-level logical synchrony also
+requires the prescribed frame relationships; buffer compliance and
+frequency agreement do not replace a payload refinement proof.
+Extending the invariant analysis to asynchronous sampling, nonzero
+link/control delay, integer counts and delayed credit is required
+before claiming all-time safety for the full Callisto implementation.
+

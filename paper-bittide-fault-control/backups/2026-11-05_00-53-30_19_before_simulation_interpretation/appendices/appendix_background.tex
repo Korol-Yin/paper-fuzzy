@@ -1,0 +1,73 @@
+% Expanded Background, 2026-11-03. Source-only revision; no PDF build.
+\section{Extended Background}
+\label{app:background}
+\noindent\textbf{Correspondence: Section~\ref{sec:background}.} This appendix preserves the extended model, intermediate steps and supporting interpretation behind the corresponding main-text section.
+
+
+\label{detail:sec:background}
+
+\subsection{Logical Synchrony and the bittide Mechanism}
+
+Logical synchrony describes relationships between distributed events without requiring a global physical clock. In bittide, neighboring nodes exchange ordered frames, and elastic receiving buffers accommodate differences in their physical progress. The association between sending and receiving events provides the basis for a logical execution whose dependencies can be reasoned about independently of exact wall-clock timing. Equal physical phases are therefore not required for logical synchrony. Frequency agreement alone, however, does not establish the required event relationships: frame ordering, initialization and continued availability of the corresponding frames also matter. These distinctions follow the logical-synchrony and multiclock-network framework developed by Lall et al.~\cite{lall2024logicalSynchrony}.
+
+The control problem supports this realization by regulating physical progress while retaining the prescribed frame relationships. Each node observes its own receiving buffers and adjusts its local clock frequency. Buffers consequently provide both the local feedback signal and finite storage for a temporary imbalance between delivery and consumption.
+
+\subsection{Continuous Clocks and Receiving-Buffer Dynamics}
+
+We consider a network of $n$ nodes. Node $i$ has continuous clock phase $\theta_i(t)$, measured in local cycles, and physical frequency
+
+\begin{equation}
+\dot\theta_i(t)=\omega_i(t)=\omega_i^u+u_i(t),
+\end{equation}
+
+where $\omega_i^u$ is its constant uncontrolled frequency and $u_i(t)$ is the applied frequency correction. The correction can be signed; admissible physical operation requires $\omega_i(t)>0$. In the current Callisto model, corrections are held between local actuation events. Phase remains continuous when a correction changes, although its slope can change. Local sampling and integer frame events are embedded in this continuous-time plant.
+
+For a receiving edge $e=(j\to i)$, let $\beta_e(t)$ be buffer occupancy in frames and $C_e$ its capacity. During normal operation without progress blocking,
+
+\begin{align}
+\beta_e(t)&=\beta_e(0)+A_{ji}^{\mathrm{arr}}(t)-N_i(t),\nonumber\\
+N_i(t)&=\lfloor\theta_i(t)\rfloor-\lfloor\theta_i(0)\rfloor.
+\label{detail:eq:bg_count_balance}
+\end{align}
+
+Here $A_{ji}^{\mathrm{arr}}(t)$ counts arrivals during $(0,t]$, including frames already in flight at initialization, and $N_i(t)$ counts local consumption. This conservation relation explains why both clock frequency mismatch and delivery changes affect occupancy. Section~\ref{detail:sec:fpi_controller} specifies the local schedules, initialization and ordered arrival model used in our realization.
+
+Fluid models replace integer frame counts by continuous phase increments. With constant physical link latency $\tau_{ji}$, the corresponding occupancy satisfies, between command discontinuities,
+
+\begin{equation}
+\dot{\widetilde\beta}_{ji}(t)
+=\omega_j(t-\tau_{ji})-\omega_i(t),
+\end{equation}
+
+where $\widetilde\beta_{ji}$ denotes fluid occupancy. Thus occupancy integrates the imbalance between delayed source progress and local consumption. The fluid approximation facilitates analysis; its assumptions must be distinguished from those of integer-frame execution. This separation is also central to existing PI performance analysis~\cite{lall2022resistance} and buffer-occupancy modeling~\cite{lall2024bufferOccupancy}.
+
+\subsection{Safety, Syntony and Buffer Centering}
+
+Safety is a property of the complete trajectory. For the normal operating regime studied here, we seek
+
+\begin{equation}
+0<\beta_e(t)<C_e,\qquad
+\omega_i(t)>0,\qquad |u_i(t)|\le u_{\max},
+\end{equation}
+
+for every edge, node and time, where $u_{\max}>0$ is the correction limit. The available lower and upper buffer reserves are $\beta_e(t)$ and $C_e-\beta_e(t)$, respectively. A convergent trajectory can still exhaust either reserve before reaching its limit. Avoiding such exhaustion through control is distinct from invoking a protection mechanism that blocks logical progress.
+
+Define the physical frequency spread as
+
+\begin{equation}
+\Delta_\omega(t)=\max_i\omega_i(t)-\min_i\omega_i(t).
+\end{equation}
+
+For nominal fluid operation with fixed conditions, we seek $\Delta_\omega(t)\to0$, together with $\beta_e(t)\to\beta_e^*$ for compatible occupancy targets $\beta_e^*$. Frequency agreement is the nominal syntonization objective; it does not imply zero phase differences or tracking an externally prescribed frequency. Without an external reference, the common limiting frequency $\omega_\infty$ is determined by the closed loop. Likewise, arbitrary per-edge targets cannot be assumed compatible with a fixed marking, meaning the frame-count offsets determined by initialization, and with the selected initial state.
+
+If a transient frequency-spread tolerance $\Delta_{\mathrm{safe}}>0$ is specified, then $\Delta_\omega(t)<\Delta_{\mathrm{safe}}$ is an additional engineering constraint. It is not the definition of logical synchrony. Under persistent delivery perturbations, we assess bounded deviations, residual disagreement and buffer reserves rather than assume exact disturbance-free centering.
+
+\subsection{Delivery Perturbations and Local Feedback}
+
+A latency increase affects the delivery process before a receiver necessarily observes it through its next control measurement. If arrivals pause while consumption continues, the conservation relation shows that the receiving buffer decreases; subsequent release of accumulated frames can instead increase occupancy. The disturbance therefore acts through frame availability and accumulated count imbalance. A controller cannot recreate an undelivered frame, and its response is constrained by measurement and actuation timing. Our experiments use declared order-preserving delivery traces so that controller comparisons share the same external stress definition. The exact arrival construction is given in Section~\ref{detail:sec:fpi_controller}.
+
+\subsection{Existing Control Foundations and the Present Study}
+
+Existing work analyzes occupancy-feedback PI performance through controller gains and graph resistance distances, derives limiting fluid occupancies, and develops reframing methods that separate frequency regulation from occupancy positioning. These are complementary foundations: PI performance~\cite{lall2022resistance}, steady buffer occupancy~\cite{lall2024bufferOccupancy}, and buffer centering~\cite{lall2023bufferCentering}. Their conclusions apply under their respective modeling assumptions; in particular, continuous-time gain conditions cannot be transferred unchanged to sampled execution with delay.
+
+This paper builds on those foundations by proposing a local incremental Fuzzy PI law and analyzing how its nonlinear increments reshape the closed-loop response at explicitly calibrated PI scales. Section~\ref{detail:sec:fpi_controller} defines the complete controller and establishes that calibration. Section~\ref{detail:sec:btd_reference} derives sufficient safety and convergence conditions for a declared synchronous, zero-latency fluid reference, followed by an all-time buffer-excursion comparison for one prescribed initialization. Evaluation in continuous-phase Callisto separately examines delivery perturbations under the actual local update and frame-count conventions.

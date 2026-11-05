@@ -1,0 +1,125 @@
+{
+  "scope": "Fixed selected finite-grid representatives, frozen held-out tests; not global controller optimality",
+  "selectionSHA256": "47b1fbdc418e2141c151cc103817948574a8575700cde4a307385facebef7f4b",
+  "selectedLabels": {
+    "PI": {
+      "R": "PI_g05",
+      "B": "PI_g05"
+    },
+    "Fuzzy": {
+      "R": "Fuzzy_g02",
+      "B": "Fuzzy_g17"
+    }
+  },
+  "expectedActualRuns": 186,
+  "actualStatusCounts": {
+    "completed": 186
+  },
+  "normalAdmissibleCompleted": 186,
+  "engineeringQAErrors": [],
+  "randomPrimaryByRegime": {
+    "Tc1000": {
+      "plannedPairs": 30,
+      "completedPairs": 30,
+      "pairedAdmissibleDenominator": 30,
+      "excludedSeeds": [],
+      "differencePpm": {
+        "mean": -0.7740583603765986,
+        "pointwise95": [
+          -0.8076731362918367,
+          -0.739921565344175
+        ],
+        "twoRegimeBonferroni97p5": [
+          -0.8127352007086543,
+          -0.734834502265889
+        ],
+        "bootstrapSeed": 58001,
+        "replicates": 20000
+      },
+      "meanPerSeedRatio": {
+        "mean": 0.8321725494390537,
+        "pointwise95": [
+          0.824838836645971,
+          0.8396426252219981
+        ],
+        "twoRegimeBonferroni97p5": [
+          0.8237671972450904,
+          0.84076585540634
+        ],
+        "bootstrapSeed": 58001,
+        "replicates": 20000
+      }
+    },
+    "Tc10000": {
+      "plannedPairs": 30,
+      "completedPairs": 30,
+      "pairedAdmissibleDenominator": 30,
+      "excludedSeeds": [],
+      "differencePpm": {
+        "mean": -0.3648631040166533,
+        "pointwise95": [
+          -0.4352339455190442,
+          -0.29463975234170214
+        ],
+        "twoRegimeBonferroni97p5": [
+          -0.44451389770133265,
+          -0.2840738203218145
+        ],
+        "bootstrapSeed": 58002,
+        "replicates": 20000
+      },
+      "meanPerSeedRatio": {
+        "mean": 0.9215035576617912,
+        "pointwise95": [
+          0.9062982211314908,
+          0.9367241282029705
+        ],
+        "twoRegimeBonferroni97p5": [
+          0.9042259453697086,
+          0.9388980946075137
+        ],
+        "bootstrapSeed": 58002,
+        "replicates": 20000
+      }
+    }
+  },
+  "burstSecondaryPrimary": [
+    {
+      "case": "test_A10_D10k_e23",
+      "piCandidate": "PI_g05",
+      "fuzzyCandidate": "Fuzzy_g17",
+      "piStatus": "completed",
+      "fuzzyStatus": "completed",
+      "piFailureReason": "",
+      "fuzzyFailureReason": "",
+      "piNormal": true,
+      "fuzzyNormal": true,
+      "piIAE": 265813.60890595627,
+      "fuzzyIAE": 352613.91178793117,
+      "piPeakBuffer": 11.0,
+      "fuzzyPeakBuffer": 11.0
+    },
+    {
+      "case": "test_A40_D100k_e31",
+      "piCandidate": "PI_g05",
+      "fuzzyCandidate": "Fuzzy_g17",
+      "piStatus": "completed",
+      "fuzzyStatus": "completed",
+      "piFailureReason": "",
+      "fuzzyFailureReason": "",
+      "piNormal": true,
+      "fuzzyNormal": true,
+      "piIAE": 8192410.0059571285,
+      "fuzzyIAE": 3623165.822213204,
+      "piPeakBuffer": 40.0,
+      "fuzzyPeakBuffer": 40.0
+    }
+  ],
+  "statistics": "Paired seed is replication unit. 20000 paired percentile bootstrap replicates; pointwise 95% and two-regime 97.5% Bonferroni nominal intervals. Admissible-pair conditional denominators shown.",
+  "limitations": [
+    "No random seed labels treated as independent time blocks.",
+    "Two held-out deterministic bursts do not give a statistical CI.",
+    "Relative frequency synchrony does not imply centering at 1 or functional payload correctness.",
+    "Actual finite runs are not an all-time reference-model certificate."
+  ]
+}

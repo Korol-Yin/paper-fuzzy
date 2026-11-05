@@ -1,0 +1,34 @@
+{
+  "updatedUTC": "2026-11-03T10:19:21.526767+00:00",
+  "preBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-03_23-19-21_11_pre_closing_sections",
+  "postBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-03_23-19-21_12_after_closing_sections",
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\discussion.tex",
+      "beforeSHA256": "ee59a035d65568cde513a520d98dd2faac77c404fad9134d0c0f289292b9fa06",
+      "afterSHA256": "8637a2ae35e6ff3d161ec5c652cdfab78f0465fd267446cc212e738fa9645f62"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\conclusion.tex",
+      "beforeSHA256": "f5b41625c860916006c89ec511a58c00033869613f3a79d329aba59526257fe6",
+      "afterSHA256": "c4523c03fd6787f539a8727c4288ea3af6430f690a59fe659b7e6f3f42b2157a"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\sections\\evaluation.tex",
+      "beforeSHA256": "2fc437ba75757efea1385420796cda046ad4caee4b2d6b882cf61541b9c5d24d",
+      "afterSHA256": "d5835faf7489deb989eb33c38818bb85fa38db412b3ef8c2ed3abe164a040e3d"
+    }
+  ],
+  "scope": "Complete English Sections VI and VII; one grammatical repair in Section V.",
+  "earlierDerivationsUnchanged": true,
+  "newSimulations": 0,
+  "newFigures": 0,
+  "previewCompilation": "Built-in attempted: Windows sandbox helper unavailable.",
+  "draftModeVerification": "Passed: three pdfTeX draft-mode passes plus BibTeX; no new PDF.",
+  "finalBackup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-03_23-20-33_13_final_closing_sections",
+  "verificationPath": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\closing_sections_verification_20261103.json",
+  "wordCounts": {
+    "discussion.tex": 1399,
+    "conclusion.tex": 243
+  }
+}

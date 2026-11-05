@@ -1,0 +1,304 @@
+% Paper insert. Load bittide_math_preamble.tex in the host preamble.
+% This section follows the notation-aligned section_iii_paper.tex.
+\section{Reference-Model Convergence and Buffer Margins}
+\label{sec:btd_reference}
+
+We now connect the proposed controller surface to convergence and finite
+buffer margins. The analysis uses a declared synchronous, zero-delay fluid
+reference, rather than the delayed, quantized Callisto execution. The
+fluid occupancy relation follows the bittide modelling framework
+of~\cite{lall2024logicalSynchrony,lall2022resistance}; the regional
+certificate and prescribed-initialization comparison below concern the
+proposed nonlinear law. The underlying phase still evolves continuously
+as in Section~\ref{sec:fpi_controller}. The sampled recurrence below is the exact endpoint
+map of its zero-order-held fluid reference, not an Euler approximation
+or a replacement of Callisto by a firing-count plant.
+
+\subsection{Reference Assumptions and Sampled Dynamics}
+\label{subsec:btd_ref_model}
+
+Consider $n\ge2$ nodes on a connected, undirected, unit-weight graph, with both
+directions of each link present. Its symmetric graph Laplacian is denoted
+by $L$, with $L_{ii}=d_i$ and $L_{ij}=-1$ for neighbouring $i\ne j$
+(zero otherwise). This replaces the earlier PI manuscript's Laplacian symbol $Q$;
+physical link delays are denoted by $\tau_{ji}$, not $L$. Set
+$\tau_{ji}=0$, execution delay to zero and measurement quantization to zero.
+All nodes update at physical times $t_k=kH$, where $H>0$ is the reference
+sampling period; the node-local update indices of Section~\ref{sec:fpi_controller} now
+coincide with this shared grid index. Corrections are held constant between updates, a
+zero-order hold (ZOH). The native PI integration scale $h$ retains its
+Section~\ref{sec:fpi_controller} definition and is not generally identified with $H$.
+
+Let $\omega_{\rm ref}$ be the constant frequency of a reference ramp,
+$\delta\omega=\omega^u-\omega_{\rm ref}\mathbf1$ the intrinsic-frequency
+offset vector and $\mathbf1$ the all-ones vector. Define
+\begin{align}
+ x_k&=\theta(t_k)-\theta(0)-t_k\omega_{\rm ref}\mathbf1,\nonumber\\
+ w_k&=\delta\omega+u_k,\qquad v_k=Hw_{k-1}\quad(k\ge1).
+ \label{eq:btd_ref_state}
+\end{align}
+Throughout this reference the initial phases are equal, and targets equal
+the compatible initial occupancies. The additive zero-delay phase offset
+$\lambda_{j\to i}$ then coincides with the initial marking. The fluid relations are
+\begin{equation}
+ \beta_{j\to i}(t_k)-\beta^*_{j\to i}=x_{j,k}-x_{i,k},
+ \qquad E_k=-Lx_k.
+ \label{eq:btd_buffer_phase}
+\end{equation}
+Here $E_k$ collects the positive-overfill frame errors of Section~\ref{sec:fpi_controller}.
+After a genuine plant interval, $x_k-x_{k-1}=v_k$.
+
+On the central input diamond $\Omega_r$, $0<r\le5$, the Section~\ref{sec:fpi_controller} sector writes
+$F(X_{i,k},Y_{i,k})=\alpha_{i,k}F_0(X_{i,k},Y_{i,k})$, with
+$\underline\alpha=(1+r/5)^{-1}$ and $\overline\alpha=2$.
+Let $D_{\alpha,k}=\operatorname{diag}(\alpha_{1,k},\ldots,\alpha_{n,k})$.
+We use common $K_e,K_{\Delta e}$ and allow node-dependent output gains
+$K_{u,i}$ when required by $\gamma_i$ to obtain common $k_p,k_i$.
+Calibration gives the unclipped recurrence
+\begin{align}
+ v_{k+1}&=v_k-D_{\alpha,k}(bLx_k+aLv_k),\nonumber\\
+ x_{k+1}&=x_k+v_{k+1},\qquad
+ a=Hk_p,\quad b=H\kappa_I=Hk_i h.
+ \label{eq:btd_full_recurrence}
+\end{align}
+The applied and requested corrections coincide once the bounds below
+verify that clipping is never reached.
+
+The constructor does not supply a physical previous interval. With
+$x_0=0$, zero controller memory and zero previous percentage error, its
+first output is $u_0=0$. Advancing the first interval yields
+\begin{equation}
+ x_1=H\delta\omega,\qquad v_1=H\delta\omega.
+ \label{eq:btd_bootstrap}
+\end{equation}
+Equation~\eqref{eq:btd_full_recurrence} is used only from $k=1$ onward.
+
+\subsection{Invariant Region and Convergence}
+\label{subsec:btd_ref_certificate}
+
+Write $L=U\Lambda U^\top$, where the columns of
+$U\in\mathbb R^{n\times(n-1)}$ are orthonormal and orthogonal to
+$\mathbf1$, and $\Lambda=\operatorname{diag}(\mu_2,\ldots,\mu_n)$
+contains the ordered positive graph eigenvalues
+$0<\mu_2\le\cdots\le\mu_n$. Thus $U^\top U=I_{n-1}$,
+$U^\top\mathbf1=0$, and $I_{n-1}$ denotes the identity matrix.
+Define the disagreement coordinates
+\begin{equation}
+ \xi_k=\Lambda^{1/2}U^\top x_k,\qquad
+ \eta_k=\Lambda^{1/2}U^\top v_k,\qquad
+ y_k=\begin{bmatrix}\xi_k\\\eta_k\end{bmatrix}.
+ \label{eq:btd_projection}
+\end{equation}
+These coordinates remove the shared phase component. Define also
+\begin{align}
+ M_k&=\Lambda^{1/2}U^\top D_{\alpha,k}U\Lambda^{1/2},\nonumber\\
+ \mathcal B(M)&=
+ \begin{bmatrix}I_{n-1}-bM&I_{n-1}-aM\\-bM&I_{n-1}-aM\end{bmatrix}.
+ \label{eq:btd_matrix_dynamics}
+\end{align}
+Then $y_{k+1}=\mathcal B(M_k)y_k$. Each $M_k$ is symmetric with
+eigenvalues in $[\nu_-,\nu_+]=[\underline\alpha\mu_2,
+\overline\alpha\mu_n]$.
+
+\begin{btdlemma}[Endpoint certificate]
+\label{lem:btd_endpoint}
+Let $\bar P$ be a symmetric posi\-tive-definite $2\times2$ matrix and
+$0<\rho<1$. Put
+\begin{equation}
+ B(\nu)=\begin{bmatrix}1-b\nu&1-a\nu\\-b\nu&1-a\nu\end{bmatrix}.
+ \label{eq:btd_scalar_block}
+\end{equation}
+If $B(\nu)^\top\bar P B(\nu)\preceq\rho\bar P$ at both
+$\nu_-$ and $\nu_+$, then
+\begin{equation}
+ V_{k+1}\le\rho V_k,\qquad
+ V_k=y_k^\top(\bar P\otimes I_{n-1})y_k
+ \label{eq:btd_contraction}
+\end{equation}
+whenever the input sector applies. Here $\preceq$ is the positive-semidefinite
+matrix order and $\otimes$ is the Kronecker product.
+\end{btdlemma}
+\begin{proof}
+$B(\nu)$ is affine in $\nu$. Write
+$\nu=(1-t)\nu_-+t\nu_+$, $0\le t\le1$, and $B_\pm=B(\nu_\pm)$.
+At an interior point the weighted endpoint
+quadratic exceeds the interior quadratic by
+$t(1-t)(B_+-B_-)^\top\bar P(B_+-B_-)\succeq0$.
+This proves the scalar inequality throughout the interval. Orthogonally
+diagonalizing each symmetric $M_k$ reduces the state inequality to these
+blocks. The quadratic matrix $\bar P\otimes I_{n-1}$ is unchanged by
+the corresponding rotation of both state blocks, so the argument permits
+node-dependent sectors and eigenvectors that change at every step.
+\end{proof}
+
+To close the sector assumption, let $\gamma_i=100/(d_iC)$ as in
+Section~\ref{sec:fpi_controller} and define
+\begin{align}
+ \Psi_i={}&\gamma_i^2d_i\max_{\sigma\in\{-1,1\}}
+ [K_e,\sigma K_{\Delta e}]\bar P^{-1}
+ [K_e,\sigma K_{\Delta e}]^\top.
+ \label{eq:btd_input_factor}
+\end{align}
+For the level set $V_k\le R$, the ellipsoid support inequality gives
+$|X_{i,k}|+|Y_{i,k}|\le\sqrt{R\Psi_i}$.
+Therefore $V_1\le R$ and $R\Psi_i\le r^2$ for every node establish
+both sector validity and contraction by induction. The invariant
+ellipsoid is in disagreement coordinates, not the full physical phase.
+
+For an edge $e=(j\to i)$ let $\mathbf b_e$ have $+1$ at $j$ and $-1$
+at $i$. With the graph pseudoinverse
+$L^\dagger=U\Lambda^{-1}U^\top$, define the effective resistance
+$R_e^{\rm eff}=\mathbf b_e^\top L^\dagger\mathbf b_e$.
+The same quadratic bound yields
+\begin{equation}
+ |\beta_e(t_k)-\beta_e^*|^2
+ \le R[\bar P^{-1}]_{11}R_e^{\rm eff}.
+ \label{eq:btd_edge_bound}
+\end{equation}
+Fluid occupancies interpolate affinely between ZOH endpoints; hence
+endpoint bounds also cover intersample time.
+
+Absolute clock bounds require the common-frequency component as well.
+Define $\bar w_k=n^{-1}\mathbf1^\top w_k$,
+$s_\alpha=(\overline\alpha-\underline\alpha)/2$ and
+$g=(\kappa_I,k_p)^\top$. Summing the common-mode increments gives
+\begin{align}
+ W_c&=|\bar w_0|+\frac{2s_\alpha}{1-\rho}
+       \sqrt{\frac{\mu_n}{n}R g^\top\bar P^{-1}g},\nonumber\\
+ W_d&=\max_i\frac1H\sqrt{R[\bar P^{-1}]_{22}(L^\dagger)_{ii}}.
+ \label{eq:btd_clock_bounds}
+\end{align}
+Then $|\bar w_k|\le W_c$, $|w_{i,k}-\bar w_k|\le W_d$, and
+\begin{equation}
+ |u_{i,k}|\le W_c+W_d+\|\delta\omega\|_\infty,\qquad
+ \omega_i(t)\ge\omega_{\rm ref}-W_c-W_d.
+ \label{eq:btd_actuator_bounds}
+\end{equation}
+Here $\|\cdot\|_\infty$ is the maximum absolute component.
+If the first bound is below $u_{\max}$ and the second is positive,
+the unconstrained trajectory never activates the limiter. Common-mode
+increments are absolutely summable, so all frequencies approach one
+positive value $\omega_\infty$. Fuzzy PI need not preserve the intrinsic
+mean; $\omega_\infty$ need not equal $\omega_{\rm ref}$.
+
+For the prescribed triangle example use
+\begin{align}
+ H=h&=\frac{30000000}{29999},\quad k_p=\frac1{500000},\nonumber\\
+ k_i&=\frac1{20000000000},\quad K_e=\frac1{10},\nonumber\\
+ K_{\Delta e}&=\frac{29999}{7500},\quad K_u=-\frac{768}{18749375}.
+ \label{eq:btd_example_gains}
+\end{align}
+The numerical example uses normalized frequencies and reference ticks. Take $C=2048$, $\beta_e^*=\beta_e(0)=1024$,
+$\lambda_e=1024$, $\omega^u=(1.0002,0.9998,0.9999)^\top$ and
+$\omega_{\rm ref}=29999/30000$. With $r=1$ a valid witness is
+\begin{align}
+ \bar P=\frac1{50000}\begin{bmatrix}9&181\\181&49629\end{bmatrix},
+ \quad&\rho=\frac{1599}{1600},\nonumber\\
+ &
+ R_0=V_1=\frac{234000000}{899940001}.
+ \label{eq:btd_witness}
+\end{align}
+Exact rational checks at $\nu_-=5/2$ and $\nu_+=6$ verify
+Lemma~\ref{lem:btd_endpoint}. They also give
+$\sup_{i,k}(|X_{i,k}|+|Y_{i,k}|)<0.171455<1$,
+$|u_{i,k}|<0.004166148<0.01$ and $\omega_i(t)>0.99603385$.
+Thus domain invariance, absence of clipping and positive clocks are
+verified rather than assumed along the prescribed trajectory.
+
+\subsection{Certified All-Time Buffer Excursion}
+\label{subsec:btd_comparative}
+
+\begin{table}[t]
+\caption{Certified excursions in the prescribed fluid reference (frames).}
+\label{tab:btd_prefix_tail}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Controller & Quantity & Enclosure or upper bound\\
+\midrule
+PI & Prefix peak & $[23.40370130812701,$\\
+   &             & $\phantom{[}23.40370130812702]$\\
+   & Tail upper bound & $17.95805698665804$\\
+Fuzzy & Prefix peak & $[17.314056817962,$\\
+      &             & $\phantom{[}17.314056817963]$\\
+      & Tail upper bound & $12.29271005372874$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+The preceding quadratic estimate alone is conservative: it bounds this
+Fuzzy example by $32.237442$ frames. To make a strict controller
+comparison, we enclose a finite prefix and then certify the infinite tail.
+For $J\in\{\mathrm{PI},\mathrm F\}$ define
+\begin{equation}
+ B_J=\sup_{t\ge0}\max_{e}|\beta_e^J(t)-1024|.
+ \label{eq:btd_excursion}
+\end{equation}
+% Recheck balance placement after expanding the pending sections.
+\balance
+The supremum ranges over time and edges for the fixed initialization,
+not over unspecified frequency vectors or disturbances.
+
+For PI, $\alpha_i=1$ and both nonzero triangle eigenvalues equal 3.
+Let $\Delta_0=\max_i\omega_i^u-\min_i\omega_i^u=1/2500$. The exact
+scalar sequence
+\begin{align}
+ \chi_0&=0,\quad \chi_1=1,\nonumber\\
+ \chi_{k+1}&=(2-3a-3b)\chi_k-(1-3a)\chi_{k-1}
+ \label{eq:btd_pi_scalar}
+\end{align}
+gives $x_k=H\chi_k\delta\omega$ and endpoint excursion
+$H\Delta_0|\chi_k|$. Exact rational enumeration through $N=200$ has its
+unique maximum at $k=111$.
+
+For Fuzzy PI, outward fixed-point interval arithmetic with grid
+$10^{-60}$ encloses the proposed nonlinear recurrence through state
+$N=200$. Let $\overline V_N$ bound its endpoint quadratic value.
+For either controller the certified remaining edge deviation is bounded by
+\begin{equation}
+ T_N=\sqrt{\frac23[\bar P^{-1}]_{11}\overline V_N},
+ \label{eq:btd_tail}
+\end{equation}
+because $R_e^{\rm eff}=2/3$ on the triangle and $V_k$ contracts for
+every $k\ge N$. For PI, $V_N$ is evaluated exactly. The resulting
+outward bounds are shown in Table~\ref{tab:btd_prefix_tail}.
+
+
+
+\begin{btdtheorem}[Strict headroom benefit for a prescribed initialization]
+\label{thm:btd_headroom}
+For the example above, initialize $x_0$, the PI sample sum, the Fuzzy
+accumulator and the previous percentage error to zero. Then both
+reference executions retain positive frequencies without activating the
+$0.01$ correction limiter, and all fluid occupancies stay strictly within
+$(0,2048)$. Pairwise frequency differences and buffer deviations
+converge to zero. Moreover,
+\begin{equation}
+ B_{\rm F}<17.315<23.40370130812701\le B_{\rm PI}.
+ \label{eq:btd_strict_comparison}
+\end{equation}
+For physical headroom $M_J=1024-B_J$,
+\begin{equation}
+ M_{\rm F}-M_{\rm PI}>6.08870130812701\quad\text{frames}.
+ \label{eq:btd_margin_improvement}
+\end{equation}
+\end{btdtheorem}
+\begin{proof}
+The invariant-domain and clock bounds close the nonlinear certificate.
+PI is covered by the same witness at $\alpha_i=1$ and preserves its
+initial mean frequency. Both certified tails lie below their prefix
+maxima, and affine intersample motion excludes missed fluid peaks.
+The Fuzzy prefix upper bound is strictly below $17.315$, whereas PI
+attains its exact rational peak at sample 111. Subtraction gives the
+headroom difference.
+\end{proof}
+
+This result compares a Fuzzy upper bound with an attained PI peak;
+comparing two conservative envelopes would not establish the same claim.
+It is a computer-assisted mathematical certificate for the stated
+reference, not verification of asynchronous, delayed, quantized Callisto.
+Its zero-delay marking 1024 differs from the delayed runs' marking 1044.
+Changing capacity also changes $\gamma_i$ and therefore the full Fuzzy
+map at unchanged gains. Neither a larger general safe set nor a smaller
+actual-runtime capacity follows without a new argument.

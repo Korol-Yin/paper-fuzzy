@@ -1,0 +1,960 @@
+% Expanded paper insert, 2026-11-03. No standalone document or bibliography.
+% Source-text revision only; no PDF generation or simulation is required.
+\section{Stability, Safety and Certified Comparison: Full Proofs}
+\label{app:theory}
+\noindent\textbf{Correspondence: Section~\ref{sec:btd_reference}.} This appendix preserves the extended model, intermediate steps and supporting interpretation behind the corresponding main-text section.
+
+
+\label{detail:sec:btd_reference}
+
+We connect the nonlinear controller of Section~\ref{detail:sec:fpi_controller}
+to four separate properties: invariance of its analyzed input region,
+convergence of frequency and buffer disagreements, strict buffer-capacity
+safety, and positive physical clock frequency. We then establish a
+strict headroom comparison with its calibrated PI baseline for one
+specified initialization. The proof concerns an explicitly defined
+continuous fluid reference. Callisto retains asynchronous local
+sampling, delivery delays and integer frame events, which are not
+silently removed from its experimental model.
+
+\subsection{Reference assumptions and continuous-time model}
+\label{detail:subsec:btd_ref_model}
+
+\subsubsection{What the reference retains and idealizes}
+The reference retains the controller of Section~\ref{detail:sec:fpi_controller}, continuous clock phases, local occupancy
+feedback, the implemented PI integrate-before-output convention and the proposed
+incremental normalized-min Fuzzy surface. It assumes zero physical link latency,
+zero control-execution delay, fluid rather than integer occupancy and a
+common physical sampling grid $t_k=kH$, $H>0$. A zero-order hold (ZOH)
+means that the applied frequency correction is constant on each interval
+$[t_k,t_{k+1})$. These are explicit analysis assumptions; local-clock
+polling in Callisto is not asserted to have this common grid.
+The equations sampled at $kH$ below are exact endpoint relations for that
+continuous ZOH flow. They are neither numerical Euler integration nor a
+discrete firing-count replacement of the plant.
+
+Let $\mathcal N_i^-$ be the fixed incoming-neighbor set and
+$d_i=|\mathcal N_i^-|$. The graph is connected, undirected and unit-weight,
+with a receiving channel in both directions. Its symmetric Laplacian
+$L$ has diagonal $d_i$ and off-diagonal $-1$ at neighboring nodes. Each
+undirected connection contributes once to this Laplacian; the pair of
+directed receiving channels does not double its weights.
+
+The physical phase is $\theta_i$, the uncontrolled frequency is
+$\omega_i^u$, the applied correction is $u_i$, and the requested correction
+is $q_i$. The target occupancy of receiving edge $j\to i$ is
+$\beta^*_{j\to i}$. The fixed coefficient scale in the PI baseline law is
+$h=p/\omega_{\rm base}$, where $p$ is a local polling period and
+$\omega_{\rm base}$ is the implementation reference frequency; $H$ is the
+physical sampling period imposed only in this reference. The integral
+coefficient is $\kappa_I=k_i h$. These two time scales are kept distinct.
+All receiving buffers have common capacity $C>0$, and the uncontrolled
+frequencies $\omega_i^u$ are constant. The all-ones column vector is $\mathbf1$.
+
+The transpose is denoted by $\top$. A symmetric matrix $A\succeq0$ is
+positive semidefinite; $A\succ0$ is positive definite. The matrix order
+$A\preceq B$ means $B-A\succeq0$. The symbol $\otimes$ denotes the
+Kronecker product, and $\|z\|_\infty=\max_i|z_i|$.
+
+\subsubsection{Compatible occupancy targets and marking}
+Throughout the proved centered reference, all initial phases are equal.
+For zero delay the fluid law in the additive phase-offset convention is
+\begin{equation}
+ \beta_{j\to i}(t)=\theta_j(t)-\theta_i(t)+\lambda_{j\to i}.
+ \label{detail:eq:btd_d_fluid}
+\end{equation}
+Here $\lambda_{j\to i}$ is the fixed additive phase offset. With equal
+initial phases it also equals the initial marking; this presentation does
+not identify these conventions for arbitrary unequal initial phases.
+The law follows the bittide fluid modeling framework
+\cite{lall2024logicalSynchrony,lall2022resistance}. Define
+$\beta^*_{j\to i}=\theta_j(0)-\theta_i(0)+\lambda_{j\to i}$, so the
+reference starts at its compatible targets. For a common constant ramp
+frequency $\omega_{\rm ref}$ put
+\begin{equation}
+ x_k=\theta(t_k)-\theta(0)-t_k\omega_{\rm ref}\mathbf1.
+ \label{detail:eq:btd_ref_state}
+\end{equation}
+The common ramp cancels from edge differences. Subtracting the target in
+\eqref{detail:eq:btd_d_fluid} gives
+\begin{equation}
+ \beta_{j\to i}(t_k)-\beta^*_{j\to i}=x_{j,k}-x_{i,k},\qquad E_k=-Lx_k.
+ \label{detail:eq:btd_buffer_phase}
+\end{equation}
+The vector $E$ collects the Section~\ref{detail:sec:fpi_controller} frame errors, actual minus target.
+Not every set of per-edge targets is compatible with a fixed marking and
+phase initialization; that compatibility is an assumption of this model.
+
+For the worked example, equal initial phases and target 1024 imply
+$\lambda_{j\to i}=1024$. The delayed Callisto simulations have marking 1044 with
+20 initial in-flight frames; simply retaining 1044 while imposing zero
+delay and the same centered occupancy would change the initialization.
+
+\subsection{From the original controller to the sampled recurrence}
+
+Define the uncontrolled frequency offsets $\delta\omega=\omega^u-\omega_{\rm ref}\mathbf1$
+and the physical frequency offsets $w_k=\delta\omega+u_k$. For $k\ge1$,
+let $v_k=Hw_{k-1}$. The plant's previous genuine interval gives
+\begin{equation}
+ x_k-x_{k-1}=Hw_{k-1}=v_k.
+ \label{detail:eq:btd_d_plant}
+\end{equation}
+Indeed, on each zero-order-held interval,
+\begin{equation}
+ x(t)=x_k+(t-t_k)w_k,\qquad t\in[t_k,t_{k+1}],
+ \label{detail:eq:btd_exact_continuous_flow}
+\end{equation}
+where $x(t)=\theta(t)-\theta(0)-t\omega_{\rm ref}\mathbf1$.
+Integration gives $x_{k+1}=x_k+Hw_k$ exactly. The controller is updated
+only at the endpoints, but the plant evolves continuously throughout
+the interval.
+
+The factor $H$ is physical elapsed time; the controller factor $h$ remains
+the fixed PI coefficient scale. Section~\ref{detail:sec:fpi_controller} uses
+$e_i=-\gamma_i E_i$, so the Fuzzy inputs are
+\begin{equation}
+ X_k=K_e\Gamma Lx_k,\qquad
+ Y_k=K_{\Delta e}\Gamma Lv_k,\qquad
+ \Gamma=\operatorname{diag}(\gamma_1,\ldots,\gamma_n).
+ \label{detail:eq:btd_d_inputs}
+\end{equation}
+Here $K_e,K_{\Delta e}$ are chosen common for readability; node-dependent
+output scaling can still produce common calibrated $k_p,k_i$.
+
+On $\Omega_r=\{(X,Y):|X|+|Y|\le r\}$, $0<r\le5$, Section~\ref{detail:sec:fpi_controller} gives
+$F=\alpha F_0$, where $F_0=(X+Y)/2$ and
+$\underline\alpha=(1+r/5)^{-1}\le\alpha\le\overline\alpha=2$.
+With $D_{\alpha,k}=\operatorname{diag}(\alpha_{1,k},\ldots,\alpha_{n,k})$,
+the calibrated increment becomes
+\begin{equation}
+ u_k-u_{k-1}=-D_{\alpha,k}(\kappa_I Lx_k+k_pLv_k).
+ \label{detail:eq:btd_d_command_increment}
+\end{equation}
+Multiplication by $H$ and the next plant interval yield
+\begin{align}
+ v_{k+1}&=v_k-D_{\alpha,k}(bLx_k+aLv_k),\nonumber\\
+ x_{k+1}&=x_k+v_{k+1},\qquad
+ a=Hk_p,\quad b=H\kappa_I=Hk_i h.
+ \label{detail:eq:btd_full_recurrence}
+\end{align}
+The extra $H$ in $b$ is essential: $v$ is a scaled frequency. The surface
+factor $\alpha_{i,k}$ is node-dependent and state-dependent; freezing it
+and checking one constant-gain PI characteristic is insufficient.
+
+\subsubsection{The initial constructor call}
+The controller's stored previous error is not a previous plant interval.
+For the centered initialization $x_0=0$ with zero PI sample sum, zero
+Fuzzy accumulator and zero previous percentage error, the first original
+controller call gives $u_0=0$. Advancing $[0,H]$ then gives
+\begin{equation}
+ x_1=H\delta\omega,\qquad v_1=H\delta\omega.
+ \label{detail:eq:btd_bootstrap}
+\end{equation}
+Only from $k=1$ does~\eqref{detail:eq:btd_d_plant} justify the recurrence.
+Nonzero initial occupancy error is outside this centered formulation:
+one must also introduce target-compatible phase coordinates or retain the
+affine error bias, then explicitly evaluate the original constructor and
+recheck the initial state and certificate. Evaluating the first call alone
+does not restore $E=-Lx$. The centered bootstrap is consistent with, but separate from, the
+event-level first-call PI/$F_0$ equivalence proved in Section~\ref{detail:sec:fpi_controller}.
+
+\subsection{Disagreement projection and the symmetric sector matrix}
+
+Since $L\mathbf1=0$, a common phase shift does not change occupancies.
+Choose $U$ with orthonormal columns spanning the subspace orthogonal to
+$\mathbf1$, so $U^\top U=I_{n-1}$ and $U^\top\mathbf1=0$. Choose its
+columns as graph eigenvectors, giving
+\begin{equation}
+ L=U\Lambda U^\top,\qquad
+ \Lambda=\operatorname{diag}(\mu_2,\ldots,\mu_n),\quad 0<\mu_2\le\mu_n.
+ \label{detail:eq:btd_d_spectrum}
+\end{equation}
+$I_{n-1}$ denotes the identity matrix of dimension $n-1$. Define
+\begin{equation}
+ \xi_k=\Lambda^{1/2}U^\top x_k,\qquad
+ \eta_k=\Lambda^{1/2}U^\top v_k,\qquad y_k=(\xi_k^\top,\eta_k^\top)^\top.
+ \label{detail:eq:btd_projection}
+\end{equation}
+The symbol $\xi$ is projected phase and $\eta$ already contains the
+frequency scale $H$. The coordinates retain the physical-time scale $H$; in particular,
+$\eta$ is a scaled frequency disagreement rather than an integral-controller state.
+
+For $M_k=\Lambda^{1/2}U^\top D_{\alpha,k}U\Lambda^{1/2}$,
+substitution in~\eqref{detail:eq:btd_full_recurrence} gives
+\begin{align}
+ \eta_{k+1}&=-bM_k\xi_k+(I_{n-1}-aM_k)\eta_k,\nonumber\\
+ \xi_{k+1}&=(I_{n-1}-bM_k)\xi_k+(I_{n-1}-aM_k)\eta_k.
+ \label{detail:eq:btd_d_projected_recurrence}
+\end{align}
+In particular, the diagonal $D_\alpha$ need not commute with $L$; the
+projection produces the symmetric $M_k$ instead of assuming shared modes.
+Its quadratic form satisfies
+\begin{equation}
+ \underline\alpha\Lambda\preceq M_k\preceq\overline\alpha\Lambda,
+ \qquad \operatorname{eig}(M_k)\subseteq
+ [\nu_-,\nu_+]=[\underline\alpha\mu_2,\overline\alpha\mu_n].
+ \label{detail:eq:btd_d_sector_matrix}
+\end{equation}
+The scalar $\nu$ used below is a possible eigenvalue of $M$, not a node
+frequency or the number of communication edges.
+
+\subsection{A common Lyapunov certificate from two endpoints}
+\label{detail:subsec:btd_ref_certificate}
+
+For matrices $M\in\mathbb R^{(n-1)\times(n-1)}$ and scalars $\nu$,
+define
+\begin{equation}
+ \mathcal B(M)=\begin{bmatrix}I-bM&I-aM\\-bM&I-aM\end{bmatrix}.
+ \label{detail:eq:btd_matrix_dynamics}
+\end{equation}
+The identity blocks have dimension $n-1$. Equations above give
+$y_{k+1}=\mathcal B(M_k)y_k$. A scalar block associated with an eigenvalue
+of $M_k$ is
+\begin{equation}
+ B(\nu)=\begin{bmatrix}1-b\nu&1-a\nu\\-b\nu&1-a\nu\end{bmatrix}.
+ \label{detail:eq:btd_scalar_block}
+\end{equation}
+For a symmetric positive-definite matrix $\bar P\in\mathbb R^{2\times2}$,
+put $P=\bar P\otimes I_{n-1}$. The scalar
+$V_k=y_k^\top P y_k$ is a quadratic measure of phase and frequency
+disagreement, not of absolute phase.
+
+\begin{btdlemma}[Endpoint certificate]
+\label{detail:lem:btd_endpoint}
+Suppose $0<\rho<1$ and
+\begin{align}
+ B(\nu_-)^\top\bar P B(\nu_-)&\preceq\rho\bar P,\nonumber\\
+ B(\nu_+)^\top\bar P B(\nu_+)&\preceq\rho\bar P.
+ \label{detail:eq:btd_d_endpoints}
+\end{align}
+Then every update whose inputs satisfy the regional sector obeys
+\begin{equation}
+ V_{k+1}\le\rho V_k.
+ \label{detail:eq:btd_contraction}
+\end{equation}
+The conclusion permits node-dependent and time-varying sector factors.
+\end{btdlemma}
+\begin{proof}
+First consider one possible scalar eigenvalue. For
+$\nu=(1-t)\nu_-+t\nu_+$, $0\le t\le1$, affine dependence gives
+$B(\nu)=(1-t)B_-+tB_+$, where $B_\pm=B(\nu_\pm)$.
+Expanding the two quadratic expressions yields
+\begin{align}
+ &(1-t)B_-^\top\bar P B_-+tB_+^\top\bar P B_+
+       -B(\nu)^\top\bar P B(\nu)\nonumber\\
+ &\qquad=t(1-t)(B_+-B_-)^\top\bar P(B_+-B_-)\succeq0.
+ \label{detail:eq:btd_d_convexity}
+\end{align}
+Together with the endpoint assumptions, this proves
+$B(\nu)^\top\bar P B(\nu)\preceq\rho\bar P$ throughout the
+continuous interval $[\nu_-,\nu_+]$. No eigenvalue grid is required.
+
+Next, each $M_k$ is real symmetric, so it admits an orthogonal
+factorization $M_k=Q_k\operatorname{diag}(\nu_{1,k},\ldots,
+\nu_{n-1,k})Q_k^\top$. Rotating both $\xi_k$ and $\eta_k$ by $Q_k^\top$
+reduces the dynamics to the scalar blocks $B(\nu_{\ell,k})$.
+The corresponding block rotation leaves $P=\bar P\otimes I_{n-1}$
+unchanged. Thus summing the scalar inequalities gives
+$\mathcal B(M_k)^\top P\mathcal B(M_k)\preceq\rho P$, which is
+\eqref{detail:eq:btd_contraction}. Because the witness $P$ is the same for
+every permitted $M_k$, $Q_k$ may change at every step. No simultaneous
+diagonalization of the node-dependent matrices is assumed.
+\end{proof}
+
+The remaining task is to show that the actual nonlinear inputs stay in
+the region where the sector was obtained. Stability of a family of
+hypothetical linear blocks alone would not establish that fact.
+
+\subsection{Closing the invariant input region}
+
+Let $\mathbf e_i$ denote the $i$th unit vector and define the row
+$a_i^\top=\mathbf e_i^\top U\Lambda^{1/2}$. Its squared Euclidean norm
+is $\|a_i\|^2=L_{ii}=d_i$. The Fuzzy inputs become
+\begin{equation}
+ X_{i,k}=\gamma_iK_ea_i^\top\xi_k,\qquad
+ Y_{i,k}=\gamma_iK_{\Delta e}a_i^\top\eta_k.
+ \label{detail:eq:btd_d_linear_outputs}
+\end{equation}
+For any vector $c$ and $P\succ0$, Cauchy--Schwarz in the quadratic
+metric gives $(c^\top y)^2\le(y^\top P y)(c^\top P^{-1}c)$.
+Also $|X|+|Y|=\max_{\sigma=\pm1}|X+\sigma Y|$. Applying that output
+bound on $V\le R$ yields
+\begin{align}
+ |X_{i,k}|+|Y_{i,k}|&\le\sqrt{R\Psi_i},\nonumber\\
+ \Psi_i&=\gamma_i^2d_i\max_{\sigma=\pm1}
+ [K_e,\sigma K_{\Delta e}]\bar P^{-1}
+ [K_e,\sigma K_{\Delta e}]^\top.
+ \label{detail:eq:btd_input_factor}
+\end{align}
+The scalar $\Psi_i$ is the largest squared input gain on the energy
+ellipsoid. If $V_1\le R$ and $R\Psi_i\le r^2$ for every node, then:
+each node's first scaled input pair belongs to $\Omega_r$; the valid sector gives
+$V_2\le\rho V_1\le R$; the same output bound keeps the next inputs in
+$\Omega_r$; induction repeats. This proves the sector domain and
+disagreement ellipsoid invariant together, rather than assuming either.
+
+Equivalently, a valid radius must satisfy
+\begin{equation}
+ V_1\le R\le\min_i\frac{r^2}{\Psi_i}.
+ \label{detail:eq:btd_sector_radius_condition}
+\end{equation}
+The initialization, normalization through $d_i$ and $C$, the Fuzzy input
+scales and the graph-dependent witness therefore enter the same
+condition. When $\Psi_i=0$, that node places no restriction on $R$;
+otherwise the displayed quotient is finite. The inference surface is
+still nonlinear inside the invariant region. The sector is an enclosure
+of its instantaneous response, not an assertion that its gain is fixed.
+
+Because $P\succ0$ and $V_k\le\rho^{k-1}V_1$, the projected phase and
+frequency decay exponentially. The ellipsoid constrains disagreement;
+the common physical phase continues to grow and is not bounded by $V$.
+Thus convergence means agreement of rates and restoration of compatible
+occupancy targets, not convergence of the absolute clock phases to constants.
+
+\subsection{From disagreement to physical buffer and clock bounds}
+
+\subsubsection{Edge occupancy and intersample time}
+For edge $e=(j\to i)$, define its signed unit incidence vector
+$\mathbf b_e=\mathbf e_j-\mathbf e_i$. Since it is orthogonal to
+$\mathbf1$, its output from the projected phase is
+\[
+ \mathbf b_e^\top x_k=\mathbf b_e^\top U\Lambda^{-1/2}\xi_k.
+\]
+Define the graph pseudoinverse $L^\dagger=U\Lambda^{-1}U^\top$ and
+effective resistance $R_e^{\rm eff}=\mathbf b_e^\top L^\dagger\mathbf b_e$.
+The quadratic output inequality gives
+\begin{equation}
+ |\beta_e(t_k)-\beta_e^*|^2
+ \le V_k[\bar P^{-1}]_{11}R_e^{\rm eff}.
+ \label{detail:eq:btd_edge_bound}
+\end{equation}
+Under ZOH the phase, hence each fluid occupancy, is affine on an interval.
+For $0\le s\le1$ its deviation is a convex combination of endpoint
+deviations, so its absolute value cannot exceed the larger endpoint
+absolute value. This covers all physical time, including the initial
+interval from the zero state to $x_1$. It would not apply unchanged to
+arbitrary delayed integer arrival events.
+
+\begin{btdcorollary}[Buffer safety within the reference model]
+\label{detail:cor:btd_buffer_safety}
+Suppose the compatible centered initialization and the invariant-domain
+conditions above hold with $V_1\le R$. For each receiving edge define
+\begin{align}
+ m_e&=\min\{\beta_e^*,C-\beta_e^*\},\nonumber\\
+ B_e(R)&=\sqrt{R[\bar P^{-1}]_{11}R_e^{\rm eff}}.
+ \label{detail:eq:btd_buffer_headroom_condition}
+\end{align}
+If $0<\beta_e^*<C$ and $B_e(R)<m_e$ on every receiving edge,
+then the unconstrained fluid execution satisfies
+$0<\beta_e(t)<C$ for all $t\ge0$. In addition,
+$\beta_e(t)-\beta_e^*\to0$ as $t\to\infty$.
+\end{btdcorollary}
+\begin{proof}
+At $t_k$, the squared deviation is bounded by
+$V_k[\bar P^{-1}]_{11}R_e^{\rm eff}$ and hence by $B_e(R)^2$.
+The initial deviation is zero. On $[t_k,t_{k+1}]$, the deviation is a
+convex combination of its endpoint deviations, so its absolute value
+is at most $B_e(R)$. The strict headroom inequalities give the lower
+and upper capacity inequalities. Finally $V_k\le\rho^{k-1}V_1\to0$
+and the same interpolation argument imply convergence at every
+physical time, not only at samples.
+\end{proof}
+
+Here $B_e(R)<m_e$ is a sufficient condition. If it fails, the certificate
+is inconclusive; failure of this conservative test does not prove a
+buffer overflow or underflow. The condition also concerns the
+unconstrained flow. It does not identify a protection-induced stall
+with successful control convergence.
+
+\subsubsection{Frequency-difference safety and convergence}
+Define the physical frequency spread by
+\begin{equation}
+ \Delta_\omega(t)=\max_i\omega_i(t)-\min_i\omega_i(t).
+ \label{detail:eq:btd_frequency_spread}
+\end{equation}
+A small frequency spread means close clock frequencies; it does not
+require the phases or their integer counts to coincide. For any pair
+$i\ne j$, not necessarily adjacent, define
+\begin{equation}
+ R_{ij}^{\rm eff}=(\mathbf e_i-\mathbf e_j)^\top L^\dagger
+                     (\mathbf e_i-\mathbf e_j),
+ \qquad R_{\max}^{\rm eff}=\max_{i\ne j}R_{ij}^{\rm eff},
+ \label{detail:eq:btd_pair_resistance}
+\end{equation}
+where $\mathbf e_i$ is the $i$th unit vector. Connectedness makes these
+quantities finite. During $[t_k,t_{k+1})$, $\omega_i(t)=
+\omega_{\rm ref}+w_{i,k}$, while $v_{k+1}=Hw_k$. Therefore
+\begin{align}
+ |\omega_i(t)-\omega_j(t)|^2
+ &=H^{-2}|(\mathbf e_i-\mathbf e_j)^\top v_{k+1}|^2\nonumber\\
+ &\le H^{-2}V_{k+1}[\bar P^{-1}]_{22}R_{ij}^{\rm eff}\nonumber\\
+ &\le H^{-2}R\rho^k[\bar P^{-1}]_{22}R_{ij}^{\rm eff}.
+ \label{detail:eq:btd_pair_frequency_bound}
+\end{align}
+The factor $V_{k+1}$, rather than $V_k$, is essential: $v_k$ represents
+the frequency held during the previous interval. The case $k=0$ is
+covered by the explicitly constructed bootstrap state $y_1$.
+At switching times the same bound applies to the newly held frequency;
+the previous interval bounds the left-hand limit.
+
+\begin{btdcorollary}[A prescribed frequency-spread threshold]
+\label{detail:cor:btd_frequency_safety}
+Under the invariant-domain conditions, let $\Delta_{\rm safe}>0$ be a
+specified engineering tolerance on pairwise frequency differences. If
+\begin{equation}
+ D(R):=\frac1H\sqrt{R[\bar P^{-1}]_{22}R_{\max}^{\rm eff}}
+       <\Delta_{\rm safe},
+ \label{detail:eq:btd_frequency_threshold_condition}
+\end{equation}
+then for every $t\in[t_k,t_{k+1})$, $k\ge0$,
+\begin{equation}
+ \Delta_\omega(t)\le D(R)\rho^{k/2}<\Delta_{\rm safe},
+ \qquad \Delta_\omega(t)\longrightarrow0.
+ \label{detail:eq:btd_frequency_decay}
+\end{equation}
+\end{btdcorollary}
+\begin{proof}
+The spread equals $\max_{i,j}|\omega_i-\omega_j|$. Maximizing
+\eqref{detail:eq:btd_pair_frequency_bound} and taking square roots proves
+the bound. Since $0<\rho<1$, the bound tends to zero.
+\end{proof}
+
+The threshold is a user-specified performance or hardware tolerance;
+logical synchrony does not by itself prescribe its numerical value.
+This proof bounds the transient as well as the limiting disagreement.
+It neither proves a smaller Fuzzy frequency peak than PI nor adds a
+guarantee for arbitrary delayed or stochastic executions. Frequency
+spread also cannot certify positive absolute frequency: a collection of
+equal nonpositive rates would have zero spread. The common frequency
+must therefore be bounded separately.
+
+\subsubsection{The unprojected common frequency}
+Let $\bar w_k=n^{-1}\mathbf1^\top w_k$ be the common-frequency offset.
+Put $\alpha_c=(\overline\alpha+\underline\alpha)/2$ and
+$s_\alpha=(\overline\alpha-\underline\alpha)/2$. With
+$g=(\kappa_I,k_p)^\top$, averaging~\eqref{detail:eq:btd_d_command_increment}
+and using $\mathbf1^\top U=0$ gives
+\begin{equation}
+ \bar w_k-\bar w_{k-1}
+ =-\frac1n\mathbf1^\top(D_{\alpha,k}-\alpha_c I_n)
+ U\Lambda^{1/2}(\kappa_I\xi_k+k_p\eta_k).
+ \label{detail:eq:btd_d_common_increment}
+\end{equation}
+The second component of $g$ is $k_p$, not $Hk_p$, since $\eta$ already
+contains $H$. Bounding each factor yields
+\begin{equation}
+ |\bar w_k-\bar w_{k-1}|
+ \le s_\alpha\sqrt{\frac{\mu_n}{n}g^\top\bar P^{-1}g}\sqrt{V_k}.
+ \label{detail:eq:btd_d_common_step_bound}
+\end{equation}
+The geometric series in $\sqrt{\rho}$ is summable. Hence
+\begin{align}
+ \sup_k|\bar w_k|
+ &\le |\bar w_0|+
+ \frac{s_\alpha\sqrt{(\mu_n/n)R g^\top\bar P^{-1}g}}{1-\sqrt\rho}
+ \nonumber\\
+ &\le |\bar w_0|+\frac{2s_\alpha}{1-\rho}
+ \sqrt{\frac{\mu_n}{n}R g^\top\bar P^{-1}g}=W_c.
+ \label{detail:eq:btd_clock_bounds}
+\end{align}
+The last inequality follows from
+$(1-\sqrt\rho)^{-1}=(1+\sqrt\rho)/(1-\rho)\le2/(1-\rho)$.
+Absolute summability also proves convergence of $\bar w_k$. Combined with
+vanishing disagreement, all node frequencies converge to one value
+$\omega_\infty=\omega_{\rm ref}+\lim_k\bar w_k$.
+For Fuzzy PI that limit need not be the mean initial uncontrolled frequency.
+
+\subsubsection{Closing actuator saturation and positive frequency}
+The $i$th disagreement-frequency output satisfies
+\begin{equation}
+ |w_{i,k}-\bar w_k|\le W_d,
+ \qquad W_d=\max_i\frac1H
+ \sqrt{R[\bar P^{-1}]_{22}(L^\dagger)_{ii}}.
+ \label{detail:eq:btd_d_node_frequency}
+\end{equation}
+Applying the state bound to $y_{k+1}$ covers $w_k$; $y_1$ covers $w_0$.
+As $u=w-\delta\omega$, we obtain
+\begin{equation}
+ |u_{i,k}|\le W_c+W_d+\|\delta\omega\|_\infty,
+ \qquad \omega_i(t)\ge\omega_{\rm ref}-W_c-W_d.
+ \label{detail:eq:btd_actuator_bounds}
+\end{equation}
+First derive these bounds for the unconstrained trajectory. If the first
+is strictly below $u_{\max}$ and the second is positive, the limiter is
+never reached, so the constrained execution coincides with that trajectory.
+This continuation argument closes the assumption of no clipping. The
+buffer bound must likewise fit within physical capacity; protecting a
+buffer by blocking execution is a different outcome.
+
+Together, the following sufficient conditions connect the controller
+and network parameters to the required properties:
+\begin{align}
+ &V_1\le R,\qquad R\Psi_i\le r^2\quad\text{for every }i,\nonumber\\
+ &0<\beta_e^*<C\quad\text{for every }e,\nonumber\\
+ &R[\bar P^{-1}]_{11}R_e^{\rm eff}<m_e^2
+       \quad\text{for every }e,\nonumber\\
+ &R[\bar P^{-1}]_{22}R_{\max}^{\rm eff}
+       <H^2\Delta_{\rm safe}^2,\nonumber\\
+ &W_c+W_d+\|\delta\omega\|_\infty<u_{\max},\nonumber\\
+ &\omega_{\rm ref}-W_c-W_d>0,
+ \label{detail:eq:btd_joint_sufficient_conditions}
+\end{align}
+provided the endpoint inequalities of Lemma~\ref{detail:lem:btd_endpoint} hold.
+The frequency-spread inequality is required only when a specific threshold
+is an objective; convergence alone does not require choosing that threshold.
+All quantities are evaluated for one consistent model, initialization
+and parameter set. In particular, changing $H$, $h$, $C$, node degree,
+controller gains or topology can change more than one inequality.
+These are sufficient certification tests, not a characterization of the
+largest safe set or necessary stability boundaries.
+
+\subsection{The prescribed triangle certificate}
+
+Take the three-node complete graph, giving
+$\mu_2=\mu_3=3$, $R_e^{\rm eff}=2/3$ and
+$(L^\dagger)_{ii}=2/9$. The parameters are
+\begin{align}
+ H=h&=\frac{30000000}{29999},&k_p&=\frac1{500000},&k_i&=\frac1{20000000000},\nonumber\\
+ K_e&=\frac1{10},&K_{\Delta e}&=\frac{29999}{7500},&K_u&=-\frac{768}{18749375},\nonumber\\
+ C&=2048,&\beta^*_e&=\beta_e(0)=1024,&\lambda_e&=1024.
+ \label{detail:eq:btd_example_gains}
+\end{align}
+Frequencies in this numerical example are normalized, and physical time is measured in reference ticks. Use the uncontrolled frequency vector
+\[
+ \omega^u=(1.0002,0.9998,0.9999)^\top
+\]
+and its average as
+$\omega_{\rm ref}=29999/30000$, so
+$\delta\omega=(7,-5,-2)^\top/30000$ and $\bar w_0=0$.
+At the compatible startup~\eqref{detail:eq:btd_bootstrap}, use
+\begin{equation}
+ \bar P=\frac1{50000}\begin{bmatrix}9&181\\181&49629\end{bmatrix},
+ \quad\rho=\frac{1599}{1600},\quad r=1.
+ \label{detail:eq:btd_witness}
+\end{equation}
+Here $\det\bar P=4139/25000000>0$ and the leading diagonal entry is
+positive. Since the sum of its four entries is one,
+\begin{equation}
+ R_0=V_1=H^2\delta\omega^\top L\delta\omega
+     =\frac{234000000}{899940001}.
+ \label{detail:eq:btd_d_R0}
+\end{equation}
+This exact fraction is used in all inequalities. The displayed approximation
+$0.2600173342$ is slightly below the exact value and is not substituted as
+an upper energy radius.
+
+The sector is $[5/6,2]$, hence the spectral endpoints are $5/2$ and 6.
+For $D_\nu=\rho\bar P-B(\nu)^\top\bar P B(\nu)$, exact rational
+arithmetic verifies positive leading minor and determinant at both ends:
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}\toprule
+$\nu$ & $[D_\nu]_{11}$ (approx.) & $\det D_\nu$ (approx.)\\\midrule
+$5/2$ & $8.2193625299\times10^{-7}$ & $7.8876135318\times10^{-11}$\\
+$6$ & $2.0776400066\times10^{-6}$ & $7.3380136479\times10^{-9}$\\
+\bottomrule\end{tabular}\end{center}
+The accompanying machine-readable certificate stores the exact fractions;
+the decimals are only a readable display, not rounded tests of positivity.
+Using $R_0$ gives the following conservative, outward bounds:
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}\toprule
+Quantity & Certified bound\\\midrule
+$\sup_{i,k}(|X_{i,k}|+|Y_{i,k}|)$ & $<0.171455<1$\\
+Coarse edge excursion & $<32.237442$ frames\\
+$\sup_k|\bar w_k|$ & $<0.003682181$\\
+$\sup_{i,k}|w_{i,k}-\bar w_k|$ & $<0.000250634$\\
+$\sup_{i,k}|u_{i,k}|$ & $<0.004166148<0.01$\\
+$\inf_{i,t}\omega_i(t)$ & $>0.99603385$\\
+\bottomrule\end{tabular}\end{center}
+The coarse excursion already fits within the 1024-frame lower and upper
+headroom. The frequency bounds use the exact rational-square-root
+enclosures, not a sum of prematurely rounded display values.
+
+\subsection{The exact PI all-time baseline}
+
+For $J\in\{\mathrm{PI},\mathrm F\}$ define
+\begin{equation}
+ B_J=\sup_{t\ge0}\max_e|\beta_e^J(t)-1024|.
+ \label{detail:eq:btd_excursion}
+\end{equation}
+The supremum varies time and receiving edges, while the initialization
+and uncontrolled-frequency vector remain fixed. For the same plant, initialization and gains, the PI baseline has
+$D_\alpha=I_n$. Averaging its increments shows that the mean frequency is
+preserved. On the triangle, both disagreement modes have eigenvalue 3.
+Define $\chi_0=0$, $\chi_1=1$ and
+\begin{equation}
+ \chi_{k+1}=(2-3a-3b)\chi_k-(1-3a)\chi_{k-1}.
+ \label{detail:eq:btd_pi_scalar}
+\end{equation}
+To derive it, use $v_k=x_k-x_{k-1}$ in the PI state recurrence:
+\[
+ x_{k+1}=(2I_n-(a+b)L)x_k-(I_n-aL)x_{k-1}.
+\]
+Since $L\delta\omega=3\delta\omega$ and $x_1=H\delta\omega$,
+induction gives $x_k=H\chi_k\delta\omega$. With
+$\Delta_0=\max_i\omega_i^u-\min_i\omega_i^u=1/2500$,
+\begin{equation}
+ \max_e|\beta_e(t_k)-1024|=H\Delta_0|\chi_k|.
+ \label{detail:eq:btd_d_pi_deviation}
+\end{equation}
+This exact rational sequence is enumerated through $N=200$. Its unique
+prefix maximum occurs at $k=111$, with
+\begin{equation}
+ 23.40370130812701\le
+ \max_{0\le k\le N}H\Delta_0|\chi_k|\le23.40370130812702.
+ \label{detail:eq:btd_d_pi_peak}
+\end{equation}
+It is not yet an all-time assertion until the tail is bounded.
+
+At $N=200$ put $\delta\chi_N=\chi_N-\chi_{N-1}$, the scalar response difference. The exact state energy is
+\begin{equation}
+ V_N=R_0\{\bar P_{11}\chi_N^2+2\bar P_{12}\chi_N\delta\chi_N+\bar P_{22}(\delta\chi_N)^2\}.
+ \label{detail:eq:btd_d_pi_VN}
+\end{equation}
+The common certificate also covers PI's scalar value $\nu=3$. Thus for
+all $k\ge N$, the remaining buffer excursion is at most
+$\sqrt{(2/3)[\bar P^{-1}]_{11}V_N}$, with an outward upper bound
+less than 17.958057 frames. This is strictly below the attained prefix
+maximum. ZOH interpolation therefore makes~\eqref{detail:eq:btd_d_pi_peak}
+the exact all-physical-time $B_{\rm PI}$ enclosure, reached at time $111H$.
+
+\subsection{The Fuzzy interval prefix and contracting tail}
+
+A direct floating-point trajectory can locate a candidate peak but does
+not enclose the exact one. The certificate instead propagates intervals
+for all components of $x_k$ and $v_k$ on a grid $S^{-1}=10^{-60}$.
+A rational number $q_{\rm rat}$ is enclosed by
+\[
+ \left[\frac{\lfloor Sq_{\rm rat}\rfloor}{S},\frac{\lceil Sq_{\rm rat}\rceil}{S}\right].
+\]
+Each multiplication uses the extrema of the four endpoint products,
+rounded outward; division uses a strictly positive enclosed denominator
+and outward-rounded endpoint quotients. Addition and subtraction use
+endpoint arithmetic. These operations use integers and rational comparisons,
+not floating-point rounding assumptions.
+
+For the central formula, $m=\min(|X|,|Y|)$ is enclosed by interval
+absolute values and endpoint minima. Its interaction term can be written
+$J=\min(X,Y)$ for two positive inputs, $J=\max(X,Y)$ for two negative
+inputs and zero otherwise. It is coordinatewise nondecreasing, including
+across the axes; its lower and upper corner values enclose it on any
+input rectangle. The positive denominator $1+2m/5$ then permits a valid
+interval evaluation of the exact map. The invariant-domain proof ensures
+that this central formula is applicable to the exact trajectory.
+
+Propagating the genuine bootstrap state through state $N=200$ gives a
+prefix maximum enclosed by
+\begin{equation}
+ [17.314056817962,\;17.314056817963]\quad\text{frames}.
+ \label{detail:eq:btd_d_fuzzy_prefix}
+\end{equation}
+The prefix retains all node coordinates, so common drift is not silently
+discarded. On the triangle the quadratic energy is equivalently
+\begin{equation}
+ \begin{aligned}
+ V_k=\sum_{i<j}\Bigl\{&\bar P_{11}(x_{i,k}-x_{j,k})^2\\
+ &+2\bar P_{12}(x_{i,k}-x_{j,k})(v_{i,k}-v_{j,k})\\
+ &+\bar P_{22}(v_{i,k}-v_{j,k})^2\Bigr\}.
+ \end{aligned}
+ \label{detail:eq:btd_d_pair_energy}
+\end{equation}
+Evaluating this expression outward gives $\overline V_N\ge V_N$.
+For all later samples,
+\begin{equation}
+ |\beta_e(t_k)-1024|^2
+ \le\frac23[\bar P^{-1}]_{11}\rho^{k-N}\overline V_N.
+ \label{detail:eq:btd_d_fuzzy_tail}
+\end{equation}
+For either controller, an equivalent tail bound that makes the
+finite-prefix/infinite-tail decomposition explicit is
+\begin{equation}
+ T_N=\sqrt{\frac23[\bar P^{-1}]_{11}\overline V_N}.
+ \label{detail:eq:btd_tail}
+\end{equation}
+For PI one can take $\overline V_N=V_N$ exactly; for Fuzzy,
+$\overline V_N$ is an outward interval upper bound. Once $T_N$ is below
+the certified prefix lower bound, no later sample can exceed the prefix
+maximum. This closes the infinite time horizon without selecting an
+arbitrarily long simulation duration.
+
+An outward upper bound for this whole tail is
+$12.29271005372874$ frames, strictly below the prefix lower bound.
+Including $x_0=0$ and intersample interpolation gives
+$B_{\rm F}<17.315$ on the entire physical time axis. The exact Fuzzy
+peak is more tightly enclosed by~\eqref{detail:eq:btd_d_fuzzy_prefix}; the
+rounded 17.315 value is used for a simple, conservative comparison.
+
+The enclosures used in the comparison are collected in
+Table~\ref{detail:tab:btd_prefix_tail}. The prefix intervals are outward
+enclosures of actual peak values; the tail entries are upper bounds.
+Their different roles are essential for the strict comparison.
+\begin{table}[t]
+\caption{Certified excursions in the prescribed fluid reference (frames).}
+\label{detail:tab:btd_prefix_tail}
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Controller & Prefix peak enclosure & Tail upper bound\\
+\midrule
+PI & $[23.40370130812701,$ & $17.95805698665804$\\
+   & $\phantom{[}23.40370130812702]$ & \\
+Fuzzy & $[17.314056817962,$ & $12.29271005372874$\\
+      & $\phantom{[}17.314056817963]$ & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Strict comparison, engineering meaning and scope}
+\label{detail:subsec:btd_comparative}
+
+\begin{btdtheorem}[Strict headroom benefit for a prescribed initialization]
+\label{detail:thm:btd_headroom}
+For the triangle, parameters and compatible initialization above,
+initialize the PI sample sum, the Fuzzy accumulator and the stored
+previous percentage error to zero. Both reference executions keep
+positive physical frequencies, remain strictly inside the buffer
+interval $(0,2048)$ and never activate the $0.01$ correction limiter.
+Buffer deviations and all pairwise frequency differences converge to
+zero. Their all-time excursions satisfy
+\begin{equation}
+ B_{\rm F}<17.315<23.40370130812701\le B_{\rm PI}.
+ \label{detail:eq:btd_strict_comparison}
+\end{equation}
+For the minimum lower/upper headroom $M_J=1024-B_J$,
+\begin{equation}
+ M_{\rm F}>1006.685,\qquad
+ M_{\rm F}-M_{\rm PI}>6.08870130812701\quad\text{frames}.
+ \label{detail:eq:btd_margin_improvement}
+\end{equation}
+\end{btdtheorem}
+\begin{proof}
+The endpoint inequalities and the radius test certify the invariant
+nonlinear input region. The buffer, correction and absolute-frequency
+bounds establish capacity safety, absence of clipping and positive
+frequencies. The invariant disagreement energy contracts, so the buffer
+and frequency-difference conclusions follow. PI is included by taking
+$\alpha_i=1$, which belongs to the same sector; PI also preserves its
+initial mean frequency. The certified finite-prefix enclosures and the
+tail bounds imply that both all-time excursions are attained in the
+prefix. The Fuzzy prefix upper bound is below $17.315$, whereas PI
+attains the enclosed peak at sample 111. Intersample affine occupancy
+rules out a missed larger fluid peak. Finally, each edge has a reverse
+edge with the negative occupancy deviation, so the worst lower/upper
+headroom is exactly $1024-B_J$. Subtracting the strict excursion bounds
+gives the stated gain in headroom.
+\end{proof}
+
+The comparison uses a certified Fuzzy upper bound and an attained PI
+peak. Merely comparing two conservative upper bounds would not establish
+the strict ordering of the actual excursions.
+
+At the original target 1024, both reserves are already large. That
+operating point alone does not demonstrate a storage bottleneck or
+hardware cost reduction. The following compatible-target family makes
+the safety significance of the strict excursion ordering explicit.
+
+The supremum is over time and edges for one prescribed uncontrolled-frequency
+vector. It is not an expanded safe set for all 400-ppm patterns, a guarantee
+against arbitrary latency perturbations or superiority over independently
+tuned PI. For a different capacity, $\gamma_i=100/(d_iC)$ changes; keeping
+the Fuzzy gains unchanged generally changes the frame-count nonlinear
+map. A new capacity certificate requires a fresh derivation or a verified
+map-preserving normalization change. Physical occupancy constraints also
+do not replace the delayed runtime's in-flight and credit/readiness rules.
+
+This is a computer-assisted mathematical certificate with reproducible
+integer/rational checks. It is not proof-assistant verification of the
+Julia implementation. The actual asynchronous, delayed, quantized cases
+belong in the experimental section. This division preserves the distinction
+between a theorem about the declared reference and empirical evidence
+about Callisto.
+
+
+\subsection{From excursion bounds to safe occupancy configurations}
+\label{detail:subsec:btd_occupancy_translation}
+The reference theorem can express a configuration-domain advantage
+without changing capacity or the frame-count nonlinear map.
+Let $J$ denote PI or Fuzzy and consider its unprotected fluid
+extension. Keep the graph, $C$, gains, normalization, sampling,
+uncontrolled frequencies, equal initial phases and zero controller
+constructors fixed. For a scalar $z\in(0,C)$, set
+\begin{equation}
+ \beta_{ji}(0)=\beta_{ji}^*=\lambda_{ji}=z
+ \quad\text{on every directed receiving channel}.
+ \label{detail:eq:btd_translated_configuration}
+\end{equation}
+This is a family of compatible initial/target configurations.
+The marking changes with $z$; the family does not describe arbitrary
+initial occupancy error at a fixed target or fixed application marking.
+PI and Fuzzy use the same configuration for each comparison.
+
+\begin{btdlemma}[Translation invariance at fixed capacity]
+\label{detail:lem:btd_target_translation}
+For each $J$, its unprotected phase, requested/applied correction,
+controller memory and frequency trajectories are independent of $z$.
+In particular,
+\begin{equation}
+ \beta_{ji}^{J,z}(t)=\beta_{ji}^{J,1024}(t)+z-1024.
+ \label{detail:eq:btd_translation_identity}
+\end{equation}
+\end{btdlemma}
+\begin{proof}
+Equal initial phases and zero-delay markings give
+$\beta_{ji}^{J,z}=z+\theta_j^J-\theta_i^J$.
+At initialization, all measured errors are zero, as are the
+stored constructors, for every $z$. Suppose that the phase and
+memory states agree through one update. Then
+\[
+ E_i^{J,z}=\sum_{j\in\mathcal N_i^-}
+ (\beta_{ji}^{J,z}-z)
+ =\sum_{j\in\mathcal N_i^-}(\theta_j^J-\theta_i^J)
+\]
+does not depend on $z$. At fixed $C$ and degree,
+$e_i=-100E_i/(d_iC)$ is also unchanged. Both the PI sample sum and
+the Fuzzy stored error and accumulator therefore update identically
+within their respective controller families. An identical external
+limiter preserves equality of applied corrections, and exact
+continuous held flow preserves the phase states to the next update.
+Induction establishes the identity, including every intersample time.
+If a guarded model is considered, the argument applies only up to
+its first guard intervention; the subsequent guarded trajectory
+requires separate analysis.
+\end{proof}
+
+For a bidirectional graph, reverse channels have opposite phase
+deviations. For the fixed frequency initialization define
+\[
+ B_J=\sup_{t\ge0,\,j\to i}|\theta_j^J(t)-\theta_i^J(t)|.
+\]
+The minimum two-sided headroom over time and channels is exactly
+\begin{equation}
+ M_J(z)=\min(z,C-z)-B_J.
+ \label{detail:eq:btd_translated_headroom}
+\end{equation}
+Thus the targets with a strictly positive uniform reserve are
+$\mathcal I_J=(B_J,C-B_J)$ when this interval is nonempty.
+The certified prefix/tail comparison proves $B_F<B_{\rm PI}<C/2$,
+so $\mathcal I_{\rm PI}\subsetneq\mathcal I_F$ for this configuration
+family. In particular, $(17.315,2048-17.315)$ is a sufficient
+Fuzzy target interval containing the entire PI safe target interval.
+At $z=20$,
+\[
+ \inf_{e,t}\beta_e^{F,20}(t)>2.685,
+ \qquad \sup_{e,t}\beta_e^{F,20}(t)<37.315.
+\]
+At the attained PI prefix maximum $t_*=111H$, a reverse channel has
+$\beta_e^{\rm PI,20}(t_*)=20-B_{\rm PI}<-3.403701$.
+By continuity its unprotected occupancy reaches zero before $t_*$.
+This predicts a capacity violation of the unprotected reference,
+not a negative occupancy in a physically guarded implementation.
+Input invariance, positive frequency and inactive limiter remain
+certified because their phase/control trajectories are unchanged.
+The refined excursion bound supplies the capacity proof even where
+the coarser 32.237442-frame Lyapunov output bound is insufficient.
+
+\subsubsection{A directional initial-frequency capacity threshold}
+Keep the same mean frequency and let
+\[
+ \delta\omega(s)=\frac{s}{30000}(7,-5,-2)^\top,
+ \quad 0\le s\le1.
+\]
+The PI recurrence and its zero initial memory are linear in $s$.
+Its common frequency is conserved, and the deviations and corrections
+are scaled copies of the certified $s=1$ trajectory. Positivity and
+absence of clipping therefore hold on this whole parameter interval.
+Consequently its exact excursion is $sB_{\rm PI}(1)$.
+At target $z=20$, upper capacity is not restrictive before the
+lower boundary; the capacity threshold is
+\begin{equation}
+ s_{\rm PI,cap}=\frac{20}{B_{\rm PI}(1)}
+ \simeq0.8545656833,
+ \quad\Delta_{0,\rm PI,cap}\simeq341.8262733\ \mathrm{ppm}.
+ \label{detail:eq:btd_pi_directional_capacity}
+\end{equation}
+Below this threshold PI has strictly positive reserve; at it an
+occupancy reaches zero, and above it the unprotected trajectory
+crosses zero. Fuzzy is certified safe at $s=1$, or 400 ppm.
+This proves that the Fuzzy controller has a safe work point beyond
+the PI directional capacity threshold at the same target, capacity
+and calibrated gains. Fuzzy is nonlinear in $s$; the proof does not
+assert a linear excursion law, monotone safety, or certification of
+every $s\le1$. A quantified interval around a point requires a
+parameter-enclosure or other uniform argument.
+
+\subsubsection{General sufficient parameter-domain interpretation}
+The centered initial energy is
+$H^2c_PQ$, where $c_P=[1,1]\bar P[1,1]^\top$ and
+\[
+ Q=\delta\omega^\top L\delta\omega
+ =\sum_{\{i,j\}\in\mathcal E_u}(\omega_i^u-\omega_j^u)^2.
+\]
+The graph counts each undirected connection once. Set
+$S_x=[\bar P^{-1}]_{11}$ and $m_e=\min(\beta_e^*,C-\beta_e^*)$.
+Choosing radius $R=H^2c_PQ$, the buffer and input-domain tests are
+\[
+ H^2c_PQ S_xR_e^{\rm eff}<m_e^2,
+ \qquad H^2c_PQ\Psi_i\le r^2.
+\]
+For a known maximum initial spread $\Delta_0$,
+$Q\le|\mathcal E_u|\Delta_0^2$ gives conservative direction-independent
+versions. These still require a valid common endpoint certificate,
+positive physical frequency and correction bounds; the disagreement
+energy alone cannot bound a common shift of all physical frequencies.
+They are sufficient inner-domain tests and their failure does not
+imply capacity failure.
+
+Changing $C$ at fixed percentage gains changes $\gamma_i$ and hence
+the frame-count nonlinear map. The target-translation result avoids
+this confound by fixing $C$. It also leaves the reference assumptions
+unchanged: nonzero link/control delays, asynchronous polling and
+integer frames belong to the separately evaluated Callisto model.
+The strict interval inclusion above concerns a compatible target
+slice for one prescribed frequency vector and matched gains, rather
+than inclusion of full robust safe sets over arbitrary initial
+states, networks or latency disturbances.
+
+\subsubsection{Uniform extension over a fixed parameter interval}
+To obtain a quantified frequency interval, fix
+$\mathcal S=[999/1000,1001/1000]$ and cover it with 20 closed cells
+$\mathcal S_\ell=[999/1000+\ell/10000,
+999/1000+(\ell+1)/10000]$, $\ell=0,\ldots,19$.
+The intervals share endpoints and their union is exactly $\mathcal S$.
+For each cell, enclose the genuine bootstrap
+$x_1=v_1=Hs(7,-5,-2)^\top/30000$ using the same outward
+$10^{-60}$ arithmetic as the original prefix proof. Propagate all
+coordinates through $N=200$ using the exact central map. No cell is
+discarded. Let $\overline B_\ell$ enclose the whole finite prefix
+and $\overline V_{\ell,N}$ its final energy. A common all-time bound is
+\begin{equation}
+ B_F(s)\le\max_{\ell=0}^{19}
+ \left\{\overline B_\ell,
+ \sqrt{\tfrac23[\bar P^{-1}]_{11}\overline V_{\ell,N}}\right\}
+ <17.342\quad(s\in\mathcal S).
+ \label{detail:eq:btd_uniform_frequency_interval}
+\end{equation}
+The stored exact enclosure is approximately 17.34119237294 frames;
+17.342 is an outward, simplified bound. The endpoint matrix
+certificate is unchanged. For the invariant-domain test use
+$R_{\max}=(1001/1000)^2R_0$, and check $R_{\max}\Psi_i<1$.
+The original common/deviation-frequency and correction bounds scale
+by at most $1001/1000$ because the mean uncontrolled offset is zero
+and the bounds are homogeneous in its amplitude. Their exact checks
+preserve strictly positive physical frequency and an inactive limiter.
+Thus the regional formula and infinite tail apply uniformly, without
+assuming that a finite set of simulated parameters represents all of
+$\mathcal S$.
+
+PI's linear scaling gives
+$B_{\rm PI}(s)\ge(999/1000)B_{\rm PI}(1)>23.3802976$
+for every $s\in\mathcal S$. Hence the rectangle
+\[
+ \mathcal S\times(17.342,2048-17.342)
+\]
+is a sufficient positive-headroom Fuzzy region in the $(s,z)$ slice.
+At $z=20$ every such Fuzzy trajectory has occupancy in
+$(2.658,37.342)$; each PI counterpart reaches the lower boundary.
+This is a uniform reference-model safety separation over a fixed
+frequency direction and compatible target family. The method uses
+full interval coverage, not a monotonicity assumption on Fuzzy peak
+or interpolation between simulation samples. An initial unsplit
+enclosure was inconclusive because its tail bound exceeded 20; it
+is retained alongside the successful full-domain subdivision.

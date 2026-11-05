@@ -1,0 +1,10 @@
+% Shared preamble for the notation-aligned Sections III and IV.
+% Load once before \begin{document}; theorem names are package-specific.
+% acmart already loads amsmath, amssymb, amsthm and booktabs.
+% Reuse its package options, theorem style and default typography.
+\makeatletter
+\@ifundefined{btdtheorem}{\newtheorem{btdtheorem}{Theorem}[section]}{}
+\@ifundefined{btdlemma}{\newtheorem{btdlemma}[btdtheorem]{Lemma}}{}
+\@ifundefined{btdproposition}{\newtheorem{btdproposition}[btdtheorem]{Proposition}}{}
+\@ifundefined{btdcorollary}{\newtheorem{btdcorollary}[btdtheorem]{Corollary}}{}
+\makeatother

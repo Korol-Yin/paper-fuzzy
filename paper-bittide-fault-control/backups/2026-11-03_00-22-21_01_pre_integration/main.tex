@@ -1,0 +1,157 @@
+% Standard ACM conference proceedings: two-column sigconf layout.
+% Compile with latexmk -pdf main.tex (BibTeX runs automatically).
+\documentclass[sigconf]{acmart}
+
+% Keep the class defaults for margins, typography, and bibliography.
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+% DRAFT metadata. Replace with the exact ACM rights-form information
+% before preparing the final publication version.
+\setcopyright{none}
+\acmYear{2026}
+\copyrightyear{2026}
+\acmConference[CONF '26]{Conference Name (Replace Before Submission)}%
+  {Month DD--DD, 2026}{City, Country}
+\acmBooktitle{Conference Name (CONF '26), Month DD--DD, 2026, City, Country}
+\acmDOI{}
+\acmISBN{}
+
+\begin{document}
+
+\title{Fuzzy PI Control for bittide: Nonlinear Analysis and Transient Performance}
+
+\author{First Author}
+\email{first.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\author{Second Author}
+\email{second.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\renewcommand{\shortauthors}{First Author and Second Author}
+
+\begin{abstract}
+Replace this text with a self-contained summary of your research problem,
+approach, main findings, and implications. State the problem and its importance,
+describe the proposed method, summarize the evidence, and explain the principal
+contribution. This file is an editable paper scaffold; all example content,
+author details, and conference metadata must be replaced before submission.
+\end{abstract}
+
+% Replace these example CCS terms using https://dl.acm.org/ccs .
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147</concept_id>
+  <concept_desc>Computing methodologies</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Computing methodologies}
+\keywords{keyword one, keyword two, keyword three}
+
+\maketitle
+
+\section{Introduction}
+The bittide is a 
+
+Summarize your approach and list the main contributions:
+\begin{itemize}
+  \item A clearly stated research question or problem formulation.
+  \item A method, system, or analysis that addresses the identified gap.
+  \item An evaluation that supports the paper's principal claims.
+\end{itemize}
+
+The remaining sections provide a starting structure for a conference paper.
+Replace the instructional prose with your own research.
+
+\section{Related Work}
+Organize prior research by theme and explain how your contribution relates to
+each theme. Use citations to support specific statements. For example,
+\citet{lamport1994latex} provides a reference for document preparation in
+\LaTeX. This citation demonstrates the ACM bibliography style; it is not
+intended as evidence for your research topic.
+
+\section{Method}
+\subsection{Problem Formulation}
+Define the inputs, outputs, assumptions, and notation. For example, a training
+objective may be written as
+\begin{equation}
+  \mathcal{L}(\theta)
+  = \frac{1}{N}\sum_{i=1}^{N}\ell(f_{\theta}(x_i),y_i),
+  \label{eq:objective}
+\end{equation}
+where $N$ is the number of examples and $\theta$ denotes model parameters.
+Replace Equation~\ref{eq:objective} with an expression appropriate to your work.
+
+\subsection{Proposed Approach}
+Describe the core idea and the steps needed to reproduce it. Explain design
+choices and provide sufficient detail about implementation or analysis.
+
+\begin{figure}[t]
+  \centering
+  \fbox{\parbox[c][22mm][c]{0.90\columnwidth}{\centering
+    Replace with your figure\\
+    Input $\longrightarrow$ Method $\longrightarrow$ Output}}
+  \caption{A placeholder for a single-column overview figure. Replace the box
+    with \texttt{\string\includegraphics[width=\string\linewidth]\{images/figure.pdf\}}.}
+  \Description{A placeholder diagram showing input, method, and output.}
+  \label{fig:overview}
+\end{figure}
+
+Figure~\ref{fig:overview} illustrates the approach. Give every figure a useful
+caption and an accessibility description.
+
+\section{Evaluation}
+\subsection{Experimental Setup}
+Specify datasets, baselines, metrics, hardware, and relevant parameter choices.
+Describe the procedure and any statistical analysis. Explain how results can
+be reproduced.
+
+\subsection{Results}
+Report observations supported by the collected evidence.
+Table~\ref{tab:results} provides a formatting example. Its entries are
+placeholders, not experimental findings.
+
+\begin{table}[t]
+  \caption{Example results structure. Replace all placeholder entries.}
+  \label{tab:results}
+  \centering
+  \begin{tabular}{lcc}
+    \toprule
+    Method & Metric A & Metric B \\
+    \midrule
+    Baseline & --- & --- \\
+    Proposed method & --- & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Discussion and Limitations}
+Interpret the results in relation to the research question. Discuss
+assumptions, threats to validity, failure cases, and the limits of
+generalization. Include ethical considerations where relevant.
+
+\section{Conclusion}
+Summarize the contribution and the evidence that supports it. State the main
+implication and identify a concrete direction for future work.
+
+\begin{acks}
+Replace this text with funding and acknowledgments, or remove this environment.
+Omit identifying acknowledgments when preparing an anonymous submission.
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

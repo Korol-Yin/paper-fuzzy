@@ -1,0 +1,235 @@
+{
+  "passed": true,
+  "source_plan_sha": "126ac3fd9ec684c50e1e097ed28a89ea29b1ba4ba393503843b59b20230294ce",
+  "source_script_sha": "641487b4277c4ba98a6a79eec71d27c02e11c3f99bfc20b27bb38c3266221457",
+  "n_reference_trajectories": 32,
+  "checks": [
+    {
+      "id": "s0p5_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.3473117817263715e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s0p5_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.3473117817263715e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s0p5_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s0p5_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 7.35835732623702e-11
+    },
+    {
+      "id": "s16_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 4.3029273720518457e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s16_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 4.3029273720518457e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s16_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s16_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 8.643041837785859e-11
+    },
+    {
+      "id": "s1_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 2.7078584532535914e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s1_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 2.7078584532535914e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s1_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s1_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 5.921485524140735e-12
+    },
+    {
+      "id": "s2_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 5.3998350387461647e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s2_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 5.3998350387461647e-20,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s2_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s2_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 1.2207124200358521e-11
+    },
+    {
+      "id": "s32_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 8.673617379884035e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s32_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 8.673617379884035e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s32_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s32_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 1.8807355672834092e-10
+    },
+    {
+      "id": "s4_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.0842021724855044e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s4_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.0842021724855044e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s4_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s4_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 7.48456296939537e-11
+    },
+    {
+      "id": "s64_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.951563910473908e-17,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s64_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 1.734723475976807e-18,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s64_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s64_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 3.596483111323323e-10
+    },
+    {
+      "id": "s8_full_fuzzy_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 2.1429933565533799e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s8_full_fuzzy_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 2.1429933565533799e-19,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s8_native_pi_clipped_0p01",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 0.0
+    },
+    {
+      "id": "s8_native_pi_unconstrained_virtual",
+      "phase_replay": 0.0,
+      "buffer_replay": 0.0,
+      "controller_replay": 0.0,
+      "pi_recurrence": 4.360600769359735e-11
+    }
+  ],
+  "s1_fuzzy_previous_buffer_peak": 17.314056817961045,
+  "s1_pi_exact_buffer_peak": 23.40370130812702,
+  "note": "Reference numerical checks only, not a fresh proof of witness endpoint inequalities or actual Callisto."
+}

@@ -1,0 +1,23 @@
+{
+  "integration_stamp_auckland": "20261103_002221",
+  "target": "C:/Users/cyin969/Documents/paper-fuzzy/paper-bittide-fault-control",
+  "source_package": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\output\\pdf\\Bittide_Controller_Sections_20261102_v3",
+  "source_sha256": {
+    "introduction_EN_v5.md": "a59740c1b0aa8ea5b04da1d39e41e5729e86c80d7d1dd5d2f41c5771c515af8c",
+    "section_iii_paper.tex": "c49487219e41aa0baf9f26754a8800453a8d10241ad04e1f23aa7482f3be2964",
+    "section_iv_paper.tex": "727c2585d161ad0ba815dc508cbbc6ae7d5bd58bb3cead674fecc07ed79045cb",
+    "bittide_math_preamble.tex": "c4c27d5892e5538fd27d861540f89f10fb706976b4ae00efa85a186246e2d622",
+    "bittide_sources.bib": "4542b4cab0be924793bb9242d5ae7d483801b1756c76a26968ce8be5f2e7e87e",
+    "README_zh.md": "ff19ee1863ea6ac537c98d2291cbd9c16eb98e901bf39f23feacd4cd4eb4e34c",
+    "positioning_and_continuous_model_notes_zh.md": "8d497ed7d364ecb68870acaaaeaea42dce3afb07a9aec44dc44c05b46247b0da"
+  },
+  "original_main_sha256": "17bf45de8f58e71d9a1eaaf6ae55d3f8129bb33716aa25b9d38f779d723da340",
+  "original_bibliography_sha256": "434f8c23637970777af9c6e2f74b062f9b9b81d5a6521b68162bf176174e78da",
+  "author_opening_preserved": "author_notes/introduction_original.tex",
+  "active_introduction": "approved v5, adapted to LaTeX",
+  "backup_relative": "backups/pre_integration_20261103_002221",
+  "current_pdf": "main.pdf",
+  "stage_only": false,
+  "backup_absolute": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\pre_integration_20261103_002221",
+  "pre_write_backup_sha256_verified": true
+}

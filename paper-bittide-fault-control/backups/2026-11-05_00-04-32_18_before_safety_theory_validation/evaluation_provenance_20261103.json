@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-03",
+  "sourceOnlyRevision": true,
+  "backup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-03_04-06-28_06_pre_evaluation",
+  "finalTeXSnapshot": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-03_04-06-28_07_after_evaluation",
+  "newActualSimulationRuns": 0,
+  "pendingAnalysisOrSelectionResumed": false,
+  "PDFCompilationOrRenderingInvoked": false,
+  "figuresReusedUnmodified": [
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_burst_validation_20261031_v1\\fig01_shared_time_response.pdf",
+      "destination": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_20261103\\m2_shared_time_response.pdf",
+      "sha256": "a7cfdfe327c0c00d6d309545359d975007e54c740138aabca562d8f85138f3cf",
+      "operation": "unchanged byte copy of existing figure; no PDF generation"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_nonlinear_mechanism_20261031_v1\\fig_nonlinear_memory_and_response_timing.pdf",
+      "destination": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_20261103\\m2_nonlinear_memory.pdf",
+      "sha256": "16544601c2075c1fad36846b7bbf9d70ba427c32f823672bff15e77608b4d186",
+      "operation": "unchanged byte copy of existing figure; no PDF generation"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\fig01_primary_paired_effects.pdf",
+      "destination": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_20261103\\m3_primary_paired_effects.pdf",
+      "sha256": "235395de65004958dbf6e574d21b5cd953d1ec80371a659f9f2e65c6eb5098c0",
+      "operation": "unchanged byte copy of existing figure; no PDF generation"
+    },
+    {
+      "source": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\fig02_buffer_effort_drift.pdf",
+      "destination": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\images\\evaluation_20261103\\m3_buffer_effort_drift.pdf",
+      "sha256": "1dc8d4611be4f2e778536da4400c27449882d686b6c7207b29c71fd34bd15748",
+      "operation": "unchanged byte copy of existing figure; no PDF generation"
+    }
+  ],
+  "evidenceSources": [
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M0_linear_Fuzzy_equivalence_20261031_v1\\M0_brief_EN.md",
+      "sha256": "5e23e2b0cb4433a19e92e8b2096feb24d2c8624820e7f3c7fa395e60dd34a3b7"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M0_linear_Fuzzy_equivalence_20261031_v1\\pair_summary.csv",
+      "sha256": "f2629fc306aab0f47988468c2a5c74c32b8349756c029663b1dceb3b50113e59"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_burst_validation_20261031_v1\\report.md",
+      "sha256": "bad1ffe8212cb798f7a89d181dcfcba5b137ca17970e8018bf1a4d5116aa16b4"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_burst_validation_20261031_v1\\window_metrics.csv",
+      "sha256": "3e291fe959528233a9974a25761be8f8a585d1df5330a6fb6cef1359fb169471"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_burst_validation_20261031_v1\\analysis_protocol.json",
+      "sha256": "d041760156ca2e213193e0703b4dbb88fafe058186ee2abc20037c14d989f829"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_nonlinear_mechanism_20261031_v1\\surface_window_summary.csv",
+      "sha256": "a7db5f999c9fd160b0bc8a27ed03ad0356a9ea7fdce53ab5dbcb906ea9f70bcd"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_nonlinear_mechanism_20261031_v1\\common_frequency_decomposition.csv",
+      "sha256": "960e80253b67e56b15d2deaa962b3825011d9eaa3c71e5c375f7ecfe45f7369f"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M2_nonlinear_mechanism_20261031_v1\\first_peak_inventory.csv",
+      "sha256": "fbe801a2eecc27f02ecae0e108d04b9e01be865ef5622f528a67bc3b97329283"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\report.md",
+      "sha256": "9a1f5972b6757382430a60b2f9368e79ad5ee279f0042332cf5bd141d89e83b5"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\paired_effects.csv",
+      "sha256": "6ff7b4c819b9e77d0be062e14d8ba6974b3cfe9d6c128271af465b817f6adf55"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\method_summary.csv",
+      "sha256": "d14dd71c96b003c023b8a36a09fcd02c1eb91cb4e5ee172e93677b999b9e8e40"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\outputs\\M3_random_latency_validation_20261031_v1\\analysis_protocol.md",
+      "sha256": "e549b46fc9716e5b8ca29a8d38d00770bd3e930420796c18bcfa2243679f9d81"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\work\\prior_paper_overlap_20261031\\direct_nonlinear_reference_validation.md",
+      "sha256": "db1dad3448922cd01f4e203791e5be573fc19e3cd2eeb3c8a2ac1402b77a0621"
+    },
+    {
+      "path": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\work\\evaluation_section_20261103\\m2_frequency_spread_supplementary.json",
+      "sha256": "b26f48c4dd894fbd07d2feb1f23bfff08d47d1c330f28f52f5f5356f45aa7017"
+    }
+  ],
+  "newComputation": "Supplementary descriptive pairwise max-min spread from completed saved M2 frequency intervals; no new plant trajectory or confidence inference.",
+  "review": "M0/M2 and M3 numbers, units, windows and scope independently reviewed; corrections applied before integration.",
+  "supplementaryReproduction": {
+    "script": "C:\\Users\\cyin969\\Documents\\Codex\\2026-10-26\\cps-weeks-4\\work\\evaluation_section_20261103\\recheck_m2_spread.py",
+    "sha256": "ff6be0afd99679c3bf20efd483bcfc47ad00d42544569fbb356c00dd629f0254",
+    "status": "passed; existing data only"
+  },
+  "sourceCheckResult": "passed; 130 unique labels, no missing references; all 4 image paths present and hashes equal originals"
+}

@@ -1,0 +1,26 @@
+{
+  "updated": [
+    "sections/section_iii_paper.tex",
+    "sections/section_iv_paper.tex",
+    "sections/evaluation.tex",
+    "sections/discussion.tex",
+    "appendices/appendix_safety_validation.tex"
+  ],
+  "backup": "C:\\Users\\cyin969\\Documents\\paper-fuzzy\\paper-bittide-fault-control\\backups\\2026-11-05_00-53-30_19_before_simulation_interpretation",
+  "newPlantRuns": 0,
+  "newControllerTuning": false,
+  "integerPrefillInterpretation": {
+    "referenceFuzzy": 18,
+    "referencePI": 24,
+    "capacityFixed": 2048,
+    "scope": "same proved frequency direction/interval and compatible target family"
+  },
+  "hashes": {
+    "sections/section_iii_paper.tex": "5b4c3d3c9f73c01883c2d6d45e9d3ccbc7e3d38cd5424e0f0a63e5bdd7a2a00a",
+    "sections/section_iv_paper.tex": "c6b588e74a3db53432650ee3efc0c07f6549c680767eb5edac4ba037a163f533",
+    "sections/evaluation.tex": "939b4ec5d51d9ed70429907468b8c4ac7ccbd4afcb81a6861cc0e5e82f4b1cd0",
+    "sections/discussion.tex": "fd139d37d8e8b1e35cffd0ae080fe710d9b36aff4146a55728234566abde6280",
+    "appendices/appendix_safety_validation.tex": "4f34ab1f0cf1be2b78238064166cbc45c58ec4decc12082993964d1a68afa8ee"
+  },
+  "notation": "Data phase uses psi consistently with the existing controller appendix; physical clock phase remains theta."
+}

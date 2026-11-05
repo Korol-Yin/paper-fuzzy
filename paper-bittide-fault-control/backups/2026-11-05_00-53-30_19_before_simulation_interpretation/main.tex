@@ -1,0 +1,114 @@
+% Standard ACM conference proceedings: two-column sigconf layout.
+% Compile with latexmk -pdf main.tex (BibTeX runs automatically).
+\documentclass[sigconf]{acmart}
+
+% Keep the class defaults for margins, typography, and bibliography.
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+% DRAFT metadata. Replace with the exact ACM rights-form information
+% before preparing the final publication version.
+\setcopyright{none}
+\acmYear{2026}
+\copyrightyear{2026}
+\acmConference[CONF '26]{Conference Name (Replace Before Submission)}%
+  {Month DD--DD, 2026}{City, Country}
+\acmBooktitle{Conference Name (CONF '26), Month DD--DD, 2026, City, Country}
+\acmDOI{}
+\acmISBN{}
+
+\input{bittide_math_preamble}
+
+\begin{document}
+
+\title[Fuzzy PI Control for bittide]{Fuzzy PI Control for bittide: Nonlinear Analysis and Transient Performance}
+
+\author{First Author}
+\email{first.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\author{Second Author}
+\email{second.author@example.com}
+\affiliation{%
+  \institution{University or Organization}
+  \city{City}
+  \country{Country}
+}
+
+\renewcommand{\shortauthors}{First Author and Second Author}
+
+\begin{abstract}
+Finite receiving buffers make bittide synchronization safety depend on
+initial clock frequency differences and available storage reserve.
+We propose a decentralized incremental Fuzzy PI controller and derive
+configuration-dependent sufficient conditions connecting mismatch,
+buffer targets, graph structure, timing and controller scales.
+An explicit PI calibration and exact nonlinear map support a controlled
+comparison. For a synchronous zero-delay fluid reference, Lyapunov
+analysis and outward interval prefix/tail bounds establish a strictly
+larger interval of compatible safe occupancy targets for the prescribed
+initialization. Full parameter-cell coverage certifies Fuzzy excursion
+below 17.342 frames throughout a fixed-direction 399.6--400.4-ppm
+interval, while PI's attained peak exceeds 23.380 frames. At target 20,
+Fuzzy is therefore strictly safe and unprotected PI crosses zero.
+Theory-directed reference simulations agree with these predictions.
+Twelve continuous-phase Callisto runs separately assess delayed integer
+execution: at target 83 and 1600-ppm spread, Fuzzy remains in $[11,155]$
+without intervention, while PI reaches zero and requires five guard
+episodes. Upper-target cases expose an additional delayed-credit
+constraint. These results establish a conditional safety advantage
+and distinguish reference guarantees from finite implementation evidence.
+\end{abstract}
+
+
+% Replace these example CCS terms using https://dl.acm.org/ccs .
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147</concept_id>
+  <concept_desc>Computing methodologies</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Computing methodologies}
+\keywords{Distributed synchronization, bittide, fuzzy control, logical synchrony, cyber-physical systems}
+
+\maketitle
+
+% Introduction v5 is the active candidate. The author's earlier unfinished
+% opening is preserved separately in author_notes/ and in the full backup.
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/section_iii_paper}
+\input{sections/section_iv_paper}
+\input{sections/evaluation}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+% Funding/acknowledgments remain pending; original placeholder is backed up.
+
+
+% Main text ends here; keep References and appendices outside the ten-page body.
+\clearpage
+\label{page:references_start}
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\clearpage
+\appendix
+\begingroup
+\setlength{\emergencystretch}{1em}
+\input{appendices/appendix_background}
+\input{appendices/appendix_controller}
+\input{appendices/appendix_theory}
+\input{appendices/appendix_safety_validation}
+\input{appendices/appendix_evaluation}
+\input{appendices/appendix_discussion}
+\endgroup
+
+\end{document}

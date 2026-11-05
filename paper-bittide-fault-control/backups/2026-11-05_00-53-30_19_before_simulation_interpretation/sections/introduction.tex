@@ -1,0 +1,42 @@
+% Adapted from introduction_EN_v5.md; research claims retained.
+\section{Introduction}
+\label{sec:introduction}
+
+bittide is a hardware synchronization mechanism that realizes logical synchrony in distributed systems using independent local physical clocks and continuous frame exchange~\cite{lall2024logicalSynchrony}. For applications that depend on reproducible execution, the relationships between communicated events must remain well defined as physical timing varies. The implementation challenge in bittide is to maintain these logical relationships while accommodating clock frequency differences, link latency and finite buffer capacity.
+
+In a bittide network, elastic receiving buffers connect the physical progress of neighboring nodes to their logical execution without requiring a global physical clock. Each node adjusts its local clock frequency using locally observed buffer occupancies. The buffers therefore serve two coupled roles: they provide feedback for frequency synchronization and absorb the imbalance between incoming frames and local consumption. Clock frequency differences and changes in frame-delivery time affect the same finite storage that supports continued logical execution. The controller must consequently be evaluated together with the buffer trajectories it produces~\cite{lall2024logicalSynchrony}.
+
+The resulting bittide control problem concerns the entire trajectory towards an operating point. Initial clock frequency differences consume buffer headroom before the network settles. A small eventual frequency disagreement does not establish that the intervening occupancy trajectory remains admissible. The design question is how initial mismatch, available buffer reserve and controller configuration jointly determine safe operation, and whether a nonlinear local controller can admit safe configurations that its calibrated PI counterpart cannot. This requires relating controller dynamics to capacity constraints, while retaining positive physical frequencies and respecting correction limits.
+
+Existing bittide research establishes important foundations for this problem. PI performance analysis~\cite{lall2022resistance} relates closed-loop behavior to controller gains and network resistance distances. Fluid occupancy analysis~\cite{lall2024bufferOccupancy} characterizes steady buffer levels, and reframing methods~\cite{lall2023bufferCentering} address buffer centering. Our earlier study examined PI gain selection under topology and fixed-delay constraints. Building on these results, we study configuration-dependent buffer safety for a proposed nonlinear Fuzzy PI law. Its rule surface must be connected to a closed-loop safety argument and an explicit PI comparison: a larger instantaneous correction or a smaller simulated peak alone does not establish a larger admissible operating domain.
+
+We propose a decentralized occupancy-based Fuzzy PI controller for bittide. Each node computes a frequency correction increment from its receiving-buffer error and the update-to-update change in that error. In the central input region studied here, the proposed surface strengthens its calibrated linear counterpart for same-sign inputs and attenuates its magnitude for opposing-sign inputs. This direction-dependent action provides flexibility at fixed calibrated PI gain coordinates. It motivates investigating whether the nonlinear correction can reduce transient buffer demands while retaining convergence, and determining how its effects on frequency disagreement and control activity depend on the operating conditions.
+
+We first derive a joint reference-model safety test linking initial mismatch energy to buffer reserve, graph structure, controller scales and timing. For synchronous zero-delay fluid execution, an invariant input region and common Lyapunov certificate establish convergence, positive frequencies and correction bounds. Outward interval propagation and a contracting infinite tail then prove a strict excursion benefit at matched gains. At fixed capacity, a compatible-target translation lemma converts this benefit into a strictly larger safe target interval for the prescribed initialization. Complete parameter-cell coverage additionally establishes safety separation throughout a fixed-direction 399.6--400.4-ppm interval: Fuzzy excursion is below 17.342 frames, while PI attains more than 23.380 frames. At a common initial/target occupancy of 20, Fuzzy remains strictly safe and unprotected PI crosses zero.
+
+The simulations are designed to check these deductions. Thirty-four new reference trajectories and six verified cached sources check the original control rules, occupancy translation, mismatch boundaries and distribution-dependent energy. Twelve continuous-phase Callisto runs separately restore local-clock polling, delayed actuation and integer frame delivery. At 1600-ppm initial spread and target 83, Fuzzy retains occupancy in $[11,155]$ without a guard, while PI reaches zero and invokes five input-empty guard episodes. Upper-target runs expose a delayed outgoing-credit constraint even before receiving buffers fill. These qualitative results support the conditional margin mechanism and identify the execution assumptions needed for stronger guarantees. Earlier independently tuned disturbance comparisons are retained as supplementary evidence.
+
+The contributions of this paper are:
+\begin{enumerate}
+  \item A fully specified incremental Fuzzy PI controller for bittide,
+  with a continuous clock realization, explicit PI calibration checked
+  against the implementation, and exact nonlinear characterization.
+  \item Configuration-dependent reference safety conditions and a strict
+  admissible-target interval advantage at matched gains, including a
+  quantified frequency-parameter region certified by complete interval
+  coverage and an infinite-tail bound.
+  \item Qualitative simulations that check the theory in the fluid reference
+  and examine normal operation, guards and delayed credit in
+  continuous-phase Callisto.
+\end{enumerate}
+
+% The contributions of this paper are:
+
+% \begin{enumerate}
+%   \item \textbf{Fuzzy PI control for bittide.} A proposed decentralized occupancy-feedback controller with a fully specified inference law, initialization and continuous-clock actuation, together with PI calibration and exact nonlinear analysis that support controlled comparison.
+%   \item \textbf{Convergence and transient buffer margins.} An invariant-domain and Lyapunov analysis for the specified fluid reference, with verified correction and positive-frequency bounds, and an all-time comparison proving a strict headroom benefit for a prescribed initialization at matched gain coordinates.
+%   \item \textbf{Evaluation under delivery perturbations.} A continuous-clock Callisto study using shared traces, clean counterfactuals, complete-event buffer measurements and independent paired random seeds to characterize frequency, buffer-margin and control-activity tradeoffs.
+% \end{enumerate}
+
+% Historical fixed-preset introduction paragraph, retained for review.
+% We separately evaluate the controllers in the continuous-phase Callisto model, with quantized buffer events, local-clock polling and control-execution delay. Controller updates change the slope of continuous phase trajectories; they do not replace the plant with a discrete firing-count model. Shared frame-delivery stress profiles include a latency burst after nominal centering and bounded random-latency traces. Over the declared measurement window beginning at burst onset, Fuzzy PI has lower integrated frequency-disagreement amplitude and command total variation, alongside a higher peak buffer excursion. In both random-latency regimes, the matched moderate PI baseline achieves lower disagreement RMS over the declared disturbance windows. These experiments characterize the performance tradeoffs accompanying nonlinear response shaping and distinguish the reference-model guarantee from its practical applicability under the declared execution assumptions.

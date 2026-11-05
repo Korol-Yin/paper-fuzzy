@@ -1,0 +1,84 @@
+{
+  "sourceChecks": [
+    {
+      "file": "main.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\background.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\conclusion.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\discussion.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\evaluation.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\introduction.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\section_iii_paper.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "sections\\section_iv_paper.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "appendices\\appendix_background.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "appendices\\appendix_controller.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "appendices\\appendix_discussion.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "appendices\\appendix_evaluation.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    },
+    {
+      "file": "appendices\\appendix_theory.tex",
+      "mathFragmentsUnchanged": true,
+      "numericTokensUnchanged": true,
+      "labelsUnchanged": true
+    }
+  ],
+  "figureBytesUnchanged": true,
+  "existingPDFOverwrittenByThisTask": false
+}

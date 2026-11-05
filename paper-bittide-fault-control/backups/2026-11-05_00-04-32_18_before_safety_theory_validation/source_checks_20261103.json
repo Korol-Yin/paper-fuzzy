@@ -1,0 +1,20 @@
+{
+  "sourceChecks": "passed",
+  "TeXFiles": 9,
+  "labels": 109,
+  "references": 19,
+  "citationKeys": [
+    "lall2022resistance",
+    "lall2023bufferCentering",
+    "lall2024bufferOccupancy",
+    "lall2024logicalSynchrony"
+  ],
+  "missingReferences": [],
+  "duplicateLabels": [],
+  "PDFUnchangedSinceStart": false,
+  "externalBuildObserved": true,
+  "PDFStableAfterAdditionalAutoBuildGuard": true,
+  "autoBuild": "never",
+  "TeXEngineInvokedByThisTask": false,
+  "limitation": "Source structure and mathematical checks only; no compilation or rendered layout validation requested."
+}

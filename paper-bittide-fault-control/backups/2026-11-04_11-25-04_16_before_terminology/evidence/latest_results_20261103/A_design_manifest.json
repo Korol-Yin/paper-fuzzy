@@ -1,0 +1,122 @@
+{
+  "selectionSHA256": "47b1fbdc418e2141c151cc103817948574a8575700cde4a307385facebef7f4b",
+  "lockedPlanSHA256": "9bfa119ffec3ff68becd333ded7ece47aaeeee742b25685042597fdddfef55ec",
+  "selectedCandidateIds": [
+    "Fuzzy_g02",
+    "Fuzzy_g17",
+    "PI_g05"
+  ],
+  "seedList": [
+    41001,
+    41002,
+    41003,
+    41004,
+    41005,
+    41006,
+    41007,
+    41008,
+    41009,
+    41010,
+    41011,
+    41012,
+    41013,
+    41014,
+    41015,
+    41016,
+    41017,
+    41018,
+    41019,
+    41020,
+    41021,
+    41022,
+    41023,
+    41024,
+    41025,
+    41026,
+    41027,
+    41028,
+    41029,
+    41030
+  ],
+  "regimes": [
+    {
+      "name": "Tc1000",
+      "correlationTime": 1000.0
+    },
+    {
+      "name": "Tc10000",
+      "correlationTime": 10000.0
+    }
+  ],
+  "deterministicCases": [
+    {
+      "id": "test_A10_D10k_e23",
+      "pathConditions": {
+        "mode": "constant",
+        "perEdge": {
+          "2->3": {
+            "mode": "burst",
+            "burstStart": 2000000.0,
+            "burstEnd": 2010000.0,
+            "burstDelta": 10
+          }
+        }
+      }
+    },
+    {
+      "id": "test_A40_D100k_e31",
+      "pathConditions": {
+        "mode": "constant",
+        "perEdge": {
+          "3->1": {
+            "mode": "burst",
+            "burstStart": 2000000.0,
+            "burstEnd": 2100000.0,
+            "burstDelta": 40
+          }
+        }
+      }
+    }
+  ],
+  "expectedNewRandomRuns": 180,
+  "expectedNewBurstRuns": 6,
+  "ownClean": [
+    {
+      "candidateId": "Fuzzy_g02",
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\stage_a_qa_v1\\legacy_parent\\fair_tuning_remaining_v1\\nominal_remaining_runs\\Fuzzy_g02_clean\\raw.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\own_clean\\Fuzzy_g02.json",
+      "sha256": "de2dd2e2c1d55864af50a0dadaf019bc6dc5d2852d7c26555e69b044ca9ceac0",
+      "cachedNotNewActual": true
+    },
+    {
+      "candidateId": "Fuzzy_g17",
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\stage_a_qa_v1\\legacy_parent\\fair_tuning_remaining_v1\\nominal_remaining_runs\\Fuzzy_g17_clean\\raw.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\own_clean\\Fuzzy_g17.json",
+      "sha256": "888f4757ae86cfedc5083a26bdd2738071e8eb02d5f8b6a5fc2b923d06cfa857",
+      "cachedNotNewActual": true
+    },
+    {
+      "candidateId": "PI_g05",
+      "source": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\stage_a_qa_v1\\legacy_parent\\fair_tuning_remaining_v1\\nominal_remaining_runs\\PI_g05_clean\\raw.json",
+      "copy": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_heldout_v1\\own_clean\\PI_g05.json",
+      "sha256": "f50563f136dbc7ba7c7ebeda5eeb1c8b387a1321499e9a01e2f77ac919af16a6",
+      "cachedNotNewActual": true
+    }
+  ],
+  "materializedOnlyAfterFreeze": true,
+  "profilesGeneratedByPreparation": false,
+  "runnerSHA256": {
+    "random": "328e26f4ffc2212744c57fedb378516c0abb40ec51f7909c90119f0bb37c4552",
+    "burst": "475d0dfb4271111166fdbf36d2c9e0c573b8554559c7624d902c3de503c96393"
+  },
+  "planSHA256": {
+    "bursts.json": "4424b8e4c6ede7947044757e1bee13f7b95ba736172100b125f85ea598d73fb1",
+    "random_41001_41005.json": "0affcff95f37e2472e01369523d38db073a9d789fe337ee6beb8938c67eab7fd",
+    "random_41006_41010.json": "d237b77de113dfae0f16971e46197a91e8c67d7addaa089d78e0e9cb94c04f24",
+    "random_41011_41015.json": "d234cd48eda0b8a58403c1802e5ae1512058e319b41f826440d7e8bca7965eb4",
+    "random_41016_41020.json": "729cc8eece1cc3f3f7706d46575a084503e3bb03800bdcfb7d70fc8f5f6cce4e",
+    "random_41021_41025.json": "3109a663733132c00a6ed9604c628ae1a040fb3285bfc86bc7e24ea80df7b96f",
+    "random_41026_41030.json": "1b339dcf685b65443f965a2f5de6abda2b96da03b096d01d2e2142530b05c7e6"
+  },
+  "noResultsExaminedForRetuning": true
+}

@@ -1,0 +1,179 @@
+\section{Proposed Fuzzy PI Controller}
+\label{sec:fpi_controller}
+
+\subsection{Local measurements and continuous-clock interface}
+\label{subsec:fpi_laws}
+Let $\mathcal N_i^-$ be the fixed set of incoming neighbors and
+$d_i=|\mathcal N_i^-|>0$. For common capacity $\beta_{\max}$ and target
+$\beta_{ji}^*$, define frame-sum and percentage errors
+\begin{equation}
+ E_{i,k}=\sum_{j\in\mathcal N_i^-}(\beta_{ji,k}-\beta_{ji}^*),
+ \quad e_{i,k}=-\gamma_iE_{i,k},\quad\gamma_i=\frac{100}{d_i\beta_{\max}}.
+ \label{eq:fpi_error}
+\end{equation}
+Thus positive $E$ calls for faster local consumption. The index $k$
+is local to each node; $e$ is target minus measured average occupancy
+in percentage points. Unequal capacities require consistent weighted
+errors, rather than the scalar calibration below.
+
+With local polling period $p$ and execution delay $d_{\rm ctrl}$,
+measurement and application times satisfy
+\begin{align}
+ \theta_i(t^m_{i,k})&=\theta_i(0)+kp,\nonumber\\
+ \theta_i(t^a_{i,k})&=\theta_i(0)+kp+d_{\rm ctrl}.
+ \label{eq:fpi_local_schedule}
+\end{align}
+The product $kp$ is update index times period, not gain $k_p$.
+Requested correction $q_{i,k}$ is limited to
+$c_{i,k}=\operatorname{sat}_{c_{\max}}(q_{i,k})$ and held until the
+next application, with $\dot\theta_i=\omega_i^u+c_{i,k}$.
+The physical measurement-to-actuation age therefore depends on the
+past clock frequency. Initial correction is zero. Requested and
+applied corrections coincide when the limiter is inactive: $c_{i,k}=q_{i,k}$.
+
+Actual arrivals use compatible negative-time phase history and an
+order-preserving delivery map. For desired send-time latency
+$\tau_{ji}(s)$, arrival time is
+$a_{ji}(s)=\sup_{r\le s}\{r+\tau_{ji}(r)\}$; counts follow delivered
+integer send crossings, not an arbitrary continuous cutoff. This
+permits ordered batch release and imposes no finite serialization rate.
+Appendix~\ref{app:controller} specifies count initialization, the
+in-flight offset and the complete execution interface.
+
+The runtime's existing guards are identical for PI and Fuzzy.
+A guard pauses data phase $\psi_i$, while physical phase $\theta_i$
+and controller updates continue; wholly unstalled execution has
+$\psi_i=\theta_i$. For constant forward and reverse-feedback
+latencies, the used outgoing credit $\chi_{ji}$ satisfies
+\begin{equation}
+ \chi_{ji}(t)=\beta_{ji}(t)+n^{\rm flight}_{ji}(t)
+                         +n^{\rm unack}_{ji}(t).
+ \label{eq:fpi_credit_decomposition}
+\end{equation}
+Here $n^{\rm flight}_{ji}$ counts frames still in forward transit,
+and $n^{\rm unack}_{ji}$ counts consumed frames not yet reflected
+in the sender's reverse feedback. A further send requires
+$\chi_{ji}+1\le \beta_{\max}$. Hence receiving occupancy alone does not establish
+guard-free execution. Appendix~\ref{app:safety_validation} derives
+this identity for the constant-latency validation model.
+
+\subsection{Fuzzification, inference and control update}
+The implemented integrate-first PI baseline uses sample sum $I$, fixed integration
+scale $h=p/\omega_{\rm base}$, and $\kappa_I=k_ih$:
+\begin{equation}
+ I_k=I_{k-1}+E_k,\qquad q_k^{\rm PI}=k_pE_k+\kappa_I I_k.
+ \label{eq:fpi_native}
+\end{equation}
+The sum has no elapsed-time multiplier. The proposed Fuzzy law is
+\begin{align}
+ X_k&=K_e e_k,\quad Y_k=K_{\Delta e}(e_k-e_{k-1}),\nonumber\\
+ A_k&=A_{k-1}+K_uF(X_k,Y_k),\qquad q_k^{\rm F}=A_k,
+ \label{eq:fpi_fuzzy_law}
+\end{align}
+where $K_e,K_{\Delta e}>0$, $K_u<0$ and $A$ stores the requested
+correction. The second input is a sample difference, not a time
+derivative. All rules and gains remain fixed during a run.
+
+Fuzzification uses five labels: negative large (NL), negative small (NS), zero (ZE),
+positive small (PS) and positive large (PL). Their input centers $\zeta_a$ are
+$(-10,-5,0,5,10)$. Interior memberships are triangular:
+$\varphi_a(z)=[1-|z-\zeta_a|/5]_+$, $a=2,3,4$, where
+$[z]_+=\max(z,0)$. The outer shoulders are
+\begin{equation}
+ \varphi_1(z)=\operatorname{clip}_{[0,1]}\frac{-z-5}{5},\quad
+ \varphi_5(z)=\operatorname{clip}_{[0,1]}\frac{z-5}{5}.
+\end{equation}
+Here $\operatorname{clip}_{[0,1]}$ projects onto $[0,1]$.
+Consequent singleton values are $s=(-5,-2.5,0,2.5,5)$.
+Inference uses Mamdani minimum rule activation and singleton
+weighted-average defuzzification. All 25 rules are specified by
+$\ell(a,b)=\min(5,\max(1,a+b-3))$ and
+\begin{equation}
+ w_{ab}=\min(\varphi_a(X),\varphi_b(Y)),\quad
+ F=\frac{\sum_{a,b=1}^5w_{ab}s_{\ell(a,b)}}{\sum_{a,b=1}^5w_{ab}}.
+ \label{eq:fpi_rules}
+\end{equation}
+Rules sharing a consequent are summed separately; replacing their
+sum by maximum aggregation changes the controller. The denominator
+is positive for finite inputs, and $|F|\le5$ bounds each increment,
+not the indefinitely accumulated correction. Initialize
+$I_{-1}=A_{-1}=e_{-1}=0$. External clipping retains raw $A$;
+anti-windup, observer and mode switching are disabled.
+Table~\ref{tab:fpi_full_rules} also gives the complete consequent matrix.
+This specification fixes the implemented nonlinear map; fuzzy inference
+is not used here as an unspecified online gain tuner.
+
+\begin{table}[t]
+\caption{All consequent labels of the proposed Fuzzy law. Rows and columns
+are the present-error and error-difference inputs, respectively.}
+\label{tab:fpi_full_rules}
+\centering
+\begin{tabular}{@{}c|ccccc@{}}\toprule
+$X\backslash Y$ & NL & NS & ZE & PS & PL\\\midrule
+NL & NL & NL & NL & NS & ZE\\
+NS & NL & NL & NS & ZE & PS\\
+ZE & NL & NS & ZE & PS & PL\\
+PS & NS & ZE & PS & PL & PL\\
+PL & ZE & PS & PL & PL & PL\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{PI calibration and nonlinear mechanism}
+\label{subsec:fpi_calibration}
+For $F_0(X,Y)=(X+Y)/2$, coefficient matching with
+$\Delta q_k^{\rm PI}=k_p\Delta E_k+\kappa_I E_k$ gives
+\begin{equation}
+ k_p=-\frac{K_u\gamma_iK_{\Delta e}}2,\qquad
+ \kappa_I=-\frac{K_u\gamma_iK_e}2.
+ \label{eq:fpi_matching}
+\end{equation}
+\begin{btdproposition}[Calibrated linear counterpart]
+\label{prop:fpi_equivalence}
+With~\eqref{eq:fpi_matching}, common measurements, consistent zero
+constructors and identical execution policies, replacing $F$ by $F_0$
+gives the PI baseline's requested correction at every update, including
+$q_0=(k_p+\kappa_I)E_0$.
+\end{btdproposition}
+This is a scale and implementation equivalence for $F_0$, not full
+nonlinear equivalence. The substitution and initialization proof are
+in Appendix~\ref{app:controller}.
+
+This mapping controls a common comparison pitfall: matching gain names
+without matching the measured error, integration order and time scale
+does not match controllers. For the triangle, $\gamma=100/4096$ and
+$h=1000/(29999/30000)$, so the moderate coordinates
+$(k_p,k_i)=(2\times10^{-6},5\times10^{-11})$ correspond to
+$K_e=0.1$, $K_{\Delta e}\simeq3.9998667$ and
+$K_u\simeq-4.0961365\times10^{-5}$. Node indices were suppressed
+in the update equations. On unequal-degree graphs, node-dependent
+$K_{u,i}$ can compensate $\gamma_i$ when common calibrated coordinates
+are required. Target and capacity conventions must stay consistent.
+
+\begin{btdproposition}[Central nonlinear map]
+\label{prop:fpi_central}
+On $\Omega_r=\{(X,Y):|X|+|Y|\le r\}$, $0<r\le5$, set
+$m=\min(|X|,|Y|)$ and
+\begin{equation}
+ J=\begin{cases}\operatorname{sgn}(X)m,&XY>0,\\0,&XY\le0.\end{cases}
+ \qquad F(X,Y)=\frac{F_0(X,Y)+J}{1+2m/5}.
+ \label{eq:fpi_central}
+\end{equation}
+There exists $\alpha(X,Y)$ with $F=\alpha F_0$ and
+$\underline\alpha=(1+r/5)^{-1}\le\alpha\le2=\overline\alpha$.
+\end{btdproposition}
+The four active min-rule weights yield this identity. Same-sign
+inputs strengthen $F_0$; opposing signs attenuate its magnitude.
+Uniformly increasing PI gains cannot produce both effects. This
+axis calibration is not an ordinary Jacobian linearization; details
+and sector bounds are in Appendix~\ref{app:controller}.
+
+With $\mathcal R_F=F-F_0$, the zero-constructor raw correction obeys
+\begin{equation}
+ A_k=k_pE_k+\kappa_I\sum_{\ell=0}^kE_\ell
+               +K_u\sum_{\ell=0}^k\mathcal R_F(X_\ell,Y_\ell).
+ \label{eq:fpd_accounting}
+\end{equation}
+The last term exposes nonlinear memory. It is accounting on Fuzzy's
+own measurements, not a causal decomposition of two independently
+evolving closed loops. Moreover, same-sign inputs do not always mean
+growing absolute error. Performance requires closed-loop evidence.

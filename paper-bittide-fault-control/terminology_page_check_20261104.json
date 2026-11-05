@@ -1,0 +1,16 @@
+{
+  "format": "ACM sigconf",
+  "mainBodyPages": 10,
+  "referencesStart": 11,
+  "appendicesStart": 12,
+  "totalPages": 30,
+  "verificationMode": "pdfTeX draft mode; existing PDF not overwritten",
+  "inputFiles": 14,
+  "uniqueLabels": 186,
+  "missingReferences": [],
+  "figureOccurrences": 7,
+  "overfullWarnings": [],
+  "otherWarnings": [
+    "Package balance Warning: You have called \\balance in second column"
+  ]
+}

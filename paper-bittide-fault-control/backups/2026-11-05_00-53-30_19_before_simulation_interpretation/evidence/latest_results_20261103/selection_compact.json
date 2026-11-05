@@ -1,0 +1,824 @@
+{
+  "schemaVersion": "fair_training_selection_v1",
+  "status": "selection_frozen",
+  "selectionFrozen": true,
+  "createdUTC": "2026-11-03T07:26:05.921770+00:00",
+  "identity": {
+    "masterPlanSHA256": "407fc08da9d2f4bb93cc93a4ddb9141a75fed7505aee030a8edcb46f11e40223",
+    "protocolSHA256": "61bdb039c0aef103e363664bbb6ffcd262f6f49fef4ebbf16177bfefad9ddff2",
+    "originalLockedHeldoutPlanSHA256": "9bfa119ffec3ff68becd333ded7ece47aaeeee742b25685042597fdddfef55ec",
+    "selectionScriptSHA256": "ef3aed1bc6a19082978a5f9781acd99439b0ceacb6d510a9df495471ee5d5007",
+    "modelSourceHashes": {
+      "callisto_aligned_runtime.jl": "181c4c01ea4369de1b11f06885bd3cb7cbe580f8980d011500a373cd4b2a3829",
+      "path_conditions.jl": "c09e096f6cd0a6699f5c9c4679d5bfdb764ba3af03a9308c0650e1cc77cf3c00",
+      "fuzzy_pi_control.jl": "c70a964641e9918193354ebffa1f87ad2cf99c28fbd85c4c6576cb60063acc34"
+    },
+    "metricDefinitionHashes": {
+      "analyze_integral.py": "5249df72bfa761136e6ddce4a37c75ab4ef1f54d251a367d3d73d092a356928b",
+      "fifo_time_metrics.py": "4bc18534480a504e36eaed7f82122fd913d5dc057a7ad29e9bca81204988651e",
+      "burst_analysis.py": "0fc6f64d49b0b8ec7ed0088c2c4bac390c85cb9506499833570047b875bcd616"
+    },
+    "environmentHashes": {
+      "Callisto_Project.toml": "8fc25d871a1d9166ce91db9ed6b72528193e3be1c69276a86dcd3fb509430245",
+      "Callisto_src/Callisto.jl": "ddbc867bc4d55b3a7ea3d1c42a57d3725f5bb97d1618c67e5d847ee169c0b831",
+      "Callisto_src/fastpostproc.jl": "0beab9212b06c8494f30a509fc25fb9caf81c8fe49718e2659ee50b29693908d",
+      "Callisto_src/frames.jl": "4349d38fa53459cb413fc7a9e0bca2b053fd6f4fbf78d1709049ad9b102904ef",
+      "Callisto_src/post.jl": "64596ed64e5bbe81afc29a7cfe02c92b7c0da71487b8c0226c27957642aabaae",
+      "Callisto_src/sim.jl": "fdc0935a852bb1add8165964b85ee7ed1aca3c462f776fa639fe3f2e0560eff3",
+      "Callisto_src/simcore.jl": "c5a17557c8883babba202cf22f84619b1ef3c3f0559a34bbe7b23fcf93e1df84",
+      "Manifest.toml": "1d8b2be88b62f81596689ce6ecce7a4e9b6cf117a232d523694913a3e02983f5",
+      "Project.toml": "dc24300586dbbfba6df9b785d70a6ca7da6e1be1b57aa27ffe17e0c1416217be"
+    }
+  },
+  "QA": {
+    "complete192SlotLedger": true,
+    "allEngineeringChecksPassed": true,
+    "errors": [],
+    "missingSlotIds": [],
+    "unreviewedSlotIds": []
+  },
+  "budget": {
+    "expectedSlots": 192,
+    "firstPartitionExpected": 16,
+    "remainingPartitionExpected": 176,
+    "explicitlyRecordedSlots": 192,
+    "fullyReviewedSlots": 192,
+    "statusCounts": {
+      "completed": 192
+    },
+    "actualNewRuns": 188,
+    "cachedCompletedSlots": 4,
+    "evaluationSlotsCharged": 192,
+    "failedOrUnusedSlotsReallocated": false
+  },
+  "objectiveDefinitions": {
+    "allMinimize": [
+      "worstRandomPostRMS",
+      "burstPostIAE",
+      "worstActualPostBufferPeak",
+      "worstPeakAbsCommonVsOwnClean",
+      "worstMeanControlTV"
+    ],
+    "Rlexicographic": [
+      "worstRandomPostRMS",
+      "worstPeakAbsCommonVsOwnClean",
+      "worstActualPostBufferPeak",
+      "burstPostIAE",
+      "worstMeanControlTV",
+      "candidateId"
+    ],
+    "Blexicographic": [
+      "burstPostIAE",
+      "worstActualPostBufferPeak",
+      "worstPeakAbsCommonVsOwnClean",
+      "worstRandomPostRMS",
+      "worstMeanControlTV",
+      "candidateId"
+    ],
+    "numericRoundingOrTolerance": null,
+    "strictOwnCleanRecoveryIsSeparateCensoredDiagnostic": true
+  },
+  "selection": {
+    "families": {
+      "PI": {
+        "feasibleCandidateIds": [
+          "PI_g05",
+          "PI_g06",
+          "PI_g07",
+          "PI_g08",
+          "PI_g09",
+          "PI_g10",
+          "PI_g11",
+          "PI_g12",
+          "PI_g13",
+          "PI_g14",
+          "PI_g15",
+          "PI_g16",
+          "PI_g17",
+          "PI_g18",
+          "PI_g19",
+          "PI_g20",
+          "PI_g22",
+          "PI_g23",
+          "PI_g24"
+        ],
+        "paretoCandidateIds": [
+          "PI_g05",
+          "PI_g06"
+        ],
+        "exactObjectiveVectorGroups": [
+          {
+            "retainedCandidateId": "PI_g05",
+            "allCandidateIds": [
+              "PI_g05"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 4.664372913045464,
+              "burstPostIAE": 3837242.775799375,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 27.050479460499766,
+              "worstMeanControlTV": 0.010365234374479145
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g06",
+            "allCandidateIds": [
+              "PI_g06"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 5.061467227695979,
+              "burstPostIAE": 5557988.959215817,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 42.14771603494594,
+              "worstMeanControlTV": 0.010362715423847457
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g07",
+            "allCandidateIds": [
+              "PI_g07"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.560225603521177,
+              "burstPostIAE": 9942541.096778532,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 90.38599064425945,
+              "worstMeanControlTV": 0.010427438581286039
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g08",
+            "allCandidateIds": [
+              "PI_g08"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.246288791633157,
+              "burstPostIAE": 18349689.00127707,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 170.20536240097695,
+              "worstMeanControlTV": 0.010588243852572858
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g09",
+            "allCandidateIds": [
+              "PI_g09"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 5.688362345426381,
+              "burstPostIAE": 4384585.619116789,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 30.14381034915914,
+              "worstMeanControlTV": 0.012933784376145875
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g10",
+            "allCandidateIds": [
+              "PI_g10"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 5.979200003543252,
+              "burstPostIAE": 5473733.41027861,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 45.2277298131909,
+              "worstMeanControlTV": 0.01295201542829206
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g11",
+            "allCandidateIds": [
+              "PI_g11"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 7.189895211714708,
+              "burstPostIAE": 9109591.693476599,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 92.71931286602975,
+              "worstMeanControlTV": 0.013029671905730197
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g12",
+            "allCandidateIds": [
+              "PI_g12"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.49891324657005,
+              "burstPostIAE": 15393374.209250418,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 171.90536906785957,
+              "worstMeanControlTV": 0.013128910435903423
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g13",
+            "allCandidateIds": [
+              "PI_g13"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.734840234724458,
+              "burstPostIAE": 4846038.835476441,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 33.41381379384778,
+              "worstMeanControlTV": 0.01550643771459049
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g14",
+            "allCandidateIds": [
+              "PI_g14"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.910551189963552,
+              "burstPostIAE": 5259625.3810587935,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 48.000966698769076,
+              "worstMeanControlTV": 0.015519955431847731
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g15",
+            "allCandidateIds": [
+              "PI_g15"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 7.855603299082773,
+              "burstPostIAE": 8605062.458262252,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 95.58598619952008,
+              "worstMeanControlTV": 0.015575771892396416
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g16",
+            "allCandidateIds": [
+              "PI_g16"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.925226256196897,
+              "burstPostIAE": 13140044.77687407,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 173.40534684484598,
+              "worstMeanControlTV": 0.015718743858128603
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g17",
+            "allCandidateIds": [
+              "PI_g17"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 8.956112902913052,
+              "burstPostIAE": 5599164.663719185,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 39.66047757142377,
+              "worstMeanControlTV": 0.02066480104892385
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g18",
+            "allCandidateIds": [
+              "PI_g18"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 8.970471756590925,
+              "burstPostIAE": 5874028.66328066,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 54.4476371433511,
+              "worstMeanControlTV": 0.020659188772959098
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g19",
+            "allCandidateIds": [
+              "PI_g19"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.600278743018137,
+              "burstPostIAE": 7767066.6356305145,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 101.18599508879278,
+              "worstMeanControlTV": 0.020707988577397023
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g20",
+            "allCandidateIds": [
+              "PI_g20"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 11.346613254388897,
+              "burstPostIAE": 11244249.180766238,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 179.40531351046118,
+              "worstMeanControlTV": 0.02086907719146194
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g22",
+            "allCandidateIds": [
+              "PI_g22"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 13.423766682603427,
+              "burstPostIAE": 6731274.924322115,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 65.93439781332755,
+              "worstMeanControlTV": 0.03094532877762592
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g23",
+            "allCandidateIds": [
+              "PI_g23"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 13.501455989762439,
+              "burstPostIAE": 7353585.017957995,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 113.80266008853556,
+              "worstMeanControlTV": 0.0310157052568419
+            }
+          },
+          {
+            "retainedCandidateId": "PI_g24",
+            "allCandidateIds": [
+              "PI_g24"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 14.575358448583241,
+              "burstPostIAE": 9206630.534529377,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 193.2053068436357,
+              "worstMeanControlTV": 0.03107034401146705
+            }
+          }
+        ],
+        "labels": {
+          "R": "PI_g05",
+          "B": "PI_g05"
+        },
+        "selectedCandidateIds": [
+          "PI_g05"
+        ],
+        "zeroFeasibleCandidates": false,
+        "replacementPerformed": false
+      },
+      "Fuzzy": {
+        "feasibleCandidateIds": [
+          "Fuzzy_g02",
+          "Fuzzy_g03",
+          "Fuzzy_g04",
+          "Fuzzy_g05",
+          "Fuzzy_g06",
+          "Fuzzy_g07",
+          "Fuzzy_g08",
+          "Fuzzy_g09",
+          "Fuzzy_g10",
+          "Fuzzy_g11",
+          "Fuzzy_g12",
+          "Fuzzy_g13",
+          "Fuzzy_g14",
+          "Fuzzy_g15",
+          "Fuzzy_g16",
+          "Fuzzy_g17",
+          "Fuzzy_g18",
+          "Fuzzy_g19",
+          "Fuzzy_g20",
+          "Fuzzy_g22",
+          "Fuzzy_g23",
+          "Fuzzy_g24"
+        ],
+        "paretoCandidateIds": [
+          "Fuzzy_g02",
+          "Fuzzy_g05",
+          "Fuzzy_g09",
+          "Fuzzy_g13",
+          "Fuzzy_g17"
+        ],
+        "exactObjectiveVectorGroups": [
+          {
+            "retainedCandidateId": "Fuzzy_g02",
+            "allCandidateIds": [
+              "Fuzzy_g02"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 4.4604847739807285,
+              "burstPostIAE": 5787015.738529402,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 77.57998782653708,
+              "worstMeanControlTV": 0.007867968721554361
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g03",
+            "allCandidateIds": [
+              "Fuzzy_g03"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.688124972269786,
+              "burstPostIAE": 12578772.0286576,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 185.5499048967202,
+              "worstMeanControlTV": 0.008179007076120895
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g04",
+            "allCandidateIds": [
+              "Fuzzy_g04"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 10.276385007029745,
+              "burstPostIAE": 20987039.60098068,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 367.67802240877944,
+              "worstMeanControlTV": 0.0086887365429417
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g05",
+            "allCandidateIds": [
+              "Fuzzy_g05"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 4.70797714602008,
+              "burstPostIAE": 3716281.2283182642,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 42.102842363167525,
+              "worstMeanControlTV": 0.010379592520111728
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g06",
+            "allCandidateIds": [
+              "Fuzzy_g06"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 5.213510484317565,
+              "burstPostIAE": 5433360.746860935,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 78.85297071585917,
+              "worstMeanControlTV": 0.010460280327238914
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g07",
+            "allCandidateIds": [
+              "Fuzzy_g07"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.981384346702462,
+              "burstPostIAE": 9757223.760229127,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 186.42309137173464,
+              "worstMeanControlTV": 0.010767525697358712
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g08",
+            "allCandidateIds": [
+              "Fuzzy_g08"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 10.181260336355603,
+              "burstPostIAE": 16648748.887333678,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 370.19077631539335,
+              "worstMeanControlTV": 0.0112563095146518
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g09",
+            "allCandidateIds": [
+              "Fuzzy_g09"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 5.722214212553764,
+              "burstPostIAE": 3567467.5871339818,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 43.31763501297381,
+              "worstMeanControlTV": 0.012955027869106251
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g10",
+            "allCandidateIds": [
+              "Fuzzy_g10"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.090956630920138,
+              "burstPostIAE": 5349570.875579675,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 79.70671737878021,
+              "worstMeanControlTV": 0.013009820550526541
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g11",
+            "allCandidateIds": [
+              "Fuzzy_g11"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 7.418473965385465,
+              "burstPostIAE": 9010622.131516336,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 187.18498022329834,
+              "worstMeanControlTV": 0.013327705022531845
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g12",
+            "allCandidateIds": [
+              "Fuzzy_g12"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 10.36354423151098,
+              "burstPostIAE": 14726288.114389038,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 367.3946101260261,
+              "worstMeanControlTV": 0.013749195956220421
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g13",
+            "allCandidateIds": [
+              "Fuzzy_g13"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 6.749590928526391,
+              "burstPostIAE": 3389221.967991426,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 45.7097163404363,
+              "worstMeanControlTV": 0.015500497891088311
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g14",
+            "allCandidateIds": [
+              "Fuzzy_g14"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 7.004286905317364,
+              "burstPostIAE": 5148485.627860286,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 81.62999971061957,
+              "worstMeanControlTV": 0.015614385405511494
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g15",
+            "allCandidateIds": [
+              "Fuzzy_g15"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 8.158286105165173,
+              "burstPostIAE": 8437904.377930308,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 188.08497389255496,
+              "worstMeanControlTV": 0.015856267844290922
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g16",
+            "allCandidateIds": [
+              "Fuzzy_g16"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 10.72287879517806,
+              "burstPostIAE": 12584794.325989328,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 369.6309494275463,
+              "worstMeanControlTV": 0.016334501815791724
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g17",
+            "allCandidateIds": [
+              "Fuzzy_g17"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 8.964508057796467,
+              "burstPostIAE": 2871054.8643170437,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 50.438008435960136,
+              "worstMeanControlTV": 0.020630690609127547
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g18",
+            "allCandidateIds": [
+              "Fuzzy_g18"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.04598143035255,
+              "burstPostIAE": 5613524.698133571,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 84.31804926978259,
+              "worstMeanControlTV": 0.0207172111947133
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g19",
+            "allCandidateIds": [
+              "Fuzzy_g19"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 9.836963939406814,
+              "burstPostIAE": 7697763.140813088,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 190.56823455732007,
+              "worstMeanControlTV": 0.02104266571975082
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g20",
+            "allCandidateIds": [
+              "Fuzzy_g20"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 12.124199349975179,
+              "burstPostIAE": 11049505.471250448,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 376.1559418044014,
+              "worstMeanControlTV": 0.021400418236724086
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g22",
+            "allCandidateIds": [
+              "Fuzzy_g22"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 13.45592888987754,
+              "burstPostIAE": 4423557.211588692,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 89.83601141543396,
+              "worstMeanControlTV": 0.030917046034181845
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g23",
+            "allCandidateIds": [
+              "Fuzzy_g23"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 13.704558504013239,
+              "burstPostIAE": 7209693.426319211,
+              "worstActualPostBufferPeak": 21.0,
+              "worstPeakAbsCommonVsOwnClean": 197.54626951240527,
+              "worstMeanControlTV": 0.0312403138346323
+            }
+          },
+          {
+            "retainedCandidateId": "Fuzzy_g24",
+            "allCandidateIds": [
+              "Fuzzy_g24"
+            ],
+            "objectives": {
+              "worstRandomPostRMS": 15.162935001981953,
+              "burstPostIAE": 9171373.233489016,
+              "worstActualPostBufferPeak": 20.0,
+              "worstPeakAbsCommonVsOwnClean": 380.29810149575735,
+              "worstMeanControlTV": 0.0315840246789805
+            }
+          }
+        ],
+        "labels": {
+          "R": "Fuzzy_g02",
+          "B": "Fuzzy_g17"
+        },
+        "selectedCandidateIds": [
+          "Fuzzy_g02",
+          "Fuzzy_g17"
+        ],
+        "zeroFeasibleCandidates": false,
+        "replacementPerformed": false
+      }
+    },
+    "selectedCandidateIds": [
+      "Fuzzy_g02",
+      "Fuzzy_g17",
+      "PI_g05"
+    ],
+    "deduplicateWithoutReplacement": true
+  },
+  "limitations": [
+    "One shared training seed per regime; no statistical significance or global-optimality claim.",
+    "Stored FIFO/credit envelopes are diagnostics, not a stability certificate.",
+    "Missing/failed/censored values are never converted to zero or a performance reward."
+  ],
+  "selectedConfigurations": [
+    {
+      "candidateId": "PI_g05",
+      "family": "PI",
+      "frozenCandidateConfig": {
+        "name": "PI_g05",
+        "candidateId": "PI_g05",
+        "family": "PI",
+        "controller": "pi",
+        "kp": 2e-06,
+        "ki": 1e-11,
+        "anchor": null,
+        "fuzzyPI": {
+          "setpoint": 50,
+          "errorInputGain": 0.1,
+          "derrorInputGain": 19.999333333333336,
+          "outputGain": -8.192273075769192e-06,
+          "errorReference": "absolute"
+        },
+        "priorNominalRaw": "/tmp/codex_fair_tuning_v1/nominal_remaining_runs/PI_g05_clean/raw.json"
+      },
+      "feasible": true,
+      "objectives": {
+        "worstRandomPostRMS": 4.664372913045464,
+        "burstPostIAE": 3837242.775799375,
+        "worstActualPostBufferPeak": 20.0,
+        "worstPeakAbsCommonVsOwnClean": 27.050479460499766,
+        "worstMeanControlTV": 0.010365234374479145
+      },
+      "slotIds": [
+        "PI_g05__clean",
+        "PI_g05__burst_A20_D100k_e12",
+        "PI_g05__random_Tc1000_s31001",
+        "PI_g05__random_Tc10000_s31001"
+      ],
+      "failureReasons": []
+    },
+    {
+      "candidateId": "Fuzzy_g02",
+      "family": "Fuzzy",
+      "frozenCandidateConfig": {
+        "name": "Fuzzy_g02",
+        "candidateId": "Fuzzy_g02",
+        "family": "Fuzzy",
+        "controller": "fuzzy_pi",
+        "kp": 1.5e-06,
+        "ki": 2e-11,
+        "anchor": null,
+        "fuzzyPI": {
+          "setpoint": 50,
+          "errorInputGain": 0.1,
+          "derrorInputGain": 7.4997500000000015,
+          "outputGain": -1.6384546151538383e-05,
+          "errorReference": "absolute"
+        },
+        "priorNominalRaw": "/tmp/codex_fair_tuning_v1/nominal_remaining_runs/Fuzzy_g02_clean/raw.json"
+      },
+      "feasible": true,
+      "objectives": {
+        "worstRandomPostRMS": 4.4604847739807285,
+        "burstPostIAE": 5787015.738529402,
+        "worstActualPostBufferPeak": 20.0,
+        "worstPeakAbsCommonVsOwnClean": 77.57998782653708,
+        "worstMeanControlTV": 0.007867968721554361
+      },
+      "slotIds": [
+        "Fuzzy_g02__clean",
+        "Fuzzy_g02__burst_A20_D100k_e12",
+        "Fuzzy_g02__random_Tc1000_s31001",
+        "Fuzzy_g02__random_Tc10000_s31001"
+      ],
+      "failureReasons": []
+    },
+    {
+      "candidateId": "Fuzzy_g17",
+      "family": "Fuzzy",
+      "frozenCandidateConfig": {
+        "name": "Fuzzy_g17",
+        "candidateId": "Fuzzy_g17",
+        "family": "Fuzzy",
+        "controller": "fuzzy_pi",
+        "kp": 4e-06,
+        "ki": 1e-11,
+        "anchor": null,
+        "fuzzyPI": {
+          "setpoint": 50,
+          "errorInputGain": 0.1,
+          "derrorInputGain": 39.99866666666667,
+          "outputGain": -8.192273075769192e-06,
+          "errorReference": "absolute"
+        },
+        "priorNominalRaw": "/tmp/codex_fair_tuning_v1/nominal_remaining_runs/Fuzzy_g17_clean/raw.json"
+      },
+      "feasible": true,
+      "objectives": {
+        "worstRandomPostRMS": 8.964508057796467,
+        "burstPostIAE": 2871054.8643170437,
+        "worstActualPostBufferPeak": 20.0,
+        "worstPeakAbsCommonVsOwnClean": 50.438008435960136,
+        "worstMeanControlTV": 0.020630690609127547
+      },
+      "slotIds": [
+        "Fuzzy_g17__clean",
+        "Fuzzy_g17__burst_A20_D100k_e12",
+        "Fuzzy_g17__random_Tc1000_s31001",
+        "Fuzzy_g17__random_Tc10000_s31001"
+      ],
+      "failureReasons": []
+    }
+  ],
+  "sourcePath": "C:\\Users\\cyin969\\Documents\\paper-ctpn-moc\\code\\simulation\\simulation\\results\\paper_completion_20261103_v1\\A_selection_v2\\selection_frozen.json",
+  "sourceSHA256": "47b1fbdc418e2141c151cc103817948574a8575700cde4a307385facebef7f4b"
+}

@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "sourceCompletionSHA256": "3b2d78c08764bf917031e50ecbcc7db5dae53a441266e7a1f0f7a7c5adedb09d",
+  "counts": {
+    "newReferenceOriginal": 30,
+    "cachedReferenceOriginal": 6,
+    "newReferenceR4Annex": 4,
+    "newActual": 12,
+    "proofAndPostprocessing": "separate; not plant runs"
+  },
+  "independentlyReadActualResolvedConfigs": 12,
+  "z20OriginalTraceChecks": [
+    {
+      "controller": "native_pi",
+      "minimum": -3.4037013081245693,
+      "maximum": 43.403701308124575,
+      "traceSHA256": "f8e933302b9e796ff8897e946d2857ac0e95df7df665f9b48b735dc6205b673f"
+    },
+    {
+      "controller": "full_fuzzy",
+      "minimum": 2.685943182038841,
+      "maximum": 37.31405681796116,
+      "traceSHA256": "7287f0f2d93970b1c625753c0ae56a1beb2088ec81dd561be40360acc2db055b"
+    }
+  ],
+  "allCopiedFiguresMatchSource": true,
+  "pageCheck": {
+    "format": "ACM sigconf",
+    "mainBodyPages": 10,
+    "referencesStart": 11,
+    "appendicesStart": 12,
+    "totalPages": 35,
+    "verificationMode": "pdfTeX draft mode; existing PDF not overwritten",
+    "inputFiles": 15,
+    "uniqueLabels": 195,
+    "missingReferences": [],
+    "figureOccurrences": 11,
+    "overfullWarnings": [],
+    "otherWarnings": []
+  },
+  "currentSourceHashes": {
+    "sections/section_iv_paper.tex": "47f8f7df94b435721d959d7e65ec988aa194ad4423b6f423291769f0ba23cfb3",
+    "appendices/appendix_theory.tex": "051ae00ecf0d526cfe41424b3ce5a0243d1962a719c9c8bcdcac865924686c1e",
+    "main.tex": "3ff4130c96c66dcea04af4e99ea744271ea7527e8b3acd8b051e2ae3e3fae9dd",
+    "sections/introduction.tex": "2f95f763ead42a81b1f431b177942e94167ddf4a5c5419570f6c024e3a201299",
+    "sections/background.tex": "2a7c6b754d56729baa27c57b2038360e283790a0269e99fd08e687a57d3abe12",
+    "sections/evaluation.tex": "5f6d49ebc3be9341d70cd1e33bb787da167df9b6ad2388ccaa88a9e91eccd257",
+    "sections/discussion.tex": "eea81f362dca9caa418d7acb00ad8d408d8fa05bf0e453ad357f649c5fe091c4",
+    "sections/conclusion.tex": "f3a8b3253f2377752fbfe736ca2141d4fe48bb629c2142d3b39228ceae3462dc",
+    "appendices/appendix_safety_validation.tex": "37f90c9f8efd5e0ec719675d9cf47a6b7b8663c5922fd9cef9c0b94b00cbf4f3"
+  },
+  "supplementaryOldEvaluationSHA256": "19b871e2a167c0d4aae13920470f5387a05f5eea65cd0a1f294efa3e8527c991"
+}
